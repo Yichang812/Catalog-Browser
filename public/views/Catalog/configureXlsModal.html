@@ -1,0 +1,29 @@
+<section>
+	<div class="modal-header">
+		Configure custom .xls Template
+	</div>
+	<div class="modal-body">
+		<form class="form-horizontal">
+			<div class="form-group">
+				<label class="control-label col-sm-5">Sheet Title Cell</label>
+				<div class="col-sm-7">
+					<input type="text" class="form-control" ng-blur="checkCell()" ng-model="config.title"></input>
+					<div class="error" ng-show="valid.title===false">Please enter a valid cell number.</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-5">Column Title Row Number</label>
+				<div class="col-sm-7">
+					<input type="number" min="1" class="form-control" ng-model="config.fields" ng-blur="checkFields()"></input>
+					<div class="error" ng-show="valid.fields===false">{{error.fields}}</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-md-12">
+				<button class="btn btn-primary btn-separate pull-right" ng-click="apply()" ng-disabled ="doneDisabled">Done</button>
+				<button class="btn btn-default pull-right" ng-click="cancel()">Cancel</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</section>

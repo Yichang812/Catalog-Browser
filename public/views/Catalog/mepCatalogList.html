@@ -1,0 +1,139 @@
+<div class="container" ng-controller="mepCatalogListCtrl" ng-init="init()" style="padding-top:30px; max-height:100%-30px;" has-cuz-menu>
+	<nav class="col-md-4 navmenu navmenu-default animate-show" ng-show="showStandards" style="height: 85%; position: fixed; left: 0; z-index: 9999; overflow-y: auto;">
+        <ul class="nav navmenu-nav" ng-init="getMepStandards()" style="overflow-y: auto;">
+            <div class="navmenu-brand">Unit Standards</i></div> 
+            <form class="navbar-form" role="search">
+				<input type="text" class="form-control" placeholder="Search Standard..." ng-model="searchStandard">
+			</form>
+
+            <li style="margin-top: 20px; margin-left: 15px;" ng-show="standards.length == 0">No standards available</li>          
+            <li style="margin-left: 10px;" class="ng-class:{active: (selectedStandard? standard===selectedStandard: false)}" ng-repeat="standard in standards | orderBy: 'toString()' |filter: searchStandard" ng-mouseenter = "toggleOption(standard, true)" ng-mouseleave = "toggleOption(standard, false)" href="#!/catalog/{{standard}}" ng-click="showStandardCategories(standard)">
+                <a>{{standard}}</a>
+            </li>
+        </ul>
+	</nav>
+	<span>
+		<a ng-click="showStandard()"><i class="fa fa-ellipsis-vertical fa-4x" style="position:fixed; left:1%; top:50%;"></i></a>
+	</span>
+	<div class="row" ng-show="selectedStandard">
+        <div class="col-sm-12 mep-ui-select">
+			<ui-select ng-model="category.selected" theme="selectize" ng-change="showCategoryEntries($select.selected)">
+			    <match placeholder="{{categories.length > 0 && 'Search by Category...' || 'No Category Available.'}}">{{$select.selected}}</match>
+			    <choices repeat="category in categories | orderBy: 'toString()' | filter: $select.search" class="ng-class:{active: (!!selected? category===selected : false)}">
+			    	<a>{{category}}</a>
+			    </choices>
+			</ui-select>
+		</div>
+	</div>
+	<accordion ng-show="selected" cuz-menu>
+	<accordion-group is-open="searchBox.show" style="overflow:visible;">
+	<accordion-heading>
+		<div class="placeholder">
+			{{selected + ' (' + selectedStandard + ')'}}
+			<a style="position:absolute; left:50%;"><i class="fa fa-caret-down fa-lg" ng-show="!searchBox.show"></i></a>
+			<a style="position:absolute; left:50%;"><i class="fa fa-caret-up fa-lg" ng-hide="!searchBox.show"></i></a>
+			<a style="margin-top: -6px; margin-right: -10px;" ng-show="checkFilters() && global.authenticated" ng-click="$event.stopPropagation(); showFilterModal()" class=" pull-right btn btn-primary btn-sm"><i class="fa fa-save" style="margin-right: 10px;"></i>Save current search</a>
+		</div>
+	</accordion-heading>
+	<div ng-show="searchBox && selected">
+		<div class="row">
+			<form class="form-horizontal col-md-8 col-md-offset-2">
+				<div class="form-group">
+	    			<label class="col-sm-2 control-label">Search
+		            </label>
+	    			<div class="col-sm-8">
+		      			<input type="text" name = "searchHelpPopover"
+		      			 	popover = '"Exact Phrases" and OR expressions are supported: "RED LED", 30.5MM OR 20.5MM'
+		             		popover-title = "Search Help"
+		             		popover-placement = "bottom"
+		             		popover-trigger="mouseenter"class="form-control" ng-model="searchText.value" placeholder="Search Text Here">
+	   				</div>
+	   			</div>
+	   			<div class="form-group">
+	    			<label class="col-sm-2 control-label">Filters</label>
+	    			<div class="col-sm-8">
+	    				<div class="form-group" ng-repeat = 'filter in filters'>
+			      			<div class="col-sm-12">
+			      			<div class="input-group showBtnOnHover">
+			      				<span class="input-group-addon">{{filter.field}}</span>
+			      				<input type="text" ng-model="filter.value" ng-if="filter.field !== 'Manufacturer'" class="form-control" ng-keydown="noSubmit($event)">
+			      				<input type="text" ng-model="filter.value" class="form-control" ng-if="filter.field === 'Manufacturer'" typeahead="value for value in typeAheadValues[filter.field]| filter:$viewValue | limitTo:8" ng-keydown="noSubmit($event)">
+			      				<span class="input-group-btn onHover" ng-click="removeFilter(filter)">
+			      					<button class="btn btn-default" ><i class="fa fa-times"></i></button>
+			      				</span>
+			      			</input>
+			      			</div>
+			      			</div>
+	   					</div>
+
+						<div class="row">
+							<div class="dropdown col-sm-2">
+								<button class="btn dropdown-toggle btn-default" type="button" data-toggle="dropdown"  ng-show="filters.length !== 4">
+								<i class="fa fa-filter"></i> Add Filter  
+								<span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+									<li role="presentation" ng-repeat="f in defaultFilters" ng-click="addFilter(f)"><a role="menuitem">{{f}}</a></li>
+								</ul>
+							</div>
+		      			</div>
+	   				</div>
+		   		</div>
+	   			<div class="form-group">
+	   				<div class="col-sm-offset-2">
+	   					<div class="col-sm-8">
+	    					<a class="btn btn-primary" ng-click="search();hideSearchBox();"><i class="fa fa-search"></i> Search</a>
+                            <button class="btn btn-primary" style="margin-left:10px;" ng-show="showDownload" ng-click="downloadSearchResults()">Download</button>
+	    				</div>
+	    			</div>
+	   			</div>
+			</form>
+		</div>
+	</div>
+	</accordion-group>
+	</accordion>
+	<div class="row" ng-show="showList && !searchBox.show && items.length > 0">
+		<div class="col-md-8">
+	    	<a class="btn btn-default btn-sm" style="margin-top: 6px;" tooltip="Mark selected item(s) as favourite" tooltip-placement="right" tooltip-popup-delay="100" tooltip-animation="false" ng-click="markMepFavourite()" ng-show="global.authenticated" ng-disabled="selectedItems.length===0"><i class="fa fa-star-o"></i></a>
+   	 	</div>
+   	 	<div class="col-md-4 pull-right">
+   	 		<p class="pull-right" style="margin-top:6px;">Showing <b>{{currentPage ? (currentPage-1)*pageItemLimit + 1: 1}} - {{currentPage ? (currentPage-1)*pageItemLimit + items.length : items.length}}</b> of <b>{{total}}</b> results.</p>
+   	 	</div>
+	</div>
+	<div ng-show="showList" ng-click="closeStandard()">
+		<div class="col-md-12 mepCatalog" style="overflow: auto; margin-top:20px">
+			<div calss="col-md-4" style="text-align: center" ng-show="items.length === 0">No Entries available.</div>
+			<div class="slide col-md-4 imgLoader" ng-repeat="item in items" ng-click="toggleSelectRow($index);$event.preventDefault();" ng-class="{highlighted:isHighlighted($index)}">
+				<div id="overlay" ng-show="showDetails($index)">
+					<i style="margin: 8px 8px 0 0; text-decoration: none;" class="fa fa-times-circle pull-right icon-btn" ng-click="toggleDetailsBox($index)" tooltip="Close" tooltip-placement="bottom" tooltip-popup-delay="400" tooltip-animation="false"></i>
+					<div class="itemDetails">{{item.name}}</div>
+				</div>
+				<img ng-src="{{item.image}}">
+				<div class="icon">
+					<i style="margin: 8px 8px 0 0" class="fa fa-star star icon-btn" ng-show="checkIfMepFav(item)" ng-click="$event.stopPropagation(); delMepFav(item);" tooltip="Remove" tooltip-placement="bottom" tooltip-popup-delay="400" tooltip-animation="false"></i>
+					<i style="margin: 8px 10px 0 0; text-decoration: none;" class="fa fa-info-circle btn-link" ng-click="toggleDetailsBox($index);$event.stopPropagation();" tooltip="Show Details" tooltip-placement="bottom" tooltip-popup-delay="400" tooltip-animation="false"></i>
+					<a style="margin: 8px 10px 0 0px;" ng-href="{{item.dwgPath}}" tooltip="Download" tooltip-placement="bottom" tooltip-popup-delay="400">
+						<i class="fa fa-download btn-link" ng-click="$event.stopPropagation();"></i>
+					</a>
+				</div>
+				<p>{{item.name}}</p>
+			</div>
+		</div>
+		<div style="text-align: center; margin-top: 25px; background-color: #f6f6f6; border-radius: 10px; border: 1px solid #eeeeee" class="col-md-offset-3 col-md-6">
+			<pagination ng-show="showList && items.length !== 0" total-items="total" page="currentPage" max-size="7" items-per-page="pageItemLimit" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages" ng-click="getPage(currentPage)"></pagination>
+		</div>
+	</div>
+
+<div ng-if="global.authenticated" id="contextMenu" class="dropdown clearfix" tabindex="-1" context-menu>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenu" style="display:block;position:static;margin-bottom:5px;" cuz-menu-item>
+        <li>
+        	<a ng-click="showLinkModal()"><i class="fa fa-link"></i> Link to icons</a>
+        </li>
+        <li>
+        	<a><i class="fa fa-star-o"></i> Mark as favorite</a>
+        </li>
+    </ul>
+</div>
+</div>
+
+

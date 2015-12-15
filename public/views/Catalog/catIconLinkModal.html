@@ -1,0 +1,60 @@
+<div ng-init="init()">
+	<nav class="navbar navbar-default" style="margin-bottom: 0px">
+	  <div class="container-fluid">
+	    <div class="navbar-header col-md-6">
+	      <a class="navbar-brand"><i style="font-size: 16px;"><span>Linking </span><span ng-show="items.length > 1" tooltip-placement="bottom" tooltip="{{getListOfItems()}}"><u>{{items.length}}</u> </span><span ng-show="items.length > 1">items </span><span ng-show="items.length === 1">{{items[0].catalog}}</span><span> to Schematic Icons</span></i></a>
+	    </div>
+	    <div class="col-md-6 pull-right" ng-show="stds.length !== 0">
+	    	<div class="input-group" style="margin-top:9px">
+				<div class="input-group-btn left-inner-addon">
+					<button class="btn btn-default dropdown-toggle" data-toggle="dropdown">{{selectedStdName ? selectedStdName.split(':')[0]: stds[0].name.split(':')[0]}}<span class="caret" style="margin-left:10px"></span></button>
+					<ul class="dropdown-menu">
+						<li ng-repeat="std in stds"><a ng-click="selectSearchStd(std)">{{std.name.split(':')[0]}}</a></li>
+					</ul>
+				</div>
+				<input type="text" class="form-control" type="text" ng-model="query.text" class="form-control">
+			</div>
+	    </div>
+	  </div>
+	</nav>
+	<div auto-scroll="{{selectedLevel}}" style="height: 450px; background: #CCC; overflow-x: scroll; border: 1px solid #aaa; overflow-y: hidden;" ng-hide="query.text.length > 0">
+		<table style="background: white">
+			<tbody style="vertical-align: top;">
+			<tr>
+				<td ng-repeat="level in levels" style="max-width:250px; min-width:250px; padding: 0px;">
+					<div style="height: 450px; display: block; word-wrap: break-word; overflow-y: scroll;">
+						<ul class="list-group">
+						  <li class="list-group-item" ng-if="level.items.length === 0" style="border-radius: 0px; border: 0px; font-size: 12px;">Nothing to show here.</li>
+						  <li class="list-group-item imgLoader" ng-class="{'blueBackground': isSelected(level.levelNumber, item) && level.levelNumber === selectedLevel.current,'greyBackground':level.levelNumber !== selectedLevel.current && isSelected(level.levelNumber,item), 'disabledLink': alreadyLinked(item) || unpublished(item)}" style="border-radius: 0px; border: 0px;" ng-repeat="item in level.items | filter: query.text | orderBy: '!isComposite'" ng-click="!alreadyLinked(item) && !unpublished(item)? selectOption(level.levelNumber, item): null"><i class="fa fa-folder-o" ng-if="item.isComposite" style="margin-right: 10px; vertical-align: middle;"></i><img ng-src="{{item.thumbnail}}" ng-if="!item.isComposite" style="margin-right: 10px" height="16" width="16"><span style="font-size:12px;">{{item.name}}</span></li>
+						</ul>
+					</div>
+				</td>
+			</tr>
+			</tbody>
+		</table>
+	</div>
+	<div style="height: 450px; background: white; overflow-x: hidden; border: 1px solid #aaa; overflow-y: scroll;" ng-if="query.text.length > 0">
+		<div class="row greyBackground" style="padding-top:5px;padding-bottom:5px;">
+			<div class="col-md-12" style="padding-left:30px;">
+				{{(typeAheadValues |filter: query.text).length}} search results for "<b>{{query.text}}</b>" in <b>{{selectedStdName}}</b>		
+				<button ng-click="query.text=''; linkDisabled = true; selectedItem= null;" style="margin-left:30px;"class="btn btn-default btn-separate btn-xs">Close</button>
+			</div>
+
+		</div>
+		<div style="width:100%;">
+			<ul class="list-group">
+				<li class="list-group-item" ng-if="(typeAheadValues | filter: query.text).length < 1" style="border-radius: 0px; border: 0px; font-size: 12px;">Nothing to show here.</li>
+				<li class="list-group-item imgLoader" style="border-radius: 0px; border: 0px;" ng-repeat="item in typeAheadValues | filter: query.text" ng-click="!alreadyLinked(item) && !unpublished(item)? selectFromSearch(item): null" ng-class="{'blueBackground':item._id === selectedItem._id, 'disabledLink': alreadyLinked(item) || unpublished(item)}" ng-mouseenter="setTarget(item);getParentName(item);" ng-mouseleave="removeTarget();">
+					<i class="fa fa-folder-o" ng-if="item.isComposite" style="margin-right: 10px; vertical-align: middle;"></i>
+					<img ng-src="{{item.thumbnail}}" ng-if="!item.isComposite" style="margin-right: 10px" height="16" width="16">
+					<span style="font-size:12px;">{{item.name}}</span>
+					<span ng-if="item._id === target._id" class="btn-separate"><i style="text:10px">{{itemParentName}}</i></span>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="modal-footer" style="margin-top: 0px">
+		<button class="btn btn-primary btn-separate pull-right" ng-click="link()" ng-disabled ="linkDisabled"><i class="fa fa-link" style="margin-right: 10px" analytics-on="click" analytics-category="Catalog Browser" analytics-event="Linking" analytics-label="Link to Icon(s)"></i>Link</button>
+		<button class="btn btn-default pull-left" ng-click="cancel()">Cancel</button>
+	</div>
+</div>

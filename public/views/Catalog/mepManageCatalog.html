@@ -1,0 +1,110 @@
+<div>
+	<tabset justified="true">
+    <tab ng-init="init()" ng-controller="mepManageCatalogCtrl" active="tab1">
+    	<tab-heading>
+        	<i class="fa fa-pencil"></i> Edit Existing MEP Items
+      	</tab-heading>
+		<div class="well" style="margin-top:15px">
+			<div class="row">
+				<form class="form-horizontal col-md-8 col-md-offset-2">
+					<div class="form-group">
+		    			<label class="col-sm-2 control-label">Search
+			            </label>
+		    			<div class="col-sm-8">
+			      			<input type="text" name = "searchHelpPopover"
+			      			 	popover = '"Exact Phrases" and OR expressions are supported: "RED LED", 30.5MM OR 20.5MM'
+			             		popover-title = "Search Help"
+			             		popover-placement = "bottom"
+			             		popover-trigger="mouseenter"class="form-control" ng-model="searchText.value" placeholder="Search Text Here">
+		   				</div>
+		   			</div>
+		   			<div class="form-group">
+		    			<label class="control-label col-sm-2">Standard</label>
+		    			<div class="col-sm-4">
+			      			<select class="form-control" ng-model="standardTarget" ng-options="standard for standard in standards | orderBy: 'toString()'">
+			      			</select>	      			
+		   				</div>
+		   			</div>
+		   			<div class="form-group">
+		    			<label class="control-label col-sm-2">Category</label>
+		    			<div class="col-sm-4">
+			      			<select class="form-control" ng-model="categoryTarget" ng-options="category for category in categories | orderBy: 'toString()'">
+			      			</select>	      			
+		   				</div>
+		   			</div>
+		   			<div class="form-group">
+		    			<label class="col-sm-2 control-label">Filters</label>
+		    			<div class="col-sm-8">
+		    				<div class="form-group" ng-repeat = 'filter in filters'>
+				      			<div class="col-sm-12">
+				      			<div class="input-group showBtnOnHover">
+				      				<span class="input-group-addon">{{filter.field}}</span>
+				      				<input type="text" ng-model="filter.value" class="form-control" ng-keydown="noSubmit($event)">
+				      				<span class="input-group-btn onHover" ng-click="removeFilter(filter)">
+				      					<button class="btn btn-default" ><i class="fa fa-times"></i></button>
+				      				</span>
+				      			</inpujt>
+				      			</div>
+				      			</div>
+		   					</div>
+
+							<div class="row">
+								<div class="dropdown col-sm-2">
+									<button class="btn dropdown-toggle btn-default" type="button" data-toggle="dropdown"  ng-show="filters.length !== 4">
+									<i class="fa fa-filter"></i> Add Filter  
+									<span class="caret"></span>
+									</button>
+									<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+										<li role="presentation" ng-repeat="f in defaultFilters" ng-click="addFilter(f)"><a role="menuitem">{{f}}</a></li>
+									</ul>
+								</div>
+			      			</div>
+		   				</div>
+			   		</div>
+		   			<div class="form-group">
+		   				<div class="col-sm-offset-2">
+		   					<div class="col-sm-8">
+		    					<a ng-disabled="!(standardTarget && standardTarget)" class="btn btn-primary" ng-click="showEntriesList()"><i class="fa fa-search"></i> Search</a>
+		    				</div>
+		    			</div>
+		   			</div>					
+				</form>
+			</div>
+		</div>
+		<div ng-show="showList">
+			<div class="col-md-12" style="overflow: auto; margin-top:20px">
+				<table class="table table-striped imgLoader">
+					<thead>
+						<tr>
+							<th>Image</th>
+							<th>Name</th>
+							<th ng-show="showList">Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						<td colspan="3" style="text-align: center" ng-show="items.length === 0">No Entries available.</td>
+						<tr ng-repeat="item in items">
+							<td width="85px"><img width="65px" height="65px" ng-src="{{item.image}}" /></td>
+							<td text-align="middle">{{item.name}}</td>
+							<td ng-show="items.length !== 0">
+								<a><i class="fa fa-pencil" ng-click="showEditItemModal(item)" style="margin-right:20px"></i></a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div style="text-align: center; margin-top: 10px; background-color: #f6f6f6; border-radius: 10px; border: 1px solid #eeeeee" class="col-md-offset-2 col-md-8">
+				<pagination ng-show="showList && items.length !== 0" total-items="total" page="currentPage" max-size="7" items-per-page="pageItemLimit" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages" ng-click="getPage(currentPage)"></pagination>
+			</div>
+		</div>
+    </tab>
+    <tab active="tab2">
+    	<tab-heading>
+        	<i class="fa fa-plus"></i> Upload New Items
+      	</tab-heading>
+      	<div data-ng-include src="'views/Catalog/mepView.html'" style="margin-top:15px">
+      	</div>
+    </tab>
+    </tabset>
+		
+</div>

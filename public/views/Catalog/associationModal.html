@@ -1,0 +1,44 @@
+<div ng-init="populateEntries()" ng-hide="hide">
+	<div class="modal-header">
+		Manage Links for {{item.catalog}}
+	</div>
+    <div class="modal-body" style="padding-bottom: 0px;">
+        <div class="row" ng-show="schematicEntries.length > 0">
+            <div class="col-md-12">
+            <b>{{schematicEntries.length}}</b> link{{schematicEntries.length === 1 ? '':'s'}} made on catalog number <b>{{item.catalog}}</b>:
+            <a class="btn btn-default btn-xs btn-separate pull-right" ng-click="openAddLinkModal()"><i class="fa fa-plus" style="color: cadetblue"></i></a>
+            </div>
+        </div>
+        <div class="row" style="padding-top:15px">
+            <div class="col-md-12">
+                <ul class="list-group" style=" overflow-y: auto; max-height: 400px">    
+                    <li class="list-group-item" ng-show="schematicEntries.length === 0">
+                    Item {{item.catalog}} has no links to the schematic icons.
+                    <a class="btn btn-default btn-separate" ng-click="openAddLinkModal()">Add Links</a>
+                    </li>   
+                    <li class="list-group-item imgLoader" ng-class = "{local: child.published !== child.iconVersion || child.published === 0}"  ng-repeat="child in schematicEntries track by $index" ng-mouseenter = "toggleOption(child, true)" ng-mouseleave = "toggleOption(child, false)" ng-class = "{local:!child.published}">
+                        <img ng-src='{{child.thumbnail}}' ng-show="child.thumbnail && child.published !== 0" style="width: 40px; height: 40px; margin-right:10px;">
+                        <span ng-show="child.published === child.iconVersion && child.published !== 0">{{child.name}}</span>
+                        <span ng-show="child.published !== child.iconVersion && child.published !== 0">{{child.name}} is obsolete.</span>
+                        <span ng-show="child.published === 0"><i class="fa fa-exclamation-triangle yellow" style="margin-right:10px;"></i>"{{child.name}}" is no longer available.</span>      
+                        <span style="font-size: 13px; color: cadetblue;"> ( {{child.standard.name}} )</span>
+                        <span style="position: absolute; right: 0px; height: 100%; top: 0px; padding-top: 12px; background-color: aliceblue;">
+                            <a class="btn pull-right btn-link" ng-click="deleteAssociation(child)" ng-class="{'btn-s':{{!!child.thumbnail}}, 'btn-xs':{{!!!child.thumbnail}}}" ng-show="child.showOption">
+                                <i class="fa fa-times error"></i>
+                            </a>
+                            <a ng-href="{{setDownloadLink(child.dl)}}" class="btn pull-right btn-link" ng-class="{'btn-s':{{!!child.thumbnail}}, 'btn-xs':{{!!!child.thumbnail}}}" ng-click="downloadLink(child.dl)" ng-show="child.showOption && child.published === child.iconVersion && child.published !== 0" analytics-on="click" analytics-category="Catalog Browser" analytics-event="Download Link Icon" analytics-label="Icon with catalog information">
+                                <i class="fa fa-download"></i>
+                            </a>
+                            <a ng-click="updateFav(child)" class="btn pull-right btn-link" ng-class="{'btn-s':{{!!child.thumbnail}}, 'btn-xs':{{!!!child.thumbnail}}}" ng-show="!child.isComposite && child.showOption && child.published !== child.iconVersion && child.published !== 0" >
+                                <i class="fa fa-arrow-up success"></i>
+                            </a>
+                        </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+   	</div>
+   	<div class="modal-footer">
+		    <button class="btn btn-primary btn-separate pull-right" ng-click="done()">Done</button>
+    </div>
+</div>

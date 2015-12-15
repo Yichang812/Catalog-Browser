@@ -1,0 +1,13 @@
+<div>
+    <div class="modal-header">
+    Select Your Fields:
+    </div>
+    <div class="modal-body">
+        <button class="btn btn-default btn-sm" style="margin-right:10px; margin-top: 5px; margin-bottom: 5px" ng-repeat="field in initfields | orderBy:'title'"  ng-click="toggle(field)" ng-class="{'clicked': initcols.indexOf(field)+1}"><i ng-show="initcols.indexOf(field)+1" class="fa fa-check success" ></i>{{'  '+field.title+'  '}}</button>
+
+   	</div>
+    <div class="modal-footer">
+        <button ng-click="All()" class="btn btn-default btn-sm pull-left" ng-show="fields.length !== 0">{{(initcols.length === initfields.length+3)? 'Remove ': 'Select '}}All</button>
+        <button class="btn btn-primary pull-right btn-sm" ng-click="apply()">Done</button>
+    </div>
+</div>

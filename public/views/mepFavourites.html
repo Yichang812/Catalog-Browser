@@ -1,0 +1,32 @@
+<div ng-show="Global.authenticated" data-ng-init="initDefPrdt(); getFavourites()" ng-controller="mepFavourites">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="list-group-item list-title">Catalog Libraries</div> 
+            <ul class="list-group">
+                <li class="list-group-item" ng-show="catalogFilters.length == 0">No catalog libraries defined.</li>          
+                <li class="list-group-item" ng-repeat="child in catalogFilters" ng-mouseenter = "toggleOption(child, true)" ng-mouseleave = "toggleOption(child, false)">
+                    <a href="#!/{{setLink}}/{{child.name}}">{{child.name}}</a>
+                    <span style="position: absolute; right: 0px; height: 100%; top: 0px; padding-top: 12px; background-color: aliceblue;">
+                        <a ng-click="deleteFilter(child)" style="margin-right: 10px; margin-left: 10px;" class="pull-right btn-link" ng-show="child.showOption" tooltip="Delete" tooltip-placement="bottom" tooltip-popup-delay="400" tooltip-animation="false">
+                            <i class="fa fa-times error"></i>
+                        </a>
+                    </span>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-6">
+            <div class="list-group-item list-title">Catalog Favourites</div> 
+            <ul class="list-group">
+                <li class="list-group-item" ng-show="catalog.length == 0">No catalog favourites added.</li>          
+                <li class="list-group-item" ng-repeat="child in catalog" ng-mouseenter = "toggleOption(child, true)" ng-mouseleave = "toggleOption(child, false)">
+                    {{child.name}} ({{child.standard}})
+                    <span style="position: absolute; right: 0px; height: 100%; top: 0px; padding-top: 12px; background-color: aliceblue;">
+                        <a style="margin-right: 7px; margin-left: 7px;" class="btn pull-right btn-link btn-xs" ng-click="delCatFav(child)" ng-show="child.showOption" tooltip="Remove" tooltip-placement="bottom" tooltip-popup-delay="400" tooltip-animation="false" analytics-on="click" analytics-category="Favorite Library" analytics-event="Catalog Favorite" analytics-label="Unmark favorite">
+                            <i class="fa fa-star star"></i>
+                        </a>
+                    </span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

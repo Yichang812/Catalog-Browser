@@ -1,0 +1,39 @@
+<div>
+    <div class="modal-header" ng-init="join()">
+    Add a custom type:
+    </div>
+    <div class="modal-body">
+    <form class="form-horizontal" role="form">
+      <div class="form-group">
+        <div class="alert alert-success alert-thin">
+                <h5>Step 1: Enter the Code for the new Type</h5>
+        </div>
+        <label for="code" class="col-sm-3 control-label">Type Code</label>
+        <div class="col-sm-9">
+            <div class="input-group">
+            <span class="input-group-addon"><i ng-show = "validated.code  && !errored.code" class="fa fa-check success" ></i><i class="fa fa-times error" ng-show="!validated.code && errored.code"></i></span>
+            <input type="text" id="code" ng-model="newType.code" ng-blur="checkCode()" typeahead="value for value in joined| filter:$viewValue | limitTo:8" class="form-control">
+            </div>
+            <p data-ng-show="errored.code" class="error">{{errored.code}}</p>
+        </div>
+      </div>
+      <div class="form-group" ng-show="!errored.code && newType.code">
+        <div class="alert alert-success alert-thin">
+                <h5>Step 2: Enter the Name for the new Type</h5>
+        </div>
+        <label for="name" class="col-sm-3 control-label">Type Name</label>
+        <div class="col-sm-9">
+            <div class="input-group">
+            <span class="input-group-addon"><i ng-show = "validated.name && !errored.name" class="fa fa-check success" ></i><i class="fa fa-times error" ng-show="!validated.name && errored.name"></i></span>
+            <input type="text" id="name" ng-blur="checkName()" ng-model="newType.name" class="form-control">
+            </div>
+            <p data-ng-show="errored.name" class="error">{{errored.name}}</p>
+        </div>
+      </div>
+    </form>
+   	</div>
+    <div class="modal-footer">
+        <button ng-click="cancel()" class="btn btn-default btn-sm pull-left">Cancel</button>
+        <button ng-click="add()" class="btn btn-primary pull-right btn-sm" ng-disabled="addDisabled">Add</button>
+    </div>
+</div>

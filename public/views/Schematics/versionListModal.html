@@ -1,0 +1,40 @@
+<div ng-hide="hide" ng-init="init()">
+    <div class="modal-header">
+    	Version History
+    	<span class="pull-right"><i>{{target.name}}</i></span>
+    </div>
+    <div class="modal-body">
+    	<p>Created on <i>{{versionInfo.created | date:'short'}}</i></p>
+    	<p>Last modified on <i>{{versionInfo.modified | date:'short'}}</i></p>
+    	<table class="table table-hover">
+    		<thead>
+	    		<tr>
+	    			<th>Version #</th>
+                    <th>Date Created</th>
+                    <th>Changes</th>
+	    			<th>State</th>
+	    		</tr>
+    		</thead>
+    		<tbody>
+		       	<tr ng-repeat="v in versionInfo.versions" ng-mouseenter="chooseHoverTarget($index+1)" ng-mouseleave="chooseHoverTarget(-1)">
+                    <td fix-width="4">{{$index+1}}</td>
+		       		<td fix-width="4">{{v.dateModified | date:'short'}}</td>
+                    <td fix-width="4" class="grey">{{compareVersions($index)}}</td>
+		       		<td fix-width="4" ng-show="target.published === {{$index+1}}"><div class="success">Published</div></td>
+		       		<td fix-width="4" ng-hide="target.published === {{$index+1}}" class="fixed-width">
+                        <span class="grey italic">Not Published</span>
+                        <a ng-show="hoverTgt === ($index+1)" ng-click="publishComponent($index+1)"class="unpublished" tooltip="Publish" tooltip-placement="bottom" tooltip-popup-delay="500"><i class="fa fa-book"></i></a>
+                    </td>
+
+		       	</tr>
+	    	</tbody>
+    	</table>
+
+		<div class="row">
+			<div class="col-md-12">
+            <button class="btn btn-default pull-right" ng-click="cancel()">Done</button>
+            <button class="btn btn-danger" ng-click="publishComponent(0)">Unpublish</button>
+			</div>
+		</div>
+    </div>
+</div>

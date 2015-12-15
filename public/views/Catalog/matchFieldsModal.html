@@ -1,0 +1,64 @@
+<section ng-init="init()" ng-hide="hide">
+    <!-- 2. ng-file-select | ng-file-select="options" -->
+    <div class="modal-header">Match the fields for field: 
+    	<div class="pull-right"><strong>{{sheet.sName}}</strong></div>
+    </div>
+    <div class="modal-body">
+    	<div class="alert alert-danger" ng-show="newType && flag !== 2">Catalog and Manufacturer are compulsory fields.</div>
+	    <table class="table">
+	    	<thead>
+	    		<tr>
+	    			<th>Fields from .xls</th>
+	    			<th>ACADE default Fields for {{sheet.dName}}</th>
+	    		</tr>
+	    	</thead>
+	    	<tbody>
+	    		<tr ng-repeat="field in sheet.fields | orderBy:sortedFields" ng-class="{warning:!field[1],muted:field[2]===true}" style="height:51px" class="showBlockOnHover"> 
+	    			<td class="col-md-3">{{field[0]}}{{field[2]}}</td>
+	    			<!-- For existing types -->
+	    			<td class="col-md-9" ng-hide="newType">
+	    				<div class="col-md-7" ng-show="field[2]!==true">
+	    					 <div class="dropdown">
+                                            <a class="dropdown-toggle btn btn-default dropdown-btn">
+                                            {{field[1] ? field[1] : 'Choose a field'}}
+                                            <i class="fa fa-caret-down btn-separate pull-right"></i>
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                            	<li ng-click="$event.stopPropagation();"><input type="text" ng-model="searchText" class="form-control"></li>
+                                                <li ng-repeat="sf in std_fields|filter:searchText" ng-click="field[1] = sf;checkUniqueMatch(field);">
+                                                    <a>{{sf}}</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+	    					<!-- <select ng-model="field[1]" ng-options="sf for sf in std_fields" ng-change="checkUniqueMatch(field)"></select> -->
+	    					<span class="help-block error" ng-show="field[1]==='error'">One field cannot be matched to two columns.</span>
+	    				</div>
+	    				<div class="col-md-1" ng-show="field[2]!==true">
+	    					<i class="fa fa-check success" ng-show="field[1] && field[1] !=='error'"></i>
+	    				</div>
+	    				<div class="col-md-2 pull-right">
+	    					<a class="btn btn-default onHover" ng-click="toggleTrackField(field[0],sheet)" ng-show="field[2]!==true"><i class="fa fa-trash-o"></i></a>
+	    					<a class="btn btn-default onHover" ng-show="field[2]===true" ng-click="toggleTrackField(field[0],sheet)"><i class="fa fa-reply"></i></a>
+	    				</div>   				
+	    			</td>
+	    			<!-- For new types -->
+	    			<td ng-show="newType">
+	    				<div class="col-md-7">
+	    					<input type="text" class="form-control" ng-model="field[1]">
+	    				</div>
+	    				<div class="col-md-2 pull-right">
+	    					<a class="btn btn-default onHover" ng-click="toggleTrackField(field[0],sheet)" ng-show="field[2]!==true"><i class="fa fa-trash-o"></i></a>
+	    					<a class="btn btn-default onHover" ng-show="field[2]===true" ng-click="toggleTrackField(field[0],sheet)"><i class="fa fa-reply"></i></a>
+	    				</div>  
+	    			</td>	    			
+	    		</tr>
+	    	</tbody>
+	    </table>
+	    <div class="row" style="margin-bottm:20px">
+			<div class="col-md-12">
+				<a class="btn btn-default btn-separate" ng-click="cancel()">Cancel</a>
+				<a class="btn btn-primary pull-right" ng-disabled = '!doneEnabled' ng-click="apply()">Done</a>
+			</div>
+		</div>
+	</div>
+</section>

@@ -1,0 +1,58 @@
+<div ng-show="Global.authenticated" data-ng-init="initDefPrdt(); getFavourites()" ng-controller="Favourites">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="list-group-item list-title">Schematic Favourites</div> 
+            <ul class="list-group">
+                <li class="list-group-item" ng-show="schematic.length == 0">No favourites added yet.</li>          
+                <li class="list-group-item imgLoader" ng-class = "{local: child.published !== child.favVersion || child.published === 0}" ng-repeat="child in schematic" ng-mouseenter = "toggleOption(child, true)" ng-mouseleave = "toggleOption(child, false)">
+                    <img ng-src="{{child.thumbnail}}" ng-show="child.thumbnail && child.published !== 0" style="width: 40px; height: 40px; margin-right:10px;">
+                    <a href="#!/standards/{{child.parentNode}}" ng-show="child.published === child.favVersion && child.published !== 0">{{child.name}}</a>
+                    <span ng-show="child.published !== child.favVersion && child.published !== 0">{{child.name}} is obsolete.</span>
+                    <span ng-show="child.published === 0"><i class="fa fa-exclamation-triangle yellow" style="margin-right:10px;"></i>"{{child.name}}" is no longer available.</span>                    
+                    <span style="position: absolute; right: 0px; height: 100%; top: 0px; padding-top: 12px; background-color: aliceblue;">
+                        <a class="btn pull-right btn-link" ng-class="{'btn-s':{{!!child.thumbnail}}, 'btn-xs':{{!!!child.thumbnail}}}" ng-click="delSchemFav(child)" ng-show="!child.isComposite && child.showOption" tooltip="Remove" tooltip-placement="bottom" tooltip-popup-delay="400" tooltip-animation="false" analytics-on="click" analytics-category="Favorite Library" analytics-event="Schematic Favorite" analytics-label="Unmark favorite">
+                            <i class="fa fa-star star"></i>
+                        </a>
+                        <a href="{{child.dl? child.dl: '#'}}" class="btn pull-right btn-link" ng-class="{'btn-s':{{!!child.thumbnail}}, 'btn-xs':{{!!!child.thumbnail}}}" ng-show="!child.isComposite && child.showOption && child.published === child.favVersion && child.published !== 0" tooltip="Download" tooltip-placement="bottom" tooltip-popup-delay="400" tooltip-animation="false" analytics-on="click" analytics-category="Favorite Library" analytics-event="Schematic Favorite" analytics-label="Download">
+                            <i class="fa fa-download"></i>
+                        </a>
+                        <a ng-click="updateFav(child)" class="btn pull-right btn-link" ng-class="{'btn-s':{{!!child.thumbnail}}, 'btn-xs':{{!!!child.thumbnail}}}" ng-show="!child.isComposite && child.showOption && child.published !== child.favVersion && child.published !== 0" tooltip="Update" tooltip-placement="bottom" tooltip-popup-delay="400" tooltip-animation="false">
+                            <i class="fa fa-arrow-up success"></i>
+                        </a>
+                    </span>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-6">
+            <div class="list-group-item list-title">Catalog Libraries</div> 
+            <ul class="list-group">
+                <li class="list-group-item" ng-show="catalogFilters.length == 0">No catalog libraries defined.</li>          
+                <li class="list-group-item" ng-repeat="child in catalogFilters" ng-mouseenter = "toggleOption(child, true)" ng-mouseleave = "toggleOption(child, false)">
+                    <a href="#!/{{setLink}}/{{child.name}}">{{child.name}}</a>
+                    <span style="position: absolute; right: 0px; height: 100%; top: 0px; padding-top: 12px; background-color: aliceblue;">
+                        <a ng-click="deleteFilter(child)" style="margin-right: 10px; margin-left: 10px;" class="pull-right btn-link" ng-show="child.showOption" tooltip="Delete" tooltip-placement="bottom" tooltip-popup-delay="400" tooltip-animation="false">
+                            <i class="fa fa-times error"></i>
+                        </a>
+                    </span>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-6">
+            <div class="list-group-item list-title">Catalog Favourites</div> 
+            <ul class="list-group">
+                <li class="list-group-item" ng-show="catalog.length == 0">No catalog favourites added.</li>          
+                <li class="list-group-item" ng-repeat="child in catalog" ng-mouseenter = "toggleOption(child, true)" ng-mouseleave = "toggleOption(child, false)">
+                    {{child.catalog}} ({{child.type.name}})
+                    <span style="position: absolute; right: 0px; height: 100%; top: 0px; padding-top: 12px; background-color: aliceblue;">
+                        <a style="margin-right: 10px;" class="btn pull-right btn-link btn-xs" ng-click="delCatFav(child)" ng-show="child.showOption" tooltip="Remove" tooltip-placement="bottom" tooltip-popup-delay="400" tooltip-animation="false" analytics-on="click" analytics-category="Favorite Library" analytics-event="Catalog Favorite" analytics-label="Unmark favorite">
+                            <i class="fa fa-star star"></i>
+                        </a>
+                        <a style="margin-right: 10px; margin-left: 10px;" class="btn pull-right btn-link btn-xs" ng-click="showAssociationModal(child)" ng-show="child.showOption" tooltip="Manage Associations" tooltip-placement="bottom" tooltip-popup-delay="400" tooltip-animation="false">
+                            <i class="fa fa-unlink"></i>
+                        </a>
+                    </span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

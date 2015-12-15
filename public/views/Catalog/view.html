@@ -1,0 +1,270 @@
+<section ng-init="init()" ng-show="authorized()" style="margin-bottom: 100px;" ng-controller="catalogController">
+	<div>
+		<div class="alert alert-thin alert-success" id="submitCatalogAlert" style="display:none;">Catalog successfully added.</div>
+		<div class="row">
+			<form class="form-horizontal col-md-12 css-form" name="uploadItems" novalidate>
+				<div class="wizard" style="padding-bottom: 30px;" ng-show="states[0]">
+					<a class="current">Step 1. Upload .xls file or assets folder</a> 
+					<a class="blocked">Step 2</a> 
+					<a class="blocked">Step 3</a> 
+					<a class="blocked">Step 4</a>
+				</div>
+				<div class="form-group" ng-show="states[0]">
+					<div class="col-md-12">
+						<div class="row" style="padding-bottom: 30px;">
+							<label class="col-sm-2 control-label">Upload Location</label>
+  							<div class="col-sm-9"> 
+								<label class="radio-inline col-sm-4">
+								  	<input type="radio" name="inlineRadioOptions" ng-model="uploadOpt" value="fromPC"> Upload from Computer
+								</label>
+								<label class="radio-inline col-sm-4">
+								  	<input type="radio" name="inlineRadioOptions" ng-model="uploadOpt" value="fromBox"> Upload from Box
+								</label>
+							</div>
+						</div>
+						
+						<!-- SHOW ONLY IF USER SELECTS LOCAL UPLOAD OPTION -->
+						<div class="row" ng-show="uploadOpt == 'fromPC'">
+							<label class="col-sm-2 control-label">.xls File</label>
+							<div class="col-sm-9">
+								<div id="setFileInput1" class="fileinput fileinput-new" data-provides="fileinput">
+									<div class="input-group">
+										<div class="form-control" data-trigger="fileinput"><i class="fa fa-check success fileinput-exists" ng-show="!error && success"></i><i class="fa fa-times fileinput-exists error" ng-hide="!error && success"></i> <span id="fileInputName1" class="fileinput-filename"></span></div>
+										<span class="input-group-addon btn btn-default btn-file"><span class="fileinput-new">Select file</span><span class="fileinput-exists">Change</span><input type="file" name="..." ng-file-select="fileSelect($files)"></span>
+										<a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput" >Remove</a>
+										<a ng-click="showConfigureModal()" class="input-group-addon btn btn-default fileinput-exists"><i class="fa fa-gear"> Template</i></a>
+									</div>
+								</div>
+								<p ng-if="!valid" class="error">{{error}}</p><p ng-if="valid" class="success"></p>
+							</div>
+						</div>
+
+						<!-- SHOW ONLY IF USER SELECTS BOX OPTION -->
+						<div class="row" ng-show="uploadOpt == 'fromBox'">
+							<label class="col-sm-2 control-label" tooltip-placement="bottom" style="display:inline-block;z-index:9999" Tooltip="Public folder containing 2D &amp; 3D assets for Symbol3D &amp; Footprint.">Assets Folder</label>
+							<!-- Box Login Button -->
+							<div class="col-sm-9" ng-show="uploadOpt == 'fromBox' && !boxLoginStatus">
+								<button class="btn btn-primary" name="boxLogin" ngmodel="boxLoginStatus" ng-click="boxAuth()">Login to Box</button>
+							</div>
+							<!-- Box Folder Picker, shown after user successfully signed in -->
+							<div class="col-sm-9" ng-show="uploadOpt == 'fromBox' && boxLoginStatus"> 
+								<div class="fileinput fileinput-new">
+									<div class="input-group">
+										<div class="form-control"  ng-mousedown="boxFolderPicker()"><i class="fa fa-check success" ng-show="!folderError && boxFolderName !== ''"></i><i class="fa fa-times error" ng-show="folderError && boxFolderName !== ''"></i> <span class="fileinput-filename" name="boxFolderInput" ng-model="boxFolderName" required>{{boxFolderName}}</span></div>
+										<span class="input-group-addon btn btn-default btn-file" ng-click="boxFolderPicker()" ng-show="uploadItems.boxFolderInput.$isEmpty(boxFolderName)">Choose from Box</span>
+										<span class="input-group-addon btn btn-default" ng-click="boxFolderPicker()" ng-show="!uploadItems.boxFolderInput.$isEmpty(boxFolderName)">Change</span></span>
+										<span class="input-group-addon btn btn-default btn-file" ng-click="clearBoxFolderInput()" ng-show="!uploadItems.boxFolderInput.$isEmpty(boxFolderName)">Remove</span>
+									</div>
+								</div>
+								<p ng-show="folderError && boxFolderName !== ''" class="error">{{errorMsg}}</p>
+							</div> 
+						</div>
+						
+						<!-- CURRENTLY SUPPORT ONLY UPLOAD XLS FROM PC -->
+						<div class="row" ng-show="uploadOpt == 'fromBox'">
+							<label class="col-sm-2 control-label" ng-show="uploadOpt == 'fromBox' && boxLoginStatus">.xls File</label>
+							<div class="col-sm-9" ng-show="uploadOpt == 'fromBox' && boxLoginStatus">
+								<div id="setFileInput2" class="fileinput fileinput-new" data-provides="fileinput">
+									<div class="input-group">
+										<div class="form-control" data-trigger="fileinput"><i class="fa fa-check success fileinput-exists" ng-show="!error && success"></i><i class="fa fa-times fileinput-exists error" ng-hide="!error && success"></i> <span id="fileInputName2" class="fileinput-filename"></span></div>
+										<span class="input-group-addon btn btn-default btn-file"><span class="fileinput-new">Select file</span><span class="fileinput-exists">Change</span><input type="file" name="..." ng-file-select="fileSelect($files)"></span>
+										<a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput" >Remove</a>
+										<a ng-click="showConfigureModal()" class="input-group-addon btn btn-default fileinput-exists"><i class="fa fa-gear"> Template</i></a>
+									</div>
+								</div>
+								<p ng-if="!valid" class="error">{{error}}</p><p ng-if="valid" class="success"></p>
+							</div>
+						</div>
+						<div class="row" style="margin-top: 20px; padding-top: 15px; border-top: 1px solid #efeffe">
+							<pre class="col-md-2">Step: 1 / 4</pre>
+							<div class="col-md-9">
+								<div class="pull-right" style="margin-top:8px;" ng-show="uploadOpt == 'fromBox' && boxLoginStatus"><i ng-hide="!processingBoxFolder" ng-show="processingBoxFolder" style="margin-right: 10px;" class="fa fa-refresh fa-spin"></i><i ng-show="!processingBoxFolder && doneProcessing" style="margin-right: 10px;" class="fa fa-check"></i>{{validateStatus}}</div>
+							</div>
+							<div class="col-md-1" ng-show="uploadOpt == 'fromBox' || uploadOpt == 'fromPC'">
+								<button type="button" class="btn btn-default pull-right" ng-disabled="(uploadOpt == 'fromPC' && !valid) || (uploadOpt == 'fromBox' && !(doneProcessing && valid))" ng-click="populate()" ng-if="newBeginning">Begin</button>
+								<button type="button" class="btn btn-default pull-right" ng-click="states[0] = 0; states[1] = 1;" ng-show="states[0] && !states[1] &&  !states[2] && !parsingXLS && valid && !newBeginning">Next</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+                <div class="wizard" style="padding-bottom: 30px;" ng-show="states[1]">
+					<a class="blocked">Step 1</a> 
+					<a class="current">Step 2. Match the sheets to ACADE standard types</a> 
+					<a class="blocked">Step 3</a> 
+					<a class="blocked">Step 4</a>
+				</div>
+                <div class="form-group" ng-show="states[1]">
+                    <div class="col-md-12">
+                        <p ng-show="countPending() !== 0">Out of <b style="font-size: 16px">{{sheets.length}}</b> sheets in the .xls file, <b style="font-size: 16px">{{countPending()}}</b> {{countPending() === 1? 'needs': 'need'}} your attention.
+                        <button class="btn btn-info btn-sm btn-separate" style="margin-top: -5px" ng-click="toggleShowAll(1)" ng-if="!showAll">Show all sheets</button>
+                        <button class="btn btn-info btn-sm btn-separate" style="margin-top: -5px" ng-click="toggleShowAll(1)" ng-if="showAll">Hide matched sheets</button>
+                        <button class="btn btn-success btn-sm btn-separate" style="margin-top: -5px" ng-click="showOverrideMatchSheetModal()">Add all sheets as new types</button>
+                        </p>
+                        <p style="margin-left: 5px;" ng-show="processedSheets.length !== 0 && processedSheets.length === sheets.length && countPending() === 0">Everything is well. <i class="fa fa-check success"></i>
+                        <button class="btn btn-info btn-sm btn-separate " style="margin-top: -5px" ng-click="toggleShowAll(1)" ng-if="!showAll">Show all sheets</button>
+                        <button class="btn btn-info btn-sm btn-separate " style="margin-top: -5px" ng-click="toggleShowAll(1)" ng-if="showAll">Hide matched sheets</button>
+                        </p>
+                    	<table class="table" ng-show="countPending() !== 0 || showAll">
+                        <thead>
+                            <tr>
+                                <th class="col-md-6">.xls File Sheets</th>
+                                <th class="col-md-6">ACADE Default Types</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="showBlockOnHover" style="height: 51px;" ng-repeat = "sheet in processedSheets | filter:isPending | orderBy:sheetSorted" ng-class="{warning:!sheet.dName&&(!sheet.unTrack), muted:sheet.unTrack}">
+                                <td class="col-md-6">{{sheet.sName}}</td>
+                                <td class="col-md-6">
+                                    <div class="col-md-8" style="margin-left:-5px">
+                                        <div class="dropdown">
+                                            <a class="dropdown-toggle btn btn-default dropdown-btn" ng-show="!sheet.unTrack" detect-height>
+                                            {{sheet.dName ? sheet.dName : 'Choose a type'}}
+                                            <i class="fa fa-caret-down btn-separate pull-right"></i>
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-menu-bottom"  child-scroll>
+                                                <li style="padding-left: 5px; padding-right: 5px;"><input type="text" class="form-control" ng-model="searchText" ng-click="$event.stopPropagation();"></li>
+                                                 <li style="border-top: 1px solid; border-bottom: 1px solid; margin-top: 5px;" ng-click="showTypesModal(sheet)" ng-show="global.authenticated && global.user.isAdmin">
+                                                    <a><i class="fa fa-plus" style="margin-right:10px"></i>Add a new type</a>
+                                                </li>
+                                                <li ng-repeat="type in typeCodes | filter:searchText">
+                                                    <a ng-click="sheet.dName = type;">{{type}}</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <i class="fa fa-check success" ng-show="sheet.dName && !sheet.unTrack"></i>
+                                    </div>
+                                    <div class="col-md-1 onHover">
+                                        <button class="btn btn-default" ng-show="!sheet.unTrack"ng-click="toggleTrackingSheet(sheet)"><i class="fa fa-trash-o"></i></button>
+                                        <button class="btn btn-default" ng-show="sheet.unTrack" ng-click="toggleTrackingSheet(sheet)"><i class="fa fa-reply"></i></button>
+                                    </div> 
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="row" style="margin-top: 35px; padding-top:15px; border-top: 1px solid #efeffe">
+                        <div class="col-md-12">
+							<pre class="col-md-2">Step: 2 / 4</pre>
+                            <div class="pull-right" ng-show="states[1] && !states[2]">
+                                <a class="btn btn-default btn-separate" ng-click="states[1] = 0; states[0] = 1;">Back</a>
+                                <a class="btn btn-default btn-separate" ng-click="states[1] = 0; states[2] = 1; matchFields()" ng-disabled="nextDisabled">Next</a>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+				
+                <div class="wizard" style="padding-bottom: 30px;" ng-show="states[2]">
+					<a class="blocked">Step 1</a> 
+					<a class="blocked">Step 2</a> 
+					<a class="current">Step 3. Match the columns</a> 
+					<a class="blocked">Step 4</a>
+				</div>
+                <div class="form-group" ng-show="states[2]">
+                    <div class="col-md-12">
+	                    <p ng-show="countPendingByFields() !== 0">Out of <b style="font-size: 16px">{{sheets.length}}</b> sheets in the .xls file, <b style="font-size: 16px">{{countPendingByFields()}}</b> {{countPendingByFields() === 1? 'needs': 'need'}} your attention.
+	                    <button class="btn btn-info btn-sm btn-separate " style="margin-top: -5px" ng-click="toggleShowAll(2)" ng-if="!showAllFields">Show all sheets</button>
+	                    <button class="btn btn-info btn-sm btn-separate" style="margin-top: -5px" ng-click="toggleShowAll(2)" ng-if="showAllFields">Hide matched sheets</button>
+                        <button class="btn btn-success btn-sm btn-separate" style="margin-top: -5px" ng-click="overrideMatchingFields()">Add all new fields</button>
+                        </p>
+	                    <p style="margin-left: 5px;" ng-show="countPendingByFields() === 0">Everything is well. <i class="fa fa-check success"></i>
+	                    <button class="btn btn-info btn-sm btn-separate" style="margin-top: -5px" ng-click="toggleShowAll(2)" ng-if="!showAllFields">Show all sheets</button>
+	                    <button class="btn btn-info btn-sm btn-separate" style="margin-top: -5px" ng-click="toggleShowAll(2)" ng-if="showAllFields">Hide matched sheets</button></p>
+	                    <table class="table table-stripped" ng-show="countPendingByFields() !== 0 || showAllFields">
+	                        <tbody>
+	                            <tr class="showIconOnHover" ng-repeat="sheet in processedSheets|filter:isSheetPendingByFields |orderBy:sheetSortedByPendingFields" ng-class="{warning:sheet.pendingFields>0}" ng-click="showMatchFieldsModal(sheet)" style="height:40px">
+	                                <td class="col-md-3">{{sheet.sName}} ({{sheet.dName}})</td>
+	                                <td class="col-md-6">
+	                                    <span ng-show="sheet.pendingFields ===0"><i class="fa fa-check success" style="margin-right:10px"></i> All fields auto matched.</span>
+	                                    <span ng-hide="sheet.pendingFields ===0"><i class="fa fa-question error" style="margin-right:10px"></i>{{sheet.pendingFields}} fields needs clarification.</span>
+	                                </td>
+	                                <td class="col-md-3">
+	                                    <span>
+	                                        <a class="btn btn-default onHover">Show fields</a>
+	                                    </span>
+	                                </td>
+	                            </tr>
+	                        </tbody>
+	                    </table>
+	                    <div class="row" style="margin-top: 35px; padding-top:15px; border-top: 1px solid #efeffe">
+	                        <div class="col-md-12">
+								<pre class="col-md-2">Step: 3 / 4</pre>
+	                            <div class="pull-right">
+	                                <a class="btn btn-default btn-separate" ng-click="states[1]=1;states[2]=0">Back</a>
+	                                <a class="btn btn-default btn-separate" ng-click="states[2] = 0; states[3] = 1; matchFields(); getCellData()" ng-disabled="submitDisabled">Next</a>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+                </div>
+				
+				<div class="wizard" style="padding-bottom: 30px;" ng-show="states[3]">
+					<a class="blocked">Step 1</a> 
+					<a class="blocked">Step 2</a> 
+					<a class="blocked">Step 3</a> 
+					<a class="current">Step 4. Check links to Symbol3D and Footprint</a>
+				</div>
+				<div class="form-group" ng-show="states[3]">
+					<div class="col-md-12">
+						<p style="margin-left: 5px;" ng-show="processedSheets.length !== 0 && processedSheets.length === sheets.length && countPending() === 0"> Everything is well. <i class="fa fa-check success"></i>
+						<button class="btn btn-info btn-sm btn-separate " style="margin-top: -5px" ng-click="toggleShowAll(1)" ng-if="!showAll">Show all sheets</button>
+						<button class="btn btn-info btn-sm btn-separate " style="margin-top: -5px" ng-click="toggleShowAll(1)" ng-if="showAll">Hide matched sheets</button>
+						</p>
+						<table class="table" ng-show="countPending() !== 0 || showAll">
+							<thead>
+								<tr>
+									<th class="col-md-1">Sheet</th>
+									<th class="col-md-5" style="padding-left: 12px">Symbol3D</th>
+									<th class="col-md-5" style="padding-left: 12px">Footprint</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="sheet in processedSheets" ng-hide="isEmptyRow($index)">
+									<td class="col-md-1">{{sheet.sName}}</td>
+									<td class="col-md-4">
+										<div class="check-link-table" ng-repeat="(cell, item) in symbol3DWithURL[$index]">
+											<ng-form name="subform{{$index}}">
+					                            <div class="col-md-4 no-gutter-sides col-wrap">{{cell}}</div>
+												<div class="col-sm-7 no-gutter-right" >
+													<input type="text" class='form-control' name="symInput" ng-model="symbol3DWithURL[$parent.$index][cell]" ng-change="checkValidUrl($parent.$index,cell,'symbol3d')" required>
+												</div>
+												<i class="fa fa-question error icon-align" ng-hide="showLinkIcons(subform{{$index}}.symInput.$isEmpty(item), cell, $parent.$index, 'symbol3d', 'question')"></i>
+												<i class="fa fa-check success icon-align" ng-hide="showLinkIcons(subform{{$index}}.symInput.$isEmpty(item), cell, $parent.$index, 'symbol3d', 'success')"></i>
+												<i class="fa fa-times error icon-align" ng-show="showLinkIcons(subform{{$index}}.symInput.$isEmpty(item), cell, $parent.$index, 'symbol3d', 'error')"></i>
+											</ng-form>
+										</div>
+			                        </td>
+			                        <td class="col-md-5">
+										<div class="check-link-table" ng-repeat="(cell, item) in footprintWithURL[$index]">
+											<ng-form name="subform{{$index}}">
+					                            <div class="col-md-4 no-gutter-sides col-wrap">{{cell}}</div>
+												<div class="col-sm-7 no-gutter-right">
+													<input type="text" class='form-control' name="fpInput" ng-model="footprintWithURL[$parent.$index][cell]" ng-change="checkValidUrl($parent.$index,cell,'footprint')" required>
+												</div>
+											    <i class="fa fa-question error icon-align" ng-hide="showLinkIcons(subform{{$index}}.fpInput.$isEmpty(item), cell, $parent.$index, 'footprint', 'question')"></i>
+												<i class="fa fa-check success icon-align" ng-hide="showLinkIcons(subform{{$index}}.fpInput.$isEmpty(item), cell, $parent.$index, 'footprint', 'success')"></i>
+												<i class="fa fa-times error icon-align" ng-show="showLinkIcons(subform{{$index}}.fpInput.$isEmpty(item), cell, $parent.$index, 'footprint', 'error')"></i>
+											</ng-form>
+										</div>
+			                        </td>
+			                    </tr>
+							</tbody>
+						</table>
+						<div class="row" style="margin-top: 35px; padding-top: 15px; border-top: 1px solid #efeffe">
+							<div class="col-md-12">
+								<pre class="col-md-2">Step: 4 / 4</pre>
+								<div class="pull-right">
+									<a class="btn btn-default btn-separate" ng-click="states[2]=1;states[3]=0">Back</a> 
+									<a class="btn btn-primary btn-separate" ng-click="startProcessing()" ng-disabled="invalidUrl"><img ng-show="sendingFlag" src="/img/loaders/loader-small.gif" style="margin-right: 10px"><i ng-show="sendingSuccess" style="margin-right: 10px; color: white" class="fa fa-check"></i>Submit</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+            </form>
+        </div>
+    </div>
+</section>

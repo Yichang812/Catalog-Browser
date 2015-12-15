@@ -1,0 +1,66 @@
+<section data-ng-controller="editStdFormCtrl">
+    <!-- 2. ng-file-select | ng-file-select="options" -->
+   <div class="panel panel-default" data-ng-show="global.user.isAdmin">
+    <div class="panel-heading">Edit Standard: <div class="pull-right"><strong>{{currentStd.name}}</strong></div></div>
+    <div class="panel-body">
+    <form class="form-horizontal" reset-form="{{currentStd.name}}" name="editStdForm">
+        <div class="form-group">
+            <label class= "col-md-3 control-label">Standard Name: </label>
+            <div class = "col-md-9">
+                <div class="input-group">
+                <span class="input-group-addon"><i ng-show = "valid.name && success.name" class="fa fa-check success" ></i><i class="fa fa-times fileinput-exists error" ng-show="error.name && !valid.name"></i></span>
+                <input type="text" class="form-control" ng-model="stdName" ng-blur="checkName()" placeholder={{currentStd.name}} ng-disabled="valid.dat">
+                </div>
+                <p data-ng-show="error.name" class="error">{{error.name}}</p>
+            </div>
+        </div>              
+        <div class="form-group">
+            <label class= "col-md-3 control-label">Description:</label>
+            <div class = "col-md-9">
+                <textarea class="form-control" rows="3" ng-model="desc" placeholder={{populateDesc()}}/>
+            </div>
+        </div>  
+        <hr> 
+        <div class="alert alert-info" ng-show="datFile">
+            <p>Note: By uploading a new .DAT File, you'll erase all existing structure of this standard in the database. This cannot be undone.</p>
+        </div>
+        <div class="form-group">
+            <label class= "col-md-3 control-label">.DAT File</label>
+            <div class = "col-md-9">
+                <div class="fileinput fileinput-new" data-provides="fileinput">
+                    <div class="input-group">
+                        <div class="form-control" data-trigger="fileinput"><i class="fa fa-check success fileinput-exists" ng-show="!error.dat && success.dat"></i><i class="fa fa-times fileinput-exists error" ng-hide="!error.dat && success.dat"></i><span class="fileinput-filename"></span></div>
+                        <span class="input-group-addon btn btn-default btn-file"><span class="fileinput-new">Select file</span><span class="fileinput-exists">Change</span><input type="file" name="..." ng-file-select="datFileSelect($files)"></span>
+                        <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput" ng-click="resetDAT()">Remove</a>
+                    </div>
+                </div>                                   
+                    <p data-ng-show="error.dat" class="error">{{error.dat}}</p>
+            </div>
+        </div>
+        <div class="form-group" ng-show="valid.dat">
+            <label class= "col-md-3 control-label">Mapping File (.Json)</label>
+            <div class = "col-md-9">
+               <div class="fileinput fileinput-new" data-provides="fileinput">
+                    <div class="input-group">
+                        <div class="form-control" data-trigger="fileinput"><i class="fa fa-check fileinput-exists success" ng-show="!error.json && success.json"></i><i class="fa fa-times fileinput-exists error" ng-hide="!error.json && success.json"></i> <span class="fileinput-filename"></span></div>
+                        <span class="input-group-addon btn btn-default btn-file"><span class="fileinput-new">Select file</span><span class="fileinput-exists">Change</span><input type="file" name="..." ng-file-select="jsonFileSelect($files)"></span>
+                        <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput" ng-click="resetJSON()">Remove</a>
+                    </div>
+                </div>    
+                    <p data-ng-show="error.json" class="error">{{error.json}}</p>
+                </div>
+            </div>
+        <hr>            
+        <div class="form-group" style="margin-right:5px">
+            <div class="col-md-3">
+                <button type="button" ng-click="delete()" class="btn btn-danger">Delete</button>
+            </div>
+            <div class="pull-right">
+                <button type="button" ng-click="validate()" class="btn btn-default" ng-show="(valid.dat && valid.json && valid.name)">Validate</button>
+                <button type="button" ng-disabled="uploadDisabled" class="btn btn-primary btn-separate" ng-click="editStd()">Update</button>
+            </div>
+        </div>
+    </form>
+</div>
+</div>
+</section>

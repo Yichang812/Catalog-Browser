@@ -1,0 +1,45 @@
+head
+  meta(charset='utf-8')
+  meta(http-equiv='X-UA-Compatible', content='IE=edge,chrome=1')
+  meta(name='viewport', content='width=device-width,initial-scale=1')
+
+  title= appName
+  meta(http-equiv='Content-type', content='text/html;charset=UTF-8')
+  meta(name="keywords", content="node.js, express, mongoose, mongodb, angularjs")
+  meta(name="description", content="Autodesk ACE Component Online Development.")
+
+  link(href='/img/icons/favicon.ico', rel='shortcut icon', type='image/x-icon')
+  
+  meta(property='fb:app_id', content='APP_ID')
+  meta(property='og:title', content='#{appName}')
+  meta(property='og:description', content='Autodesk ACE Component Online Development')
+  meta(property='og:type', content='website')
+  meta(property='og:url', content='APP_URL')
+  meta(property='og:image', content='APP_LOGO')
+  meta(property='og:site_name', content='Autodesk Com. On. Development')
+  meta(property='fb:admins', content='APP_ADMIN')
+
+  link(rel='stylesheet', href='/lib/bootstrap/dist/css/bootstrap.min.css')
+  link(rel='stylesheet', href='/lib/jasny-bootstrap/dist/css/jasny-bootstrap.min.css')
+  link(rel='stylesheet', href='https://netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css')
+  link(rel='stylesheet', href='/lib/selectize/dist/css/selectize.default.css')
+  //- link(rel='stylesheet', href='/lib/bootstrap/dist/css/bootstrap-responsive.css')
+  link(rel='stylesheet', href='/css/common.css')
+  link(rel='stylesheet', href='/css/animation.css')
+  link(rel='stylesheet', href='/css/custom.css')
+  link(rel='stylesheet', href='/css/ui-select.css')
+
+  //if lt IE 9
+    script(src='http://html5shim.googlecode.com/svn/trunk/html5.js')
+
+  script.
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-56124334-1', 'auto');
+    ga('send', 'pageview');
+
+  script(type="text/javascript").
+    window.user = !{user} ;

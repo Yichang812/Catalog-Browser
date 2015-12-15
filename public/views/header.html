@@ -1,0 +1,39 @@
+<div class="" data-ng-controller="HeaderController">
+    <div role="navigation" class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" ng-init="navCollapsed = true" ng-click="navCollapsed = !navCollapsed">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="brand" onclick="_gaq.push(['_trackEvent', 'Home', 'clicked'])" class="navbar-brand" href="/"><img style="margin-top:5px" height="40" src="img/icons/Autodesk Logo copy.png"></a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" ng-class="!navCollapsed && 'in'" ng-click="navCollapsed=true">
+                <ul class="navbar-nav nav">
+                    <li data-ng-repeat="item in menu" ui-route="/{{item.link}}[a-z0-9/]*" ng-class="{active: $uiRoute}">
+                        <a href="#!/{{item.link}}" analytics-on="click" analytics-category="Header Navigation" analytics-event="Browse" analytics-label="{{item.title}}">{{item.title}}</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav nav navbar-right" data-ng-hide="global.authenticated">
+                    <li><a href="/auth/oauth">Log in</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav nav navbar-right" data-ng-show="global.authenticated">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            {{global.user.name}} <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#!/profile/">Profile</a>
+                            <li><a href="/signout">Sign Out</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

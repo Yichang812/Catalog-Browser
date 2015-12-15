@@ -1,0 +1,11 @@
+<div ng-init="init()">
+    <div class="modal-header">Validating: </div>
+    <div class="modal-body">
+        <div scroll-glue class="well listing validation-box">
+            <ul ng-repeat="msg in messages" ng-class="{'{{msg.type}}': true}">{{msg.info}}</ul>
+        </div>
+        <button class="btn btn-default" ng-click="cancel()">Cancel</button>
+        <button class="btn btn-primary pull-right" ng-show="result() === true" ng-click="ok()">Done</button>
+        <button class="btn btn-primary pull-right" ng-show="result() === false || validator.errored()" ng-click="reset();init();"><i class="fa fa-repeat"></i></button>
+    </div>
+</div>

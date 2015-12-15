@@ -1,0 +1,23 @@
+<div>
+    <div class="modal-header">
+    Save current search:
+    </div>
+    <div class="modal-body">
+    <form class="form-horizontal" role="form">
+      <div class="form-group">
+        <label for="name" class="col-sm-2 control-label">Name:</label>
+        <div class="col-sm-9">
+            <div class="input-group">
+            <span class="input-group-addon"><i ng-show = "validated" class="fa fa-check success" ></i><i class="fa fa-times error" ng-show="!validated && errored"></i></span>
+            <input type="text" class="form-control" id="name" ng-model="newFilter.name" ng-blur="validate()" placeholder="Filter Name">
+            </div>
+            <span ng-show="errored" class="error">{{errored}}</span>
+        </div>
+      </div>
+    </form>
+   	</div>
+    <div class="modal-footer" style="margin-top: 0px;">
+        <button class="btn btn-primary pull-right btn-sm" ng-disabled="saveDisabled" ng-click="apply()" analytics-on="click" analytics-category="Catalog Browser" analytics-event="Save Search" analytics-label="Favorite Search Filter">Save</button>
+        <button class="btn btn-default btn-sm pull-left" ng-click="cancel()">Cancel</button>
+    </div>
+</div>

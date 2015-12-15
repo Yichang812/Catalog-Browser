@@ -1,0 +1,58 @@
+<div data-ng-controller="UsersController" data-ng-init="find(true)">
+<div data-ng-show="global.user.isAdmin">
+	<div class="row well">
+		<div class="col-md-8 col-md-offset-1">
+			<form class="form-horizontal" role="form">
+				<div class="form-group">
+					<label for="search" class="col-md-4 control-label">Search by name: </label>
+					<div class="col-md-8 input-group">
+					 	<input id="search" class="form-control" ng-model="query.name">
+					 	<span class="input-group-btn btn btn-default" ng-click="find(true)"><i class="fa fa-search"></i> Search</span>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label">Filter by: </label>
+					<div class="col-md-8">
+						<div class="row" style="margin-left:0px"> 
+							<div class="checkbox col-md-6">
+							    <label>
+							      	<input type="checkbox" ng-model="show.User">Administrators
+							    </label>
+							</div>
+							<div class="checkbox col-md-6">
+							    <label>
+							      	<input type="checkbox" ng-model="show.Man">Manufacturers
+							    </label>
+							</div>
+						</div>
+					</div>
+				</div>
+			 </form>
+		</div>
+	</div>
+		<table class="table table-striped">
+		    <thead>
+		        <tr>
+		          <th>Name</th>
+		          <th>Designation</th>
+		          <th>Last Login</th>
+		          <th>Last Logout</th>
+		          <th>Actions</th>
+		        </tr>
+		    </thead>
+		    <tbody>
+				<td colspan="5" style="text-align: center" data-ng-hide="!users || users.length">No users.</td>
+				<tr data-ng-repeat="user in users">
+		          <td>{{user.name}}</td>
+		          <td>{{(user.isAdmin?'Admin'+(user.isManufacturer?', Manufacturer ':''):(user.isManufacturer?'Manufacturer':'User'))}}</td>
+		          <td>{{user.lastLogin | date:'medium'}}</td>
+		          <td>{{user.lastLogout | date:'medium'}}</td>
+		          <td><button type="button" data="{{user._id}}" data-ng-click='update(user._id)' class="btn btn-info btn-xs">{{user.isManufacturer?'Revoke Permissions':'Promote to Manufacturer'}}</button></td>
+		        </tr>
+		    </tbody>
+		</table>
+	</div>
+	<div style="text-align: center; margin-top: 10px; background-color: #f6f6f6; border-radius: 10px; border: 1px solid #eeeeee" class="col-md-offset-3 col-md-6">
+			<pagination total-items="total" page="current_page" max-size="7" items-per-page="page_limit" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages" ng-click="find()"></pagination>
+		</div>
+</div>

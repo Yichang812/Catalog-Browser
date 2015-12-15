@@ -1,0 +1,44 @@
+<section ng-init="init()" ng-hide="hide">
+    <!-- 2. ng-file-select | ng-file-select="options" -->
+    <div class="modal-header">Edit Item: 
+    	<div class="pull-right"><strong>{{item.catalog}}</strong></div>
+    </div>
+    <div class="panel-body" style="padding-bottom: 0px;">
+	    <form class="form-horizontal" name="form">
+	    	<div class="form-group">
+	            <label class= "col-md-4 control-label">Catalog:</label>
+	            <div class="col-md-8">
+	            	<input type="text" class= "form-control" ng-model="item.catalog" ng-blur="checkUnique(true)" required>
+	        	</div>
+	        </div>
+	        <div class="form-group">
+	            <label class= "col-md-4 control-label">Type: </label>
+	            <div class="col-md-8">
+	            	<select type="text" class= "form-control" ng-model="selectedType.type" ng-options="type.name+' ('+type.code+')' for type in types| orderBy:'name'" ng-change="confirmTypeChange(); checkUnique(true)"></select>
+	        	</div>
+	        </div>
+	        <div class="form-group">
+	            <label class= "col-md-4 control-label">Assembly Code: </label>
+	            <div class="col-md-8">
+	            	<input type="text" class= "form-control" ng-model="item.assemblyCode" ng-blur="checkUnique(true)">
+	        	</div>
+	        </div>
+	        <div class="form-group" ng-repeat="field in additionalInfo">
+	            <label class= "col-md-4 control-label">{{field[0]}}</label>
+	            <div class="col-md-8">
+	            	<input type="text" class= "form-control" ng-model="field[1]" ng-blur="checkUnique(false)">
+	        	</div>
+	        </div>
+	        <hr>            
+	        <div class="form-group" style="margin-right:5px">
+	            <div class="col-md-4">
+	                <button type="button" ng-click="delete()" class="btn btn-danger">Delete</button>
+	            </div>
+	            <div class="pull-right">
+	                <button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
+	                <button type="button"class="btn btn-primary btn-separate" ng-click="update()" ng-disabled="doneDisabled" analytics-on="click" analytics-category="Manage My Catalog" analytics-event="Edit Catalog" analytics-label="Update">Update</button>
+	            </div>
+	        </div>
+	    </form>
+	</div>
+</section>

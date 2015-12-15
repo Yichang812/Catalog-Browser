@@ -1,0 +1,836 @@
+; 22-Jan-10 t_kalio; Added 1ph and 3ph power source icons	
+; 22-Sep-09 t_kudam; Symbol builder modified to use new command '_.aesymbuilder'
+; 29-Oct-08 t_gackt; One line menu - Changed string "Square/Round with terminal number" to "Square/Round terminal" and added second transformer 
+; 21-Oct-08 t_gackt; corrections in "One line" menu (new submenu)
+; 14-Oct-08 t_gackt; changed icon file name "shc01pj" to "shc01jp_1" in submenu M101 and changed "PJ" to "Jack/Plug"
+; 03-Oct-08 t_gackt; added new menu "One line component" 
+; 15-Nov-07 t_kudam - renamed files OL symbols to HOL2, HOL21, HOL22
+; 17-Oct-07 t_kudam - changes made due to rename (H/V)OL11.dwg - (H/V)OL1.dwg
+; 7-Aug-07 t_gackt - corrected spelling of word "Distribution" in **M45
+; 14-Nov-06 Kulas inserted format information for old insert menu
+; 05-Oct-06 Kulas Rearranged for modern icon menu
+; 11-Dec-05 NEHolt added parametric twisted-pair symbol
+; 06-Nov-05 NEHolt separate off-delay timer "instantaneous" contact symbols
+; 23-Oct-05 NEHolt simplified M48
+; 21-Oct-05 Mani added sub menu page M48 for Splice symbols
+; 05-Oct-05 NEHolt added parametric connector build calls - 2 places
+; 25-June-04 MJ - Changed string PLc-Direct to Automation Direct
+; 17-May-04 PMM - corrected spelling of word "Circuit"
+; 04-May-04 PMM - corrected one more instance of Receptacles
+; 28-Apr-04 NEHolt - corrected spelling of word "Receptacles"
+; 08-APR-04 JDZ - Modofoed the Title Line Removing Main Menu For DSS
+; 29-Mar-04 JDZ - modified the Title Lines for localization
+; 09-Jan-04 JDZ Replaced Abbreviations with full word; ready for globalization
+; 11-Aug-03 NEHolt minor change to Latch Relay submenu page, now use normal CR contacts
+;    to tie into latch parent coil.
+; 06-Aug-03 NEHolt removed the NO and NC versions of HSV1. Just use HSV1 and set
+;    the RATING1 value to NO or NC if desired.
+; 01-Jul-03 NEHolt tick mark adds to icons that pop up submenu page required some icons
+;    to be duplicated without the tick marks.
+; 10-Jun-03 NEHolt split Timers into to icon pages; split Relays/Latches into two pages
+; 10-Jun-03 AWHolt flipped PLC-Direct to DT text-only menu
+; 06-Jun-03 PMMurnen reworked in-line wire label calls
+; 02-Jun-03 AWHolt changed PLC full-unit menus to type "DT"
+; 03-Jul-02 NEHolt changed "ins dumb inline wire labels" call - three places.
+;   Minor change to Black Box Builder call under "Generic Boxes"
+; 03-May-01 NEHolt added "$C=wd_repeat " call to each of the dumb in-line
+;   wire label markers so that cmd repeats during insertion
+; 22-Jul-00 NEHolt added "In line wire num copy" symbols to menu M32
+; 21-Jun-00 NEHolt moved "Shields" from opening menu down to MISC menu
+; 11-Jun-00 NEHolt added M45 Pwr Dist Blocks and revised M14 to pick it
+; 03-Jun-00 NEHolt added M43,M44 and revised M21,M22 for additions
+;   to connector pin symbol menus
+; 29-May-00 PMMurnen added M41,M42 for new shield/cable markers
+; 22-Feb-00 NEHolt added "Dumb, extra marker" in CABLE submenu page
+; 18-Feb-00 NEHolt added "repeat" option for inserting wire "DOT" symbol
+;   in the "M0" submenu page
+; 16-Dec-99 PMMurnen eliminated "S_LD" slide lib references (2 places)
+; 02-Aug-99 NEHolt added 1-PH motor symbol to M15
+; 15-Jul-99 NEHolt added *M40 reference in MISC submenu in place of
+;   call to Black Box Builder. Also added *M40 reference in Ref-Only
+;   wire arrows submenu.
+; 23-Jun-99 NEHolt added in "PLC" units menu pages M33-M40
+**M0
+D0
+JIC: Schematic Symbols
+Push Buttons|s2(s_pb)|$S=M3
+Selector Switches|s2(s_ss)|$S=M6
+Fuses/ Circuit Breakers/ Transformers|s2(s_cb_fu)|$S=M16
+Relays/ Contacts|s2(s_cr)|$S=M1
+Timers|s2(s_td)|$S=M2
+Motor Control|s2(s_mcc)|$S=M15
+Pilot Lights|s2(s_lt)|$S=M4
+PLC I/O|s2(s_io)|$S=M27
+Terminals/ Connectors|s2(s_trm_cn)|$S=M14
+Limit Switches|s2(s_zs)|$S=M8
+Pressure/ Temperature Switches|s2(s_ps_ts)|$S=M9
+Flow/ Level Switches|s2(s_fs_ls)|$S=M13
+Miscellaneous Switches|s2(s_msc_sw)|$S=M10
+Solenoids|s2(s_sv)|$S=M24
+Instrumentation|s2(s_inst)|$S=M25
+Miscellaneous|s2(s_msc)|$S=M18
+DOT|s1(shdot)|$C=wd_repeat WDDOT
+One-Line Components|s2(s_oneline)|$S=M100
+||
+||
+||
+||
+||
+||
+||
+**M1
+D3W
+JIC: Relays and Contacts
+Relay Coil|s1(SHCR1)|HCR1
+Relay NO Contact|s1(SHCR21)|HCR21
+Relay NC Contact|s1(SHCR22)|HCR22
+||
+Standard Coil with Pins|s1(SHCR1T)|HCR1T
+Relay NO with Pins|s1(SHCR21T)|HCR21T
+Relay NC with Pins|s1(SHCR22T)|HCR22T
+||
+||
+||
+||
+Latching Relay Coils|s2(s_cr_latch)|$S=M46
+**M2
+D4W
+JIC: Time Delay Relays
+ON Delay Coil|s2(shtD1N)|HTD1N
+ON Delay Coil with Pins|s2(shtD1NT)|HTD1NT
+ON Delay Starter|s2(shtD1NM)|HTD1NM
+||
+ON Delay NO - TC|s2(shtD21N)|HTD21N
+ON Delay NC - TO|s2(shtD22N)|HTD22N
+ON Delay NO - TC with Pins|s2(shtD21NT)|HTD21NT
+ON Delay NC - TO with Pins|s2(shtD22NT)|HTD22NT
+Instantaneous NO|s2(shtD21I)|HTD21I
+Instantaneous NC|s2(shtD22I)|HTD22I
+Instantaneous NO with Pins|s2(shtD21IT)|HTD21IT
+Instantaneous NC with Pins|s2(shtD22IT)|HTD22IT
+||
+||
+||
+OFF Delay Timers|s2(s_td_off)|$S=M47
+**M3
+D5W
+JIC: Push Buttons
+Push Button NO|s2(shpB11)|HPB11
+Push Button NC|s2(shpB12)|HPB12
+Mushroom Head NO|s2(shpB11M)|HPB11M
+Mushroom Head NC|s2(shpB12M)|HPB12M
+Illuminated Push Button NO|s2(shpb11L)|HPB11L
+Illuminated Push Button NC|s2(shpb12L)|HPB12L
+Illuminated Mushroom Head NO|s2(shpb11ML)|HPB11ML
+Illuminated Mushroom Head NC|s2(shpb12ML)|HPB12ML
+2nd+ NO Contact|s2(shpB21)|HPB21
+2nd+ NC Contact|s2(shpB22)|HPB22
+||
+||
+2nd+ Red Light|s2(shpb2R)|HPB2R
+2nd+ Green Light|s2(shpb2G)|HPB2G
+2nd+ Amber Light|s2(shpb2A)|HPB2A
+2nd+ Yellow Light|s2(shpb2Y)|HPB2Y
+2nd+ Blue Light|s2(shpb2B)|HPB2B
+2nd+ White Light|s2(shpb2W)|HPB2W
+2nd+ Clear Light|s2(shpb2C)|HPB2C
+**M4
+D5W
+JIC: Pilot Lights
+Red Standard|s2(shlt1R)|HLT1R
+Green Standard|s2(shlt1G)|HLT1G
+Amber Standard|s2(shlt1A)|HLT1A
+Yellow Standard|s2(shlt1Y)|HLT1Y
+Blue Standard|s2(shlt1B)|HLT1B
+White Standard|s2(shlt1W)|HLT1W
+Clear Standard|s2(shlt1C)|HLT1C
+Red Press To Test|s2(shlt1RP)|HLT1RP
+Green Press To Test|s2(shlt1GP)|HLT1GP
+Amber Press To Test|s2(shlt1AP)|HLT1AP
+Yellow Press To Test|s2(shlt1YP)|HLT1YP
+Blue Press To Test|s2(shlt1BP)|HLT1BP
+White Press To Test|s2(shlt1WP)|HLT1WP
+Clear Press To Test|s2(shlt1CP)|HLT1CP
+||
+||
+||
+||
+Master Test|s2(s_lt_m)|$S=M5
+Neon|s2(s_lt_n)|$S=M23
+**M5
+D3W
+JIC: Master Test Pilot Lights
+Red Master Test|s2(shlt1RM)|HLT1RM
+Green Master Test|s2(shlt1GM)|HLT1GM
+Amber Master Test|s2(shlt1AM)|HLT1AM
+Yellow Master Test|s2(shlt1YM)|HLT1YM
+Blue Master Test|s2(shlt1BM)|HLT1BM
+White Master Test|s2(shlt1WM)|HLT1WM
+Clear Master Test|s2(shlt1CM)|HLT1CM
+**M6
+D6W
+JIC: Selector Switches
+2 Position Maintain, NO|s2(shss112)|HSS112
+2 Position Maintain, NC|s2(shss122)|HSS122
+2 Position NO Return From Left|s2(shss112L)|HSS112L
+2 Position NC Return From Left|s2(shss122L)|HSS122L
+2 Position NO Return From Right|s2(shss112r)|HSS112R
+2 Position NC Return From Right|s2(shss122r)|HSS122R
+||
+||
+3 Position NO|s2(shss113)|HSS113
+3 Position NC|s2(shss123)|HSS123
+3 Position NO Return From Left|s2(shss113L)|HSS113L
+3 Position NC Return From Left|s2(shss123L)|HSS123L
+3 Position NO Return From Right|s2(shss113r)|HSS113R
+3 Position NC Return From Right|s2(shss123r)|HSS123R
+3 Position NO Return From Both|s2(shss113b)|HSS113B
+3 Position NC Return From Both|s2(shss123b)|HSS123B
+4 Position NO|s2(shss114)|HSS114
+4 Position NC|s2(shss124)|HSS124
+6 Position NO|s2(shss116)|HSS116
+6 Position NC|s2(shss126)|HSS126
+8 Position NO|s2(shss118)|HSS118
+8 Position NC|s2(shss128)|HSS128
+2nd+ NO Contact|s2(shss21)|HSS21
+2nd+ NC Contact|s2(shss22)|HSS22
+Illuminated Selector Switches|s2(S-SSI)|$S=M7
+**M7
+D6W
+JIC: Illuminated Selector Switches
+2 Position NO|s2(shss112)|HSS112I
+2 Position NC|s2(shss122)|HSS122I
+2 Position NO Return From Left|s2(shss112L)|HSS112Li
+2 Position NC Return From Left|s2(shss122L)|HSS122Li
+2 Position NO Return From Right|s2(shss112r)|HSS112Ri
+2 Position NC Return From Right|s2(shss122r)|HSS122Ri
+||
+3 Position NO|s2(shss113)|HSS113i
+3 Position NC|s2(shss123)|HSS123i
+3 Position NO Return From Left|s2(shss113L)|HSS113Li
+3 Position NC Return From Left|s2(shss123L)|HSS123Li
+3 Position NO Return From Right|s2(shss113r)|HSS113Ri
+3 Position NC Return From Right|s2(shss123r)|HSS123Ri
+3 Position NO Return From Both|s2(shss113b)|HSS113Bi
+3 Position NC Return From Both|s2(shss123b)|HSS123Bi
+Red Light|s2(shss2R)|HSS2R
+Green Light|s2(shss2G)|HSS2G
+Amber Light|s2(shss2A)|HSS2A
+Yellow Light|s2(shss2Y)|HSS2Y
+Blue Light|s2(shss2B)|HSS2B
+White Light|s2(shss2W)|HSS2W
+Clear Light|s2(shss2C)|HSS2C
+**M8
+D3W
+JIC: Limit Switches
+Limit Switch, NO|s2(shls11)|HLS11
+Limit Switch, NC|s2(shls12)|HLS12
+Limit Switch NO Held Closed|s2(shls11h)|HLS11H
+Limit Switch NC Held Open|s2(shls12h)|HLS12H
+2nd+ NO Contact|s2(shls21)|HLS21
+2nd+ NC Contact|s2(shls22)|HLS22
+2nd+ NO Contact Held Closed|s2(shls21h)|HLS21H
+2nd+ NC Contact Held Open|s2(shls22h)|HLS22H
+**M9
+D3W
+JIC: Pressure and Temperature Switches
+Pressure Switch, NO|s2(shps11)|HPS11
+Pressure Switch, NC|s2(shps12)|HPS12
+Temperature Switch, NO|s2(shts11)|HTS11
+Temperature Switch, NC|s2(shts12)|HTS12
+2nd+ Pressure NO Contact|s2(shps21)|HPS21
+2nd+ Pressure NC Contact|s2(shps22)|HPS22
+2nd+ Temperature NO Contact|s2(shts21)|HTS21
+2nd+ Temperature NC Contact|s2(shts22)|HTS22
+**M10
+D6W
+JIC: Other Switch Types
+Proximity Switch NO|s2(shpx11)|HPX11
+Proximity Switch NC|s2(shpx12)|HPX12
+2nd+ Proximity NO Contact|s2(shpx21)|HPX21
+2nd+ Proximity NC Contact|s2(shpx22)|HPX22
+Foot Switch NO|s1(shft11)|HFT11
+Foot Switch NC|s1(shft12)|HFT12
+2nd+ Foot NO Contact|s1(shft21)|HFT21
+2nd+ Foot NC Contact|s1(shft22)|HFT22
+Toggle Switch NO|s2(shtg11)|HTG11
+Toggle Switch NC|s2(shtg12)|HTG12
+2nd+ Toggle NO Contact|s2(shtg21)|HTG21
+2nd+ Toggle NC Contact|s2(shtg22)|HTG22
+Pull cord Switch NO|s2(shpc11)|HPC11
+Pull cord Switch NC|s2(shpc12)|HPC12
+2nd+ Pull Cord NO Contact|s2(shpc21)|HPC21
+2nd+ Pull Cord NC Contact|s2(shpc22)|HPC22
+A-Plug NO|s2(shlt11)|HPG11
+A-Plug NC|s2(shlt12)|HPG12
+2nd+ A-Plug NO Contact|s2(shlt21)|HPG21
+2nd+ A-Plug NC Contact|s2(shlt22)|HPG22
+Photo Eye Switch NO|s2(shpe11)|HPE11
+Photo Eye Switch NC|s2(shpe12)|HPE12
+||
+SPDT Switches|s1(tg_more)|$S=M31
+**M13
+D3W
+JIC: Flow and Level Switches
+Flow Switch NO|s1(shfs11)|HFS11
+Flow Switch NC|s1(shfs12)|HFS12
+Level Switch NO|s1(shfL11)|HFL11
+Level Switch NC|s1(shfL12)|HFL12
+2nd+ Flow NO Contact|s1(shfs21)|HFS21
+2nd+ Flow NC Contact|s1(shfs22)|HFS22
+2nd+ Level NO Contact|s1(shFL21)|HFL21
+2nd+ Level NC Contact|s1(shFL22)|HFL22
+**M14
+D6W
+JIC: Terminals and Connectors
+Square|s2(sht0_01)|HT0_01
+Square with Wire Number|s2(sht0w01)|HT0W01
+Square with Terminal Number|s2(sht0001)|HT0001
+Square with Wire Number Change|s2(sht1001)|HT1001
+Round|s2(sht0_02)|HT0_02
+Round with Wire Number|s2(sht0w02)|HT0W02
+Round with Terminal Number|s2(sht0002)|HT0002
+Round with Wire Number Change|s2(sht1002)|HT1002
+Hexagon|s2(sht0_03)|HT0_03
+Hexagon with Wire Number|s2(sht0w03)|HT0W03
+Hexagon with Terminal Number|s2(sht0003)|HT0003
+Hexagon with Wire Number Change|s2(sht1003)|HT1003
+Diamond|s2(sht0_04)|HT0_04
+Diamond with Wire Number|s2(sht0w04)|HT0W04
+Diamond with Terminal Number|s2(sht0004)|HT0004
+Diamond with Wire Number Change|s2(sht1004)|HT1004
+Triangle|s2(sht0_05)|HT0_05
+Triangle with Wire Number|s2(sht0w05)|HT0W05
+Triangle with Terminal Number|s2(sht0005)|HT0005
+Triangle with Wire Number Change|s2(sht1005)|HT1005
+In-line Wire Labels|s1(dumb_red)|$S=M32
+Power Distribution Blocks|s2(pdb)|$S=M45
+Connectors - No Wirenumber Changes|s2(s_cn_nch)|$S=M22
+Connectors - Wirenumber Changes|s2(s_cn_chg)|$S=M21
+**M15
+D6W
+JIC: Motor Control
+3 Phase Starter Contacts NO|s1(shmt213)|$C=wd_3unit HMS21
+3 Phase Starter Contacts NC|s1(shmt223)|$C=wd_3unit HMS22
+3 Phase Starter Contacts with Overload|s1(shmt213o)|$C=wd_3unit HMS21OL
+3 Phase Overloads|s1(shol13)|$C=wd_3unit HOL1
+Motor Starter Coil|s1(SHmt1)|HmS1
+Motor Starter Coil with Pins|s1(SHmt1T)|HmS1T
+Overload|s1(shol1)|HOL1
+3 Phase Motor|s1(SHMO1)|HMO13
+2nd+ Starter Contact NO|s1(SHmt21)|HmS21
+2nd+ Starter Contact NO with Pins|s1(SHmt21T)|HmS21T
+2nd+ Overload|s1(shol2)|HOL2
+1 Phase Motor|s1(shmo12)|HMO12
+2nd+ Starter Contact NC|s1(SHmt22)|HmS22
+2nd+ Starter Contact NC with Pins|s1(SHmt22T)|HmS22T
+2nd+ Overload Contact NO|s1(SHOL21I)|HOL21
+KVAR Capacitor|s1(SHCA11)|HCA11
+3 Phase KVAR|s1(SHCA13)|HCA113
+2nd+ Overload Contact NC|s1(SHOL22I)|HOL22
+2nd+ KVAR Capacitor|s1(SHCA21)|HCA21
+Ground|s1(shgnd2)|HGND2
+||
+||
+Fuses/ Circuit Breakers|s2(s_cbfu)|$S=M16
+Breakers/ Disconnects|s2(s_cb_ds)|$S=M17
+**M16
+D5W
+JIC: Fuses, Circuit Breakers and Transformers
+;Circuit Breaker 1 Pole|s1(shcb1)|HCB1
+Fuse (Tag)|s1(shfu1)|HFU1
+Fuse|s1(shfu0)|HFU0
+;2nd+ Circuit Breaker 1 Pole|s1(shcb2)|HCB2
+2nd+ Fuse|s1(shfu2)|HFU2
+Fuse Switch (Right)|s1(shds1fr)|HDS11FR
+Fuse Switch (Left)|s1(shds1fL)|HDS11FL
+3 Pole Fuse with Tags|s1(shfu3p)|$C=wd_3unit HFU1
+2nd+ Fuse Switch(Right)|s1(shds2fr)|HDS21FR
+2nd+ Fuse Switch (Left)|s1(shds2fL)|HDS21FL
+||
+||
+||
+||
+Transformer|s2(shxf1)|HXF1
+Transformer Dual|s2(shxf1d)|HXF1D
+Current Transformer|s2(shxf1ct)|HXF1CT
+Potential Transformer|s2(shxf1pt)|HXF1PT
+||
+||
+||
+Circuit Breakers/ Disconnects|s2(s_cb_ds)|$S=M17
+**M17
+D6W
+JIC: Disconnecting Means
+Circuit Breaker 1 Pole|s1(shcb1)|HCB1
+Thermal Circuit Breaker|s1(shcb1th)|HCB11TH
+Motor Circuit Protector|s1(shcb1m)|HCB11M
+Motor Circuit Protector with Fuse|s1(shcb1mcl)|HCB11ML
+2nd+ Circuit Breaker 1 Pole|s1(shcb2)|HCB2
+2nd+ Thermal Circuit Breaker|s1(shcb2th)|HCB21TH
+2nd+ Motor Circuit Protector|s1(shcb2m)|HCB21M
+2nd+ Motor Circuit Protector with Fuse|s1(shcb2mcl)|HCB21ML
+3 Pole Circuit Breaker|s1(shcb13)|$C=wd_3unit HCB1
+3 Pole Thermal Circuit Breaker|s1(shcb1th3)|$C=wd_3unit HCB11TH
+3 Pole Motor Circuit Protector|s1(shcb1m3)|$C=wd_3unit HCB11M
+3 Pole Motor Circuit Protector with Fuse|s1(shcb1ml3)|$C=wd_3unit HCB11ML
+Circuit Breaker Auxilary Contact NO|s1(shcb21it)|HCB21IT
+Disconnect Switch|s1(shds1)|HDS11
+Fused Disconnect Switch|s1(shds1f)|HDS11F
+Disconnect Switch Auxilary Contact NO|s1(shds21it)|HDS21IT
+2nd+ Disconnect Switch|s1(shds2)|HDS21
+2nd+ Fused Disconnect Switch|s1(shds2f)|HDS21F
+3 Pole Disconnect|s1(shds13)|$C=wd_3unit HDS11
+3 Pole Fused Disconnect|s1(shds1F3)|$C=wd_3unit HDS11F
+**M18
+D6W
+JIC: Miscellaneous
+Bell|s1(shan1b)|HAN1B
+Buzzer|s1(shan1z)|HAN1Z
+Horn|s1(shan1h)|HAN1H
+||
+Electronics|s2(s_tronic)|$S=M28
+Ground|s1(shgnd2)|HGND2
+Earth/Ground|s1(shgnd1)|HGND1
+||
+Battery|s1(shba1)|HBA1
+Battery (Flipped)|s1(shba1r)|HBA1R
+Suppressor (tag)|s2(shsu1)|HSU1
+Suppressor|s2(shsu0)|HSU0
+Enclosure Light|s1(s_ltenc)|HLT1ENC
+Cable Markers|s1(shw01)|$S=M30
+||
+||
+||
+Receptacles|s1(s_cnrdup)|$S=M29
+Shields (Non Intelligent)|s2(s_shld1)|$S=M41
+Splice symbols|s2(splice_horizontal)|$S=M48
+User Circuits|s2(s_usr_ck)|$S=M19
+Generic Boxes|s1(s_box)|$S=M20
+Stand-Alone Cross-Reference Symbols|s2(sa_refs)|$S=M40
+Wire Arrows Reference only|s1(s_a_ref)|$S=M26
+Power Source 1 Phase|s1(PS1_1PH)|VPW1_1PH
+Power Source 3 Phase|s1(PS1_3PH)|VPW1_3PH
+**M19
+D6W
+JIC: Saved User Circuits
+User Circuit 1|%WD_USER%circ1|$C=wd_ins_circ_main %WD_USER%circ1
+User Circuit 2|%WD_USER%circ2|$C=wd_ins_circ_main %WD_USER%circ2
+User Circuit 3|%WD_USER%circ3|$C=wd_ins_circ_main %WD_USER%circ3
+User Circuit 4|%WD_USER%circ4|$C=wd_ins_circ_main %WD_USER%circ4
+User Circuit 5|%WD_USER%circ5|$C=wd_ins_circ_main %WD_USER%circ5
+User Circuit 6|%WD_USER%circ6|$C=wd_ins_circ_main %WD_USER%circ6
+User Circuit 7|%WD_USER%circ7|$C=wd_ins_circ_main %WD_USER%circ7
+User Circuit 8|%WD_USER%circ8|$C=wd_ins_circ_main %WD_USER%circ8
+User Circuit 9|%WD_USER%circ9|$C=wd_ins_circ_main %WD_USER%circ9
+User Circuit 10|%WD_USER%circ10|$C=wd_ins_circ_main %WD_USER%circ10
+User Circuit 11|%WD_USER%circ11|$C=wd_ins_circ_main %WD_USER%circ11
+User Circuit 12|%WD_USER%circ12|$C=wd_ins_circ_main %WD_USER%circ12
+User Circuit 13|%WD_USER%circ13|$C=wd_ins_circ_main %WD_USER%circ13
+User Circuit 14|%WD_USER%circ14|$C=wd_ins_circ_main %WD_USER%circ14
+User Circuit 15|%WD_USER%circ15|$C=wd_ins_circ_main %WD_USER%circ15
+User Circuit 16|%WD_USER%circ16|$C=wd_ins_circ_main %WD_USER%circ16
+User Circuit 17|%WD_USER%circ17|$C=wd_ins_circ_main %WD_USER%circ17
+User Circuit 18|%WD_USER%circ18|$C=wd_ins_circ_main %WD_USER%circ18
+User Circuit 19|%WD_USER%circ19|$C=wd_ins_circ_main %WD_USER%circ19
+User Circuit 20|%WD_USER%circ20|$C=wd_ins_circ_main %WD_USER%circ20
+User Circuit 21|%WD_USER%circ21|$C=wd_ins_circ_main %WD_USER%circ21
+User Circuit 22|%WD_USER%circ22|$C=wd_ins_circ_main %WD_USER%circ22
+User Circuit 23|%WD_USER%circ23|$C=wd_ins_circ_main %WD_USER%circ23
+User Circuit 24|%WD_USER%circ24|$C=wd_ins_circ_main %WD_USER%circ24
+**M20
+D3W
+JIC: Generic Device Boxes 
+4 Terminals|s1(shdv1tfl)|HDV1TFL
+3 Terminals|s1(shdv1tc)|HDV1TC
+3 Terminals|s1(shdv1tb)|HDV1TB
+2 Terminals|s1(shdv1t6)|HDV1T6
+4 Terminals|s1(shdv1tf)|HDV1TF
+3 Terminals|s1(shdv1te)|HDV1TE
+3 Terminals|s1(shdv1t7)|HDV1T7
+Symbol Builder|s1(shblkbox)|$C=_.AESYMBUILDER
+**M21
+D3W
+JIC: Connectors - Wirenumber Changes
+Plug/Jack|s2(shcn1pj)|HCN1PJ
+Jack/Plug|s2(shcn1jp)|HCN1JP
+||
+||
+2nd+ Plug/Jack|s2(shcn2pj)|HCN2PJ
+2nd+ Jack/Plug|s2(shcn2jp)|HCN2JP
+||
+||
+Spare/Single Side Only|s2(c0_1)|$S=M43
+Parametric build|s2(paraconn)|$C=wd_p2p_connector_dlg_wnum_chg
+**M22
+D3W
+JIC: Connectors - No Wirenumber Changes
+Plug/Jack|s2(shc01pj)|HC01PJ
+Jack/Plug|s2(shc01jp)|HC01JP
+Plug/Jack (Combined Tag-Pin)|s2(shc01pj1)|HC01PJ1
+Jack/Plug (Combined Tag-Pin)|s2(shc01jp1)|HC01JP1
+2nd+ Plug/Jack|s2(shc02pj)|HC02PJ
+2nd+ Jack/Plug|s2(shc02jp)|HC02JP
+2nd+ Plug/Jack (Combined Tag-Pin)|s2(shc02pj1)|HC02PJ1
+2nd+ Jack/Plug (Combined Tag-Pin)|s2(shc02jp1)|HC02JP1
+Spare/Single Side Only|s2(c0_1)|$S=M44
+Parametric build|s2(paraconn)|$C=wd_p2p_connector_dlg_wnum_nochg
+**M23
+D2W
+JIC: Neon Pilot Lights
+Red Standard|s2(shlt1Rn)|HLT1RN
+Amber Standard|s2(shlt1an)|HLT1AN
+Clear Standard|s2(shlt1Cn)|HLT1CN
+**M24
+D2W
+JIC: Solenoids
+Solenoid|s1(s_sv1)|HSV1
+Manual Reset Solenoid|s1(s_sv1m)|HSV1M
+NO Contact|s1(s_sv21)|HSV21
+NC Contact|s1(s_sv22)|HSV22
+**M25
+D5W
+JIC: Instrumentation
+Thermocouple|s1(s_tc1l)|HTC1L
+Thermocouple|s1(s_tc1r)|HTC1R
+Thermocouple with Terminal Board|s1(s_tc1ltb)|HTC1LTB
+Thermocouple with Terminal Board|s1(s_tc1rtb)|HTC1RTB
+Ball valve|s1(shbv1m)|HBV1M
+Gate valve|s1(shgv1m)|HGV1M
+Globe valve|s1(shlv1m)|HLV1M
+||
+Volt Meter|s1(shvm1)|HVM1
+Amp Meter|s1(sham1)|HAM1
+**M26
+D5W
+JIC: Wire Arrows - Reference Only
+Generic Arrow - Left|s1(sha1x1)|HA1X1
+Generic Arrow - Up|s1(sha1x2)|HA1X2
+Generic Arrow - Right|s1(sha1x3)|HA1X3
+Generic Arrow - Down|s1(sha1x4)|HA1X4
+Arrow Tail - Left|s1(sha1x1y)|HA1X1Y
+Arrow Tail - Up|s1(sha1x2y)|HA1X2Y
+Arrow Tail - Right|s1(sha1x3y)|HA1X3Y
+Arrow Tail - Down|s1(sha1x4y)|HA1X4Y
+Stand-Alone Cross-Reference Symbols|s2(sa_refs)|$S=M40
+**M27
+D5W
+JIC: PLC I/O
+PLC I/O Modules|s2(s_wdio)|$C=PLC
+PLC I/O Fixed Units|s1(plcio_fix)|$S=M33
+||
+* *  SINGLE I/O  * *||
+IN, 1st Point, 1 Wire|s1(plcioi1t)|PLCIOI1T
+IN, 1st Point, 2 Wires|s1(plcioi2t)|PLCIOI2T
+OUT, 1st Point, 1 Wire|s1(plcioo1t)|PLCIOO1T
+OUT, 1st Point, 2 Wires|s1(plcioo2t)|PLCIOO2T
+IN, 2nd+ Child, 1 Wire|s1(plcioi1)|PLCIOI1
+IN, 2nd+ Child, 2 Wires|s1(plcioi2)|PLCIOI2
+OUT, 2nd+ Child, 1 Wire|s1(plcioo1)|PLCIOO1
+OUT, 2nd+ Child, 2 Wires|s1(plcioo2)|PLCIOO2
+**M28
+D6W
+JIC: Electronics
+Fixed Resistor|s1(shre1)|HRE1
+Fixed Resistor (Box)|s1(shre1b)|HRE1B
+Fixed Resistor with Pins|s1(shre1t)|HRE1T
+Fixed Resistor (Box) with Pins|s1(shre1tb)|HRE1TB
+Variable Resistor|s1(shvr1tz)|HVR1TZ
+Variable Resistor|s1(shvr1tzr)|HVR1TZR
+Variable Resistor|s1(shvr1)|HVR1
+Variable Resistor|s1(shvr1r)|HVR1R
+Diode|s1(shdi1)|HDI1
+Diode|s1(shdi1R)|HDI1R
+Diode with Pins|s1(shdi1T)|HDI1T
+Diode with Pins|s1(shdi1TR)|HDI1TR
+Zener Diode|s1(shdi1z)|HDI1Z
+Zener Diode|s1(shdi1zr)|HDI1ZR
+Zener Diode with Pins|s1(shdi1tz)|HDI1TZ
+Zener Diode with Pins|s1(shdi1tzr)|HDI1TZR
+Capacitor|s1(SHCA1)|HCA1
+Capacitor with Pins|s1(SHCA1T)|HCA1T
+**M29
+D1W
+JIC: Power Receptacles
+Duplex Receptacle|s1(s_cnrdupl)|HCN1RDUP
+Single Receptacle|s1(s_cnrsgl)|HCN1RSGL
+**M30
+D3W
+JIC: Cable Markers
+Cable Marker|s1(shw01)|HW01
+2+ Child Marker|s1(shw02)|HW02
+||
+Extra Marker|s1(shw02dum)|HT0_CABLE
+Cable Markers with Shields|s2(shw01_1)|$S=M42
+Twisted Pair|s2(tw_pair)|$C=wd_2unit HT0_TW
+Twisted Marker|s1(tw_marker)|$C=ace_twist_marker
+||
+Multiple connected|s1(mult_cbl_m)|$C=wd_cblshld_bld 5
+Multiple connected (All 2nd+)|s1(mult_cbl_m2)|$C=wd_cblshld_bld_2 5
+**M31
+D5W
+JIC: SPDT Switches
+SPDT Maintained|s1(tg112)|HTG112
+SPDT Return From Down|s1(tg112d)|HTG112D
+SPDT Return From Up|s1(tg112u)|HTG112U
+SPDT Return From Both|s1(tg112b)|HTG112B
+2nd+ Maintained|s1(tg212)|HTG212
+2nd+ Return From Down|s1(tg212d)|HTG212D
+2nd+ Return From Up|s1(tg212u)|HTG212U
+2nd+ Return From Both|s1(tg212b)|HTG212B
+SPDT Maintained|s1(tg112r)|HTG112R
+SPDT Return From Down|s1(tg112dr)|HTG112DR
+SPDT Return From Up|s1(tg112ur)|HTG112UR
+SPDT Return From Both|s1(tg112br)|HTG112BR
+2nd+ Maintained|s1(tg212r)|HTG212R
+2nd+ Return From Down|s1(tg212dr)|HTG212DR
+2nd+ Return From Up|s1(tg212ur)|HTG212UR
+2nd+ Return From Both|s1(tg212br)|HTG212BR
+**M32
+DT
+JIC: In-Line Wire Labels
+Red|s1(WIRELABEL_red)|$C=wd_repeat HT0_LGENERIC COLOR=(c:wd_msg,"COLOR001",nil,"RED")
+Black|s1(WIRELABEL_blk)|$C=wd_repeat HT0_LGENERIC COLOR=(c:wd_msg,"COLOR002",nil,"BLK")
+White|s1(WIRELABEL_wht)|$C=wd_repeat HT0_LGENERIC COLOR=(c:wd_msg,"COLOR003",nil,"WHT")
+Green|s1(WIRELABEL_green)|$C=wd_repeat HT0_LGENERIC COLOR=(c:wd_msg,"COLOR004",nil,"GRN")
+Blue|s1(WIRELABEL_blue)|$C=wd_repeat HT0_LGENERIC COLOR=(c:wd_msg,"COLOR005",nil,"BLU")
+Yellow|s1(WIRELABEL_yellow)|$C=wd_repeat HT0_LGENERIC COLOR=(c:wd_msg,"COLOR006",nil,"YEL")
+Orange|s1(WIRELABEL_orange)|$C=wd_repeat HT0_LGENERIC COLOR=(c:wd_msg,"COLOR007",nil,"ORG")
+Gray|s1(WIRELABEL_gray)|$C=wd_repeat HT0_LGENERIC COLOR=(c:wd_msg,"COLOR008",nil,"GRY")
+You Type|s1(WIRELABEL_type)|$C=wd_inlinlab_oem "HT0_LGENERIC"
+Wire Number Copy|s1(WIRELABEL_num)|$C=wd_repeat HT0_WGENERIC
+**M33
+D3W
+JIC: PLC Fixed Units
+AB 1761 MicroLogix (1/2" spacing)|s1(ab1761-50)|$S=M37
+AB 1761 MicroLogix (3/4" spacing)|s1(ab1761-75)|$S=M38
+AB 1761 MicroLogix (1" spacing)|s1(ab1761-1)|$S=M39
+||
+Automation Direct DL105 (1/2" spacing)|s1(dl105-50)|$S=M34
+Automation Direct DL105 (3/4" spacing)|s1(dl105-75)|$S=M35
+Automation Direct DL105 (1" spacing)|s1(dl105-1)|$S=M36
+**M34
+DT
+JIC: Automation Direct DL105 (1/2" RUNG SPACING)
+F1-130AA 10in/8out 115AC-DC/115AC|s1(F1-130AA-50)|PLCIO50EF1-130AA
+F1-130AA 10in/8out 115AC-DC/24DC|s1(F1-130AA-50)|PLCIO50EF1-130AD
+F1-130AR 10in/8 relay out 115AC-DC|s1(F1-130AR-50)|PLCIO50EF1-130AR
+F1-130DA 10in s-s/8 out 24DC/115AC|s1(F1-130DA-50)|PLCIO50EF1-130DA
+F1-130DD 10in s-s/8 out 24DC/115AC|s1(F1-130DD-50)|PLCIO50EF1-130DD
+F1-130DR 10in s-s/8 relay out 24DC|s1(F1-130DR-50)|PLCIO50EF1-130DR
+F1-130DD-D 10in s-s/8 out 24DC/24DC|s1(F1-130DD-D-50)|PLCIO50EF1-130DD-D
+F1-130DR-D 10in s-s/8 relay out 24DC|s1(F1-130DR-D-50)|PLCIO50EF1-130DR-D
+**M35
+DT
+JIC: Automation Direct DL105 (3/4" RUNG SPACING)
+F1-130AA 10in/8out 115AC-DC/115AC|s1(F1-130AA-75)|PLCIO75EF1-130AA
+F1-130AD 10in/8out 115AC-DC/24DC|s1(F1-130AD-75)|PLCIO75EF1-130AD
+F1-130AR 10in/8 relay out 115AC-DC|s1(F1-130AR-75)|PLCIO75EF1-130AR
+F1-130DA 10in s-s/8 out 24DC/115AC|s1(F1-130DA-75)|PLCIO75EF1-130DA
+F1-130DD 10in s-s/8 out 24DC/115AC|s1(F1-130DD-75)|PLCIO75EF1-130DD
+F1-130DR 10in s-s/8 relay out 24DC|s1(F1-130DR-75)|PLCIO75EF1-130DR
+F1-130DD-D 10in s-s/8 out 24DC/24DC|s1(F1-130DD-D-75)|PLCIO75EF1-130DD-D
+F1-130DR-D 10in s-s/8 relay out 24DC|s1(F1-130DR-D-75)|PLCIO75EF1-130DR-D
+**M36
+DT
+JIC: Automation Direct DL105 (1" RUNG SPACING)
+F1-130AA 10in/8out 115AC-DC/115AC|s1(F1-130AA-1)|PLCIO100EF1-130AA
+F1-130AD 10in/8out 115AC-DC/24DC|s1(F1-130AD-1)|PLCIO100EF1-130AD
+F1-130AR 10in/8 relay out 115AC-DC|s1(F1-130AR-1)|PLCIO100EF1-130AR
+F1-130DA 10in s-s/8 out 24DC/115AC|s1(F1-130DA-1)|PLCIO100EF1-130DA
+F1-130DD 10in s-s/8 out 24DC/115AC|s1(F1-130DD-1)|PLCIO100EF1-130DD
+F1-130DR 10in s-s/8 relay out 24DC|s1(F1-130DR-1)|PLCIO100EF1-130DR
+F1-130DD-D 10in s-s/8 out 24DC/24DC|s1(F1-130DD-D-1)|PLCIO100EF1-130DD-D
+F1-130DR-D 10in s-s/8 relay out 24DC|s1(F1-130DR-D-1)|PLCIO100EF1-130DR-D
+**M37
+DT
+JIC: AB 1761 MicroLogix (1/2" RUNG SPACING)
+L16-AWA 10in/6out AC-DC/115AC-DC|s1(L16-AWA-50)|PLCIO50E1761-L16AWA
+L16-BBB 10in/6out 24DC/115AC-DC|s1(L16-BBB-50)|PLCIO50E1761-L16BBB
+L16-BWA 10in/6out 24DC/115AC-DC|s1(L16-BWA-50)|PLCIO50E1761-L16BWA
+L16-BWB 10in/6out 24DC/115AC-DC|s1(L16-BWB-50)|PLCIO50E1761-L16BWB
+L24-AWA 12in/12out AC-DC/115AC-DC|s1(L24-AWA-50)|PLCIO50E1761-L24AWA
+L24-BWA 12in/12out 24DC/115AC-DC|s1(L24-BWA-50)|PLCIO50E1761-L24BWA
+L32-AAA 20in/12out 115AC/115-230AC|s1(L32-AAA-50)|PLCIO50E1761-L32AAA
+L32-AWA 20in/12out AC-DC/115AC-DC|s1(L32-AWA-50)|PLCIO50E1761-L32AWA
+L32-BWA 20in/12out 24DC/AC-DC|s1(L32-BWA-50)|PLCIO50E1761-L32BWA
+**M38
+DT
+JIC: AB 1761 MicroLogix (3/4" RUNG SPACING)
+L16-AWA 10in/6out AC-DC/115AC-DC|s1(L16-AWA-75)|PLCIO75E1761-L16AWA
+L16-BBB 10in/6out 24DC/115AC-DC|s1(L16-BBB-75)|PLCIO75E1761-L16BBB
+L16-BWA 10in/6out 24DC/115AC-DC|s1(L16-BWA-75)|PLCIO75E1761-L16BWA
+L16-BWB 10in/6out 24DC/115AC-DC|s1(L16-BWB-75)|PLCIO75E1761-L16BWB
+L24-AWA 12in/12out AC-DC/115AC-DC|s1(L24-AWA-75)|PLCIO75E1761-L24AWA
+L24-BWA 12in/12out 24DC/115AC-DC|s1(L24-BWA-75)|PLCIO75E1761-L24BWA
+L32-AAA 20in/12out 115AC/115-230AC|s1(L32-AAA-75)|PLCIO75E1761-L32AAA
+L32-AWA 20in/12out AC-DC/115AC-DC|s1(L32-AWA-75)|PLCIO75E1761-L32AWA
+L32-BWA 20in/12out 24DC/AC-DC|s1(L32-BWA-75)|PLCIO75E1761-L32BWA
+**M39
+DT
+JIC: AB 1761 MicroLogix (1" RUNG SPACING)
+L16-AWA 10in/6out AC-DC/115AC-DC|s1(L16-AWA-1)|PLCIO100e1761-L16AWA
+L16-BBB 10in/6out 24DC/115AC-DC|s1(L16-BBB-1)|PLCIO100e1761-L16BBB
+L16-BWA 10in/6out 24DC/115AC-DC|s1(L16-BWA-1)|PLCIO100e1761-L16BWA
+L16-BWB 10in/6out 24DC/115AC-DC|s1(L16-BWB-1)|PLCIO100e1761-L16BWB
+L24-AWA 12in/12out AC-DC/115AC-DC|s1(L24-AWA-1)|PLCIO100E1761-L24AWA
+L24-BWA 12in/12out 24DC/115AC-DC|s1(L24-BWA-1)|PLCIO100E1761-L24BWA
+L32-AAA 20in/12out 115AC/115-230AC|s1(L32-AAA-1)|PLCIO100e1761-L32AAA
+L32-AWA 20in/12out AC-DC/115AC-DC|s1(L32-AWA-1)|PLCIO100e1761-L32AWA
+L32-BWA 20in/12out 24DC/AC-DC|s1(L32-BWA-1)|PLCIO100e1761-L32BWA
+**M40
+D3W
+JIC: Stand-Alone Cross-Reference Symbols
+Source Rectangle|s2(ha2s1_r)|HA2S1_REF
+Source Hexagon|s2(ha3s1_r)|HA3S1_REF
+Source Ellipse|s2(ha5s1_r)|HA5S1_REF
+||
+Destination Rectangle|s2(ha2d1_r)|HA2D1_REF
+Destination Hexagon|s2(ha3d1_r)|HA3D1_REF
+Destination Ellipse|s2(ha5d1_r)|HA5D1_REF
+**M41
+D4W
+JIC: Shield Symbols
+Cable with Shield|s2(s_shld)|$C=wd_shld_bld 1
+Twisted Pair with Shield|s2(s_shld2)|$C=wd_shld_bld 2
+Shield|s2(s_shld3)|$C=wd_shld_bld 3
+Shield Tied Back|s2(s_shld4)|$C=wd_shld_bld 4
+Twisted Pair|s2(tw_pair)|$C=wd_2unit HT0_TW
+||
+||
+||
+Cable Markers with Shields|s2(shw01_1)|$S=M42
+**M42
+D4W
+JIC: Cable Markers with Shields
+Cable with Shield|s2(shw01_1notick)|$C=wd_cblshld_bld 1
+Twisted Pair with Shield|s2(shw01_2)|$C=wd_cblshld_bld 2
+Shield|s2(shw01_3)|$C=wd_cblshld_bld 3
+Shield Tied Back|s2(shw01_4)|$C=wd_cblshld_bld 4
+Add 2nd Shield|s1(shld_add_double)|$C=ace_shld_add_double
+||
+||
+||
+Cable with Shield (all 2nd)|s2(shw02_1)|$C=wd_cblshld_bld_2 1
+Twisted Pair with Shield (all 2nd)|s2(shw02_2)|$C=wd_cblshld_bld_2 2
+Shield (All 2nd+)|s2(shw02_3)|$C=wd_cblshld_bld_2 3
+Shield Tied Back (All 2nd+)|s2(shw02_4)|$C=wd_cblshld_bld_2 4
+**M43
+D5W
+JIC: Connector Pins - Spare/Single Side
+Plug Right or up|s2(shc01p_)|HCN1P_
+Jack Left or Down|s2(shc01_j)|HCN1_J
+Plug Right or up (Combined tag/pin)|s2(shc01p_1)|HCN1P_1
+Jack Left or Down (Combined)|s2(shc01_j1)|HCN1_J1
+2nd+ Plug Right or up|s2(shc02p_)|HCN2P_
+2nd+ Jack Left or Down|s2(shc02_j)|HCN2_J
+2nd+ Plug Right or up (Combined)|s2(shc02p_1)|HCN2P_1
+2nd+ Jack Left or Down (Combined)|s2(shc02_j1)|HCN2_J1
+Jack Right or up|s2(shc01j_)|HCN1J_
+Plug Left or Down|s2(shc01_p)|HCN1_P
+Jack Right or up (Combined)|s2(shc01j_1)|HCN1J_1
+Plug Left or Down (Combined)|s2(shc01_p1)|HCN1_P1
+2nd+ Jack Right or up|s2(shc02j_)|HCN2J_
+2nd+ Plug Left or Down|s2(shc02_p)|HCN2_P
+2nd+ Jack Right or up (Combined)|s2(shc02j_1)|HCN2J_1
+2nd+ Plug Left or Down (Combined)|s2(shc02_p1)|HCN2_P1
+**M44
+D5W
+JIC: Connector Pins - Spare/Single Side
+Plug Right or up|s2(shc01p_)|HC01P_
+Jack Left or Down|s2(shc01_j)|HC01_J
+Plug Right or up (Combined tag/pin)|s2(shc01p_1)|HC01P_1
+Jack Left or Down (Combined)|s2(shc01_j1)|HC01_J1
+2nd+ Plug Right or up|s2(shc02p_)|HC02P_
+2nd+ Jack Left or Down|s2(shc02_j)|HC02_J
+2nd+ Plug Right or up (Combined)|s2(shc02p_1)|HC02P_1
+2nd+ Jack Left or Down (Combined)|s2(shc02_j1)|HC02_J1
+Jack Right or up|s2(shc01j_)|HC01J_
+Plug Left or Down|s2(shc01_p)|HC01_P
+Jack Right or up (Combined)|s2(shc01j_1)|HC01J_1
+Plug Left or Down (Combined)|s2(shc01_p1)|HC01_P1
+2nd+ Jack Right or up|s2(shc02j_)|HC02J_
+2nd+ Plug Left or Down|s2(shc02_p)|HC02_P
+2nd+ Jack Right or up (Combined)|s2(shc02j_1)|HC02J_1
+2nd+ Plug Left or Down (Combined)|s2(shc02_p1)|HC02_P1
+**M45
+DT
+JIC: Power Distribution Blocks
+3 Terminal, 0.5 Spacing|s1(pdb-50)|HDB1350
+3 Terminal, 0.75 Spacing|s1(pdb-75)|HDB1375
+3 Terminal, 1.0 Spacing|s1(pdb-1)|HDB13100
+**M46
+D2W
+JIC: Latch Relay Coils
+;mainlist
+Latch Relay Coil|s1(SHLR1)|HLR1
+Latch Relay Coil with pins|s1(SHLR1T)|HLR1T
+UnLatch Relay Coil|s1(SHLR1U)|HLR1U
+UnLatch Relay Coil with pins|s1(SHLR1UT)|HLR1UT
+**M47
+D3W
+JIC: OFF-Delay Timers
+OFF Delay Coil|s2(shtD1F)|HTD1F
+||
+OFF Delay Coil with Pins|s2(shtD1FT)|HTD1FT
+OFF Delay Starter|s2(shtD1FM)|HTD1FM
+OFF Delay NO-TO|s2(shtD21F)|HTD21F
+OFF Delay NC-TC|s2(shtD22F)|HTD22F
+OFF Delay NO-TO with Pins|s2(shtD21FT)|HTD21FT
+OFF Delay NC-TC with Pins|s2(shtD22FT)|HTD22FT
+Instantaneous NO|s2(shtD21I)|HTD21IF
+Instantaneous NC|s2(shtD22I)|HTD22IF
+Instantaneous NO with Pins|s2(shtD21IT)|HTD21ITF
+Instantaneous NC with Pins|s2(shtD22IT)|HTD22ITF
+**M48
+D2W
+JIC: Splice Symbols
+Splice|s2(splice_horizontal)|HSP1001
+
+**M100
+JIC: One-Line Components
+Connector|s2(s_conn)|$S=M101
+Motor Control|s2(s_mot_con)|$S=M102
+Transformer|s2(s_transf)|$S=M103
+Terminal|s2(s_term)|$S=M104
+Cable Marker|s2(s_cmark)|$S=M105
+Bus Tap|s2(s_BusTap)|$S=M106
+Miscellaneous|s2(s_misc)|$S=M107
+**M101
+JIC: Connector
+Jack/Plug|s2(shc01jp_1)|Hc01pj_1-
+**M102
+JIC: Motor Control
+Circuit breaker|s1(shcb1)|Hcb11_1-
+Motor circuit protector|s1(shcb1m)|Hcb11m_1-
+Thermal circuit breaker|s1(shcb1th)|Hcb11th_1-
+Disconnect|s1(shds1)|Hds11_1-
+Fused disconnect|s1(shds1f)|Hds11f_1-
+Fuse|s1(shfu1)|Hfu1_1-
+Motor|s1(SHMO1)|Hmo13_1-
+Motor starter|s1(shmt21)|Hms11_1-
+Overload|s1(shol1)|Hol1_1-
+Vertical capacitor|s2(svca113)|Vca113_1-
+**M103
+JIC: Transformer
+Transformer 1|s2(shxf1_1)|Hxf1T1_1-
+Transformer 2|s2(shxf1_2)|Hxf1T2_1-
+**M104
+JIC: Terminal
+Square terminal|s2(sht0_01)|Ht0001_1-
+Round terminal|s2(sht0_02)|Ht0002_1-
+**M105
+JIC: Cable Marker
+Cable Marker|s1(shw01)|HW01_1-
+**M106
+JIC: Bus Tap
+Bus tap - main/dot|s2(svdv1bt1)|VDV1_BT_1-
+Bus tap - dual/tee|s2(svdv1btt1)|VDV1_BTT_1-
+Bus tap - dual/corner|s2(svdv1btl1)|VDV1_BTL_1-
+**M107
+JIC: Miscellaneous
+Power receptacle|s2(shc01wr)|Hc01wr_1-
+Generic load|s2(shdv11)|Hdv1_1-
+
+
+

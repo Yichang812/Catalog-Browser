@@ -1,0 +1,56 @@
+<div class="container desktop-container" data-ng-init="getChildren()" ng-controller="Children" style="padding-top:20px;">
+    <div class="row">
+        <div class="desktop-col">
+            <ol class="breadcrumb desktop-breadcrumb">
+                <li ng-repeat="breadcrumb in breadcrumbs.all()">
+                    <a href="{{breadcrumb.link}}" ng-hide="$last">{{breadcrumb.title}}</a>
+                    <span class="dropdown"><a ng-hide="$last" class="dropdown-toggle" ng-click="getSiblings(breadcrumb)"><i class="fa fa-caret-down"></i></a>
+                        <ul class="dropdown-menu desktop-dropdown">
+                            <li ng-repeat="s in bcMenu">
+                                <a href={{s.link}}>{{s.title}}</a>
+                            </li>
+                            <li ng-show="bcMenu.length == 0" class="disabled"><a>No other groups.</a></li>
+                        </ul>
+                    </span>
+                    <span ng-show="$last">{{breadcrumb.title}}</span>
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 desktop-col" ng-hide="subtypes.length == 0">
+            <ul class="list-group">
+                <div class="list-group-item list-title desktop-header-style">Groups</div>
+                <li class="list-group-item imgLoader desktop-content-style" ng-repeat="child in subtypes" ng-mouseenter = "toggleOption(child, true)" ng-mouseleave = "toggleOption(child, false)">
+                    <img ng-src="{{child.thumbnail}}" ng-show="child.thumbnail" style="width: 35px; height: 35px; margin-right:5px;">
+                    <a href="#!/standards/{{child._id}}">{{child.name}}</a>
+                    <span style="position: absolute; right: 0px; height: 100%; top: 0px; padding-top: 12px; background-color: aliceblue;">
+                        <a class="btn pull-right btn-link" ng-class="{'btn-s':{{!!child.thumbnail}}, 'btn-xs':{{!!!child.thumbnail}}}"  ng-show="child.showOption && admin" ng-click="showSubtypeEditForm(child)" tooltip="Edit" tooltip-placement="bottom" tooltip-popup-delay="500">
+                            <i class="fa fa-pencil"></i>
+                        </a>
+                    </span>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-6 desktop-col" ng-hide="leaves.length == 0">
+             <ul class="list-group">
+                <div class="list-group-item list-title desktop-header-style">Components</div>        
+                <li class="list-group-item imgLoader desktop-content-style" ng-repeat="child in leaves" ng-mouseenter = "toggleOption(child, true)" ng-mouseleave = "toggleOption(child, false)" ng-class = "{local:!child.published}">
+                    <img ng-src='{{child.thumbnail}}' ng-show="child.thumbnail" style="width: 35px; height: 35px; margin-right:5px;">
+                    <span>{{child.name}}<a class="badge light-badge" ng-class="{'badge-unpublished': {{!child.published}}}" style="margin-left:10px" ng-show="child.published !== child.version && admin" >{{child.version - child.published}}</a></span>
+                    <span style="position: absolute; right: 0px; height: 100%; top: 0px; padding-top: 5px; background-color: aliceblue;">
+                        <a class="btn pull-right btn-link" ng-class="{'btn-s':{{!!child.thumbnail}}, 'btn-xs':{{!!!child.thumbnail}}}" ng-click="addFav(child)" ng-show="child.showOption && child.published !==0 && !child.isFavourite && !child.isComposite && Global.authenticated" tooltip="Favorite" tooltip-placement="bottom" tooltip-popup-delay="500">
+                            <i class="fa fa-star-o"></i>
+                        </a>
+                        <a class="btn pull-right btn-link" ng-class="{'btn-s':{{!!child.thumbnail}}, 'btn-xs':{{!!!child.thumbnail}}}" ng-click="delFav(child)" ng-show="child.isFavourite && child.published !==0 && !child.isComposite && Global.authenticated" tooltip="Remove Favorite" tooltip-placement="bottom" tooltip-popup-delay="500">
+                            <i class="fa fa-star star"></i>
+                        </a>
+                        <a ng-href="{{setDownloadLink(child.dl)}}" class="btn pull-right btn-link" ng-class="{'btn-s':{{!!child.thumbnail}}, 'btn-xs':{{!!!child.thumbnail}}}" ng-click="downloadLink(child.dl)" ng-show="child.showOption" tooltip="Download" tooltip-placement="bottom" tooltip-popup-delay="500">
+                            <i class="fa fa-download"></i>
+                        </a>
+                    </span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

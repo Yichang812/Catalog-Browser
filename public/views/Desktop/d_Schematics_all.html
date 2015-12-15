@@ -1,0 +1,31 @@
+<div class="container desktop-container" data-ng-init="getAll()" ng-controller="Standards" style="padding-top:20px;">
+    <div class="row">
+        <div class="desktop-col">
+            <ol class="breadcrumb desktop-breadcrumb">
+                <li ng-repeat="breadcrumb in breadcrumbs.all()">
+                    <a href="{{breadcrumb.link}}" ng-hide="$last">{{breadcrumb.title}}</a>
+                    <span ng-show="$last">{{breadcrumb.title}}</span>
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-5 desktop-col">
+            <ul class="list-group">
+                <div class="list-group-item list-title desktop-header-style">Standards<a class="pull-right list-title-btn" ng-show="admin" ng-click="showAddForm()" tooltip="Create New Standard" tooltip-placement="bottom" tooltip-popup-delay="500"><i class="fa fa-plus fa-2x"></i></a></div> 
+                <li class="list-group-item desktop-content-style" ng-show="stds.length == 0">No standards available now.</li>
+                <li class="list-group-item desktop-content-style" ng-repeat="std in stds" ng-mouseenter = "toggleOption(std, true)" ng-mouseleave = "toggleOption(std, false)" ng-class = "{local:!std.published}">
+                    <a href="#!/standards/{{std._id}}">{{std.name}}</a>
+                    <span style="position: absolute; right: 0px; height: 100%; top: 0px; padding-top: 3px; background-color: aliceblue;">
+                        <a style="margin-right: 5px; margin-left: 5px;" ng-click="downloadStandard()" class="btn pull-right btn-link btn-xs" ng-show="std.showOption" tooltip="Download" tooltip-placement="bottom" tooltip-popup-delay="500">
+                            <i class="fa fa-download"></i>
+                        </a>
+                    </span>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-7" data-ng-include src="form.URL">
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,99 @@
+<section ng-init="init()" ng-show="authorized()" style="margin-bottom: 100px;" ng-controller="mepCatalogController">
+	<div>
+		<div class="alert alert-thin alert-success" id="submitCatalogAlert" style="display:none;">Catalog successfully added.</div>
+		<div class="row">
+			<form class="form-horizontal col-md-12 css-form" name="uploadItems" novalidate>
+				<div class="form-group" ng-show="states[0]">
+					<div class="col-md-12">
+						<div class="row" style="padding-bottom: 30px; padding-top: 30px">
+							<label class="col-sm-2 control-label">Specify Standard</label>
+  							<div class="col-sm-9"> 
+  								<div class="input-dropdown" style="position: relative;">
+								    <input type="text" maxlength="50" id="inputBox" class="form-control" tabindex="2" ng-model="standardName.value" placeholder="Select from dropdown or specify new standard"/>
+									<div class="btn-group">
+							            <div id="setProduct" class="btn dropdown-toggle btn-default" data-toggle="dropdown" style="width:385px; text-align:left; height: 34px;"><span class="caret pull-right" style="margin-top:9px;"></span></div>
+							              <ul class="dropdown-menu" style="width:350px;">
+							                <li ng-repeat="std in standardList" ng-click="updateStandardInput(std)"><a>{{std}}</a></li>
+							              </ul>
+							        </div>
+							    </div>
+							</div>
+						</div>
+						<div class="row" style="padding-bottom: 40px;" ng-show="standardName.value">
+							<label class="col-sm-2 control-label">Upload Location</label>
+  							<div class="col-sm-9"> 
+								<label class="radio-inline col-sm-4">
+								  	<input type="radio" name="inlineRadioOptions" ng-model="uploadOpt" value="fromPC"> Upload from Computer
+								</label>
+								<label class="radio-inline col-sm-4">
+								  	<input type="radio" name="inlineRadioOptions" ng-model="uploadOpt" value="fromBox"> Upload from Box
+								</label>
+							</div>
+						</div>
+						
+						<!-- SHOW ONLY IF USER SELECTS LOCAL UPLOAD OPTION -->
+						<div class="row" ng-show="standardName.value && uploadOpt == 'fromPC'">
+							<label class="col-sm-2 control-label">.xml File</label>
+							<div class="col-sm-9">
+								<div id="setFileInput1" class="fileinput fileinput-new" data-provides="fileinput">
+									<div class="input-group">
+										<div class="form-control" data-trigger="fileinput"><i class="fa fa-check success fileinput-exists" ng-show="!error && success"></i><i class="fa fa-times fileinput-exists error" ng-hide="!error && success"></i> <span id="fileInputName1" class="fileinput-filename"></span></div>
+										<span class="input-group-addon btn btn-default btn-file"><span class="fileinput-new">Select file</span><span class="fileinput-exists">Change</span><input type="file" name="..." ng-file-select="fileSelect($files)"></span>
+										<a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput" >Remove</a>
+										<a ng-click="showConfigureModal()" class="input-group-addon btn btn-default fileinput-exists"><i class="fa fa-gear"> Template</i></a>
+									</div>
+								</div>
+								<p ng-if="!valid" class="error">{{error}}</p><p ng-if="valid" class="success"></p>
+							</div>
+						</div>
+
+						<!-- SHOW ONLY IF USER SELECTS BOX OPTION -->
+						<div class="row" ng-show="standardName.value && uploadOpt == 'fromBox'">
+							<label class="col-sm-2 control-label" tooltip-placement="bottom" style="display:inline-block;z-index:9999" Tooltip="Public folder containing 2D &amp; 3D assets for Symbol3D &amp; Footprint.">Assets Folder</label>
+							<!-- Box Login Button -->
+							<div class="col-sm-9" ng-show="uploadOpt == 'fromBox' && !boxLoginStatus">
+								<button class="btn btn-primary" name="boxLogin" ngmodel="boxLoginStatus" ng-click="boxAuth()">Login to Box</button>
+							</div>
+							<!-- Box Folder Picker, shown after user successfully signed in -->
+							<div class="col-sm-9" ng-show="uploadOpt == 'fromBox' && boxLoginStatus"> 
+								<div class="fileinput fileinput-new">
+									<div class="input-group">
+										<div class="form-control"  ng-mousedown="boxFolderPicker()"><i class="fa fa-check success" ng-show="!folderError && boxFolderName !== ''"></i><i class="fa fa-times error" ng-show="folderError && boxFolderName !== ''"></i> <span class="fileinput-filename" name="boxFolderInput" ng-model="boxFolderName" required>{{boxFolderName}}</span></div>
+										<span class="input-group-addon btn btn-default btn-file" ng-click="boxFolderPicker()" ng-show="uploadItems.boxFolderInput.$isEmpty(boxFolderName)">Choose from Box</span>
+										<span class="input-group-addon btn btn-default" ng-click="boxFolderPicker()" ng-show="!uploadItems.boxFolderInput.$isEmpty(boxFolderName)">Change</span></span>
+										<span class="input-group-addon btn btn-default btn-file" ng-click="clearBoxFolderInput()" ng-show="!uploadItems.boxFolderInput.$isEmpty(boxFolderName)">Remove</span>
+									</div>
+								</div>
+								<p ng-show="folderError && boxFolderName !== ''" class="error">{{errorMsg}}</p>
+							</div> 
+						</div>
+						
+						<!-- CURRENTLY SUPPORT ONLY UPLOAD XLS FROM PC -->
+						<div class="row" ng-show="standardName.value && uploadOpt == 'fromBox'">
+							<label class="col-sm-2 control-label" ng-show="uploadOpt == 'fromBox' && boxLoginStatus">.xml File</label>
+							<div class="col-sm-9" ng-show="uploadOpt == 'fromBox' && boxLoginStatus">
+								<div id="setFileInput2" class="fileinput fileinput-new" data-provides="fileinput">
+									<div class="input-group">
+										<div class="form-control" data-trigger="fileinput"><i class="fa fa-check success fileinput-exists" ng-show="!error && success"></i><i class="fa fa-times fileinput-exists error" ng-hide="!error && success"></i> <span id="fileInputName2" class="fileinput-filename"></span></div>
+										<span class="input-group-addon btn btn-default btn-file"><span class="fileinput-new">Select file</span><span class="fileinput-exists">Change</span><input type="file" name="..." ng-file-select="fileSelect($files)"></span>
+										<a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput" >Remove</a>
+										<a ng-click="showConfigureModal()" class="input-group-addon btn btn-default fileinput-exists"><i class="fa fa-gear"> Template</i></a>
+									</div>
+								</div>
+								<p ng-if="!valid" class="error">{{error}}</p><p ng-if="valid" class="success"></p>
+							</div>
+						</div>
+						<div class="row" style="margin-top: 20px; padding-top: 15px; border-top: 1px solid #efeffe">
+							<div class="col-md-11">
+								<div class="pull-right" style="margin-top:8px;" ng-show="uploadOpt == 'fromBox' && boxLoginStatus"><i ng-hide="!processingBoxFolder" ng-show="processingBoxFolder" style="margin-right: 10px;" class="fa fa-refresh fa-spin"></i><i ng-show="!processingBoxFolder && doneProcessing" style="margin-right: 10px;" class="fa fa-check"></i>{{validateStatus}}</div>
+							</div>
+							<div class="col-md-1" ng-show="uploadOpt == 'fromBox' || uploadOpt == 'fromPC'">
+								<button type="button" class="btn btn-default pull-right" ng-disabled="(uploadOpt == 'fromPC' && !valid) || (uploadOpt == 'fromBox' && !(doneProcessing && valid))" ng-click="submit()" ng-if="newBeginning">Submit</button>
+							</div>
+						</div>
+					</div>
+				</div>
+            </form>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,1543 @@
+; 27-Jan-11 t_kudam; added 4 items into Time relays and 2 items into Pressure switches
+; 01-Dec-09 t_kalio; menu item VXF1T30.dwg removed from M1631 submenu - due to DID949986
+; 05-Mar-09 t_kudam; menu labels corrected in m116 submenu
+; 05-Mar-09 t_kudam; symbol menu command updated in M20 submenu
+; 11-Feb-09 t_kudam; menu item (?CN1PJ1.dwg and ?CN1JP1.dwg) disabled - due to DID1198084
+; 29-Oct-08 t_gackt; One line menu - Changed string "Square/Round with terminal number" to "Square/Round terminal" and added second transformer 
+; 21-Oct-08 t_gackt; corrections in "One line" menu (new submenu)
+; 14-Oct-08 t_gackt; changed "PJ" to "Jack/Plug" in submenu M101
+; 03-Oct-08 t_gackt; added new menu "One line component" 
+; 27-Sep-07 t_gackt; added illuminated pushbutton "lamps" 
+; 7-Aug-07 t_gackt; Re-arrange menu in the file from top to bottom, like "**M0", "**M1", "**M2" ...
+; 13-Nov-06 Kulas inserted format information for old insert menu
+; 09-Oct-06 Kulas Rearranged for modern icon menu
+; 07-Mar-06 NEHolt; changed menu M26 to use "" instead of "D3"
+; 18-Jan-06 t_kudam; CB items renamed
+; 09-Jan-06 t_kudam: menu reorganized (new submenus + slides)
+; 05-Jan-06 NEHolt; added Latch relay (child coil) - VLR2
+; 17-Dec-05 NEHolt; added param twisted-pair to *M30
+; 13-Dec-05 t_kudam: added cca 350 menu items plus equivalent symbols
+; 11-Dec-05 NEHolt added parametric twisted-pair symbol
+; 06-Nov-05 NEHolt separate off-delay timer "instantaneous" contact symbols
+; 23-Oct-05 NEHolt simplified M48
+; 21-Oct-05 Mani added sub menu page M48 for Splice symbols
+; 19-Oct-05 Mani added parametric connector build calls - 2 places
+; 26-Jan-05 NEHolt - added 2-pin plug/jack connector references
+; 25-June-04 MJ - Changed string PLc-Direct to Automation-Direct
+; 25-June-04 MJ - Corrected reactor 3 phase symbol, by making it use the "3-unit" code
+; 12-APR-04 MJ - Added Symbols to IEC Library and updated the .dat file
+; 29-Mar-04 JDZ - modified the Title Lines for localization
+; 09-Jan-04 JDZ Replaced Abbreviations with full word; ready for globalization
+; 13-Jan-03 NEHolt added PLC fixed unit references M33-M39
+; 14-Dec-01 MSulit/NEHolt "user circ" section had a typo on each entry. Ex:"%WD_USER%circ1)"
+;    should be just "%WD_USER%circ1"
+; 30-Dec-00 NEHolt clean-up
+**M0
+D0
+IEC: Schematic Symbols
+Push Buttons|iec1(s_pb)|$S=M3
+Selector Switches|iec1(s_ss)|$S=M6
+Breakers/ Disconnects|iec1(s_cb_ds)|$S=M13
+Fuses/ Transfomers/ Reactors|iec1(s_fu_xf)|$S=M16
+Relays/ Contacts|iec1(s_cr)|$S=M1
+Timers|iec1(s_td)|$S=M2
+Motor Control|iec1(s_mcc)|$S=M15
+Pilot Lights|iec1(s_lt)|$S=M4
+PLC I/O|iec1(s_io)|$S=M27
+Terminals/ Connectors|iec1(s_trm_cn)|$S=M14
+Limit Switches|iec1(s_zs)|$S=M8
+Pressure/ Temperature Switches|iec1(s_ps_ts)|$S=M9
+Proximity Switches|iec1(s_px)|$s=M7
+Miscellaneous Switches|iec1(s_msc_sw)|$S=M10
+Solenoids|iec1(s_sv)|$S=M24
+Instrumentation|iec1(s_inst)|$S=M25
+Qualifying Symbols|iec1(s_qualif)|$S=M31
+Miscellaneous|iec1(s_msc)|$S=M18
+DOT|iec1(shdot)|$C=wd_repeat WDDOT
+One-Line Components|iec1(s_oneline)|$S=M100
+||
+||
+**M1
+D6W
+IEC: Relays and Contacts
+Relay NO Contact|iec1(CR21)|VCR21
+Relay NC Contact|iec1(CR22)|VCR22
+Relay Form C|iec1(CR23R)|VCR23R
+Relay Form C Flipped|iec1(CR23)|VCR23
+Relay Coil|iec1(CR1)|VCR1
+Latch relay coil|iec1(LR1L)|VLR1
+Latch relay (child coil)|iec1(lr12)|VLR2
+;C.O.Centre off|iec617(VCR23CO)|VCR23CO
+Solid State|iec1(CR1SSD)|VCR1SSD
+High Speed|iec1(CR1HSP)|VCR1HSP
+AC Unaffected|iec1(CR1ACU)|VCR1ACU
+AC|iec1(CR1AC)|VCR1AC
+Polarised|iec1(CR1POL)|VCR1POL
+Measuring|iec1(CR1MSR)|VCR1MSR
+;Latch Relays|iec1(s_cr_latch)|$S=M800
+With Mechanical Block and Manual Unlatching|iec1(VCR1NA21F)|VCR2121F
+With Maintained Position|iec1(VCR1NA22F)|VCR2122F
+Anticipated Contact|iec1(VCR1NA7F)|VCR217F
+Delayed Contact|iec1(VCR1NA8F)|VCR218F
+With Mechanical Block and Manual Unlatching|iec1(VCR1NC21F)|VCR2221F
+With Maintained Position|iec1(VCR1NC22F)|VCR2222F
+Anticipated Contact|iec1(VCR1NC8F)|VCR227F
+Delayed Contact|iec1(VCR1NC9F)|VCR228F
+Magnetic Protection|iec1(VCR1F34)|VCR1F34
+Relays with Suppressors|iec1(VCR1K33_MENU)|$S=m116
+Current Protection|iec1(iec_current_p)|$S=M111
+Voltage Protection|iec1(iec_voltage_p)|$S=M112
+Counter Relays|iec1(CR1CNN_MENU)|$S=m117
+Misc. Relays|iec1(VCR1K11_MENU)|$S=M113
+**M2
+D5W
+IEC: Time Delay Relays
+ON Delay Coil|iec1(TD1N)|VTD1N
+OFF Delay Coil|iec1(TD1F)|VTD1F
+ON/OFF Delay|iec1(TCR1OOD)|VCR1OOD
+3 Clamp Delay Relay - Energized|iec1(VTD1K25)|VTD1K25
+3 Clamp Delay Relay - De-Energized|iec1(VTD1K27)|VTD1K27
+3 Clamp Delay Relay - Energized/De-Energized|iec1(VTD1K29)|VTD1K29
+Latency Relay|iec1(VTD1K5)|VTD1K5
+||
+ON Delay NO(Delay Close)|iec1(TD21n)|VTD21N
+ON Delay NC(Delay Open)|iec1(TD22n)|VTD22N
+OFF Delay NO (Instant Close/Delay Open)|iec1(TD21f)|VTD21F
+OFF Delay NC (Instant Open/Delay Close)|iec1(TD22f)|VTD22F
+NO Contact (Instant)|iec1(TD21i)|VTD21I
+NC Contact (Instant)|iec1(TD22i)|VTD22I
+NO Contact (Instant-for Delay Close)|iec1(TD21i)|VTD21IF
+NC Contact (Instant-for Delay Close)|iec1(TD22i)|VTD22IF
+NO Delay ON/OFF|iec1(TD21DOO)|VTD21DOO
+NC Delay ON/OFF|iec1(TD22DOO)|VTD22DOO
+Form C ON/OFF Delay|iec1(TD23F)|VTD23F
+Form C ON/OFF Delay|iec1(TD23FR)|VTD23FR
+Form C ON/OFF Delay|iec1(TD23N)|VTD23N
+Form C ON/OFF Delay|iec1(TD23NR)|VTD23NR
+**M3
+D6W
+IEC: Push Buttons
+Push Button NO Momentary|iec1(PB11)|VPB11
+Push Button NC Momentary|iec1(PB12)|VPB12
+Push Button NO Latching|iec1(PB11L)|VPB11L
+Push Button NC Latching|iec1(PB12L)|VPB12L
+Mushroom Head NO Momentary|iec1(PB11M)|VPB11M
+Mushroom Head NC Momentary|iec1(PB12M)|VPB12M
+Mushroom Head NO Latching|iec1(pb11ml)|VPB11ML
+Mushroom Head NC Latching|iec1(PB12Ml)|VPB12ML
+Mushroom Head NO Twist Latch|iec1(PB11MR)|VPB11MTL
+Mushroom Head NC Twist Latch|iec1(PB12MR)|VPB12MTL
+Mushroom-Head NO Latching, Pull to Disengage|iec1(VPB1S80)|VPB11S80
+Mushroom-Head NC Latching, Pull to Disengage|iec1(VPB1S80C)|VPB12S80
+Mushroom-Head NO Latching, Key Operated|iec1(VPB1S82)|VPB11S82
+Mushroom-Head NC Latching, Key Operated|iec1(VPB1S82C)|VPB12S82
+;NO General|iec617(vpb11g)|VPB11G
+;NC General|iec617(vpb12g)|VPB12G
+NO Push Button Recessed|iec1(vpb11re)|VPB11RE
+NC Push Button Recessed|iec1(vpb12re)|VPB12RE
+NO Push Button Recessed Latched|iec1(vpb11rel)|VPB11REL
+NC Push Button Recessed Latched|iec1(vpb12rel)|VPB12REL
+NO Push Button Positive Make|iec1(vpb11pm)|VPB11PM
+NC Push Button Positive Break|iec1(vpb12pb)|VPB12PB
+2nd+ NO Contact|iec1(2plusNO)|VSW21
+2nd+ NC Contact|iec1(2plusNC)|VSW22
+Illuminated Push Buttons|iec1(VPB1S75)|$S=M391
+**M4
+D3W
+IEC: Pilot Lights
+Standard Lights|iec1(LT1R_menu)|$S=M212
+Transformer Lights|iec1(LT1TR_menu)|$S=M222
+Push to Test Lights|iec1(lt1rp_menu)|$S=M232
+LEDs|iec1(LT1LR_menu)|$S=M242
+Beacons - Flashing|iec1(LT1BFR_menu)|$S=M252
+Beacons - Rotating|iec1(LT1BRR_menu)|$S=M262
+Blinking Device|iec1(VLT1H21)|VLT1H21
+Neon Lamp|iec1(VLT1H22)|VLT1H22
+Incandescent Lamp|iec1(VLT1H24)|VLT1H24
+**M6
+D6W
+IEC: Selector Switches
+2 Position Maintain, NO|iec1(ss112)|VSS112
+2 Position Maintain, NC|iec1(SS122)|VSS122
+2 Position NO Return From Left|iec1(ss112L)|Vss112L
+2 Position NC Return From Left|iec1(ss122L)|Vss122L
+2 Position NO Return From Right|iec1(ss112R)|Vss112R
+2 Position NC Return From Right|iec1(ss122R)|Vss122R
+2 Position Switch NO with Lamp|iec1(VSW1S77)|VSW11S77
+2 Position Switch NC with Lamp|iec1(VSW1S77C)|VSW12S77
+NO Contact with Manual Unlatching|iec1(VSS1NA21F)|VSS2121F
+NO Contact with Maintained Position|iec1(VSS1NA22F)|VSS2122F
+NO Anticipated Contact|iec1(VSS1NA7F)|VSS217F
+NO Delayed Contact|iec1(VSS1NA8F)|VSS218F
+NC Contact with Manual Unlatching|iec1(VSS1NC21F)|VSS2221F
+NC Contact with Maintained Position|iec1(VSS1NC22F)|VSS2222F
+NC Anticipated Contact|iec1(VSS1NC8F)|VSS227F
+NC Delayed Contact|iec1(VSS1NC9F)|VSS228F
+Non-Latched, NO|iec1(ss11NL)|VSS11NL
+Non-Latched, NC|iec1(ss12NL)|VSS12NL
+Two Pole NO Contact|iec1(VSS2NA13F)|$C=wd_2unit VSS21
+2nd+ NO Contact|iec1(2plusNO)|VSS21
+2nd+ NC Contact|iec1(2plusNC)|VSS22
+||
+3 Position Selector Switches|iec1(3_posittion)|$S=M62
+4 Position Selector Switches|iec1(4_posittion)|$S=M63
+;Spring Return Switches||
+**M7
+D2W
+IEC: Proximity Switches
+Inductive Switches|iec1(PX1i_menu)|$S=M711
+Capacitive Switches|iec1(PX1C_menu)|$S=M712
+Magnetic Switches|iec1(PX1M_menu)|$S=M713
+Photoelectric Switches|iec1(PX11PE3_menu)|$S=M714
+Ultrasonic Switches|iec1(PX1U_menu)|$S=M715
+Touch Switches|iec1(PX1TS_menu)|$S=M716
+**M8
+D6W
+IEC: Limit Switches
+Limit Switch, NO|iec1(LS11)|VLS11
+Limit Switch, NC|iec1(LS12)|VLS12
+Limit Switch, Roller NO|iec1(LS11c)|VLS11c
+Limit Switch, Roller NC|iec1(LS12c)|VLS12c
+Limit Switch NO - Cam Driven|iec1(VLS1S13)|VLS11S13
+Limit Switch NC - Cam Driven|iec1(VLS1S13C)|VLS12S13
+Limit Switch NO - Events Driven|iec1(VLS1S16)|VLS11S16
+Limit Switch NC - Events Driven|iec1(VLS1S16C)|VLS12S16
+2 Position Switch NO with Detents and Lamp|iec1(VLS1S78)|VLS11S78
+2 Position Switch NC with Detents and Lamp|iec1(VLS1S78C)|VLS12S78
+Bi-directional Lever Actuated - NO|iec1(VLS1S84)|VLS11S84
+Bi-directional Lever Actuated - NC|iec1(VLS1S84C)|VLS12S84
+Four-directional Lever Actuated - NO|iec1(VLS1S85)|VLS11S85
+Four-directional Lever Actuated - NC|iec1(VLS1S85C)|VLS12S85
+Bi-directional Lever Actuated - NO with Detent|iec1(VLS1S87)|VLS11S87
+Bi-directional Lever Actuated - NC with Detent|iec1(VLS1S87C)|VLS12S87
+Four-directional Lever Actuated - NO with Detent|iec1(VLS1S88)|VLS11S88
+Four-directional Lever Actuated - NC with Detent|iec1(VLS1S88C)|VLS12S88
+2nd+ NO Contact|iec1(2plusNO)|VLS21
+2nd+ NC Contact|iec1(2plusNC)|VLS22
+**M9
+D4W
+IEC: Pressure and Temperature Switches
+Pressure Switch, NO|iec1(PS11)|VPS11
+Pressure Switch, NC|iec1(PS12)|VPS12
+||
+||
+Temperature Switch 1, NO|iec1(TS11)|VTS11
+Temperature Switch 1, NC|iec1(TS12)|VTS12
+Temperature Switch 2, NO|iec1(VTS1S18)|VTS11S18
+Temperature Switch 2, NC|iec1(VTS1S18C)|VTS12S18
+Temperature Switch 3, NO|iec1(VTS1S74)|VTS11S74
+Temperature Switch 3, NC|iec1(VTS1S74C)|VTS12S74
+||
+||
+2nd+ NO Contact|iec1(2plusNO)|VSW21
+2nd+ NC Contact|iec1(2plusNC)|VSW22
+Thermal switch NO, self-operating|iec1(TS11S59)|VTS11S59
+Thermal switch NC, self-operating|iec1(TS12S59C)|VTS12S59C
+**M10
+D6W
+IEC: Miscellaneous Switches
+Generic Switch, NO|iec1(sw11)|VSW11
+Generic Switch, NC|iec1(sw12)|VSW12
+Float/Level Switch, NO|iec1(FL11)|VFL11
+Float/Level Switch, NC|iec1(FL12)|VFL12
+Key Switch, NO|iec1(VPB11KS)|VPB11KS
+Key Switch, NC|iec1(VPB12KS)|VPB12KS
+Key Switch Latched, NO|iec1(VPB11KSL)|VPB11KSL
+Key Switch Latched, NC|iec1(VPB12KSL)|VPB12KSL
+Pull Cord Switch, NO|iec1(pc11)|VPC11
+Pull Cord Switch, NC|iec1(pc12)|VPC12
+Pull Cord Switch Latched, NO|iec1(pc11L)|VPC11L
+Pull Cord Switch Latched, NC|iec1(pc12L)|VPC12L
+Foot Switch, NO|iec1(ft11)|VFT11
+Foot Switch, NC|iec1(ft12)|VFT12
+Foot Switch Latched, NO|iec1(ft11L)|VFT11L
+Foot Switch Latched, NC|iec1(ft12L)|VFT12L
+Lever Switch, NO|iec1(PB11LS)|VPB11LS
+Lever Switch, NC|iec1(PB12LS)|VPB12LS
+Lever Switch Latched,NO|iec1(PB11LSL)|VPB11LSL
+Lever Switch Latched,NC|iec1(PB12LSL)|VPB12LSL
+Flow Switch NO|iec1(FS11)|VFS11
+Flow Switch NC|iec1(FS12)|VFS12
+Flow Switch NO - Gas|iec1(VFS1S20)|VFS11S20
+Flow Switch NC - Gas|iec1(VFS1S20C)|VFS12S20
+3 Voltage Phase Switch|iec1(VSW1S90)|VSW1S90
+3 Voltage Phase-to-Neutral Switch|iec1(VSW1S91)|VSW1S91
+3 Voltage Phase-to-Phase and Phase-to-Neutral Switch|iec1(VSW1S92)|VSW1S92
+3 Voltage, 2-Network Phase-to-Phase Switch|iec1(VSW1S93)|VSW1S93
+Current Switch For 3 Measurement Points|iec1(VSW1S94)|VSW1S94
+Current Switch For 4 Measurement Points|iec1(VSW1S95)|VSW1S95
+Change-Over Contact with Mechanical Block and Manual Unlatching|iec1(VSW1SC21_F)|VSW1SC21_F
+Transfer Make Before Break Contact|iec1(VSW1SC7_F)|VSW1SC7_F
+Voltmetric Commutator|iec1(VSW1S53)|VSW1S53
+2nd+ NO Contact|iec1(2plusNO)|VSW21
+2nd+ NC Contact|iec1(2plusNC)|VSW22
+**M13
+D4W
+IEC: Disconnecting Means
+Circuit Breaker 1 Pole|iec1(cb1pole)|$S=M131
+Circuit Breaker 2 Poles|iec1(cb2pole)|$S=M132
+Circuit Breaker 3 Poles|iec1(cb3pole)|$S=M133
+Circuit Breaker 2nd+ Poles|iec1(cb22pole)|$S=M134
+;Circuit Breaker NO Contacts|iec1(cbNO)|$S=M135
+;Circuit Breaker NC Contacts|iec1(cbNC)|$S=M136
+Power Switches|iec1(power)|$S=M137
+Disconnect Fusible|iec1(s_fds)|$S=M46
+Disconnect 1 Pole|iec1(disconnect1)|$S=M138
+Disconnect 2 Poles|iec1(disconnect2)|$S=M139
+Disconnect 3 Poles|iec1(disconnect3)|$S=M140
+**M14
+D6W
+IEC: Terminals and Connectors
+Square|iec1(ht0_01)|HT0_01
+Square with Wire Number|iec1(sht0w01)|HT0W01
+Square with Terminal Number|iec1(sht0001)|HT0001
+Square with Wire Number Change|iec1(sht1001)|HT1001
+Round|iec1(ht0_02)|HT0_02
+Round with Wire Number|iec1(sht0w02)|HT0W02
+Round with Terminal Number|iec1(sht0002)|HT0002
+Round with Wire Number Change|iec1(sht1002)|HT1002
+Hexagon|iec1(ht0_03)|HT0_03
+Hexagon with Wire Number|iec1(sht0w03)|HT0W03
+Hexagon with Terminal Number|iec1(sht0003)|HT0003
+Hexagon with Wire Number Change|iec1(sht1003)|HT1003
+Diamond|iec1(ht0_04)|HT0_04
+Diamond with Wire Number|iec1(sht0w04)|HT0W04
+Diamond with Terminal Number|iec1(sht0004)|HT0004
+Diamond with Wire Number Change|iec1(sht1004)|HT1004
+Triangle|iec1(ht0_05)|HT0_05
+Triangle with Wire Number|iec1(sht0w05)|HT0W05
+Triangle with Terminal Number|iec1(sht0005)|HT0005
+Triangle with Wire Number Change|iec1(sht1005)|HT1005
+In-line Wire Labels|iec1(dumb_red)|$S=M32
+Power Distribution Blocks|iec1(pdb)|$S=M45
+Connectors - No Wirenumber Changes|iec1(s_cn_nch)|$S=M22
+Connectors - Wirenumber Changes|iec1(s_cn_chg)|$S=M21
+**M15
+D4W
+IEC: Motor Control
+1 Phase Motor|iec1(MO12_MENU)|$S=M1500
+3 Phase Motor|iec1(mo13_MENU)|$S=M1501
+DC Motor|iec1(dc_motor)|$S=M1502
+Generator|iec1(generator)|$S=M1503
+Motor Starter|iec1(starter)|$S=M1504
+Overload, 1 Pole|iec1(ol1)|VOL1
+Overload, 3 Pole|iec1(ol3)|$C=wd_3unit VOL1
+||
+2nd+ Overload Pole|iec1(ol2)|VOL2
+2nd+ Overload, NO Contact|iec1(OL21)|VOL21
+2nd+ Overload, NC Contact|iec1(OL22)|VOL22
+3 Phase KVAR Capacitor|iec1(CA113)|VCA113
+**M16
+D3W
+IEC: Fuses, Transformers and Reactors
+Fuses|iec1(FU1_MENU)|$S=M161
+Fuse Switches|iec1(FU1FS_MENU)|$S=M162
+Transformers|iec1(trafo)|$S=M163
+||
+Reactors - General|iec1(RT1)|VRT1
+Reactors - Iron cored|iec1(RT1IC)|VRT1IC
+Reactors - 3 Phase line|iec1(RT1P3)|$C=wd_3unit VRT1IC
+||
+Inductor With Magnetic Core Air Gap|iec1(VRT1L3)|VRT1L3
+Inductor With Magnetic Core Continuously Variable|iec1(VRT1L4)|VRT1L4
+3 Phase Inductor With Magnetic Core Air Gap|iec1(VRT2L3)|$C=wd_3unit VRT1L3
+**M18
+D6W
+IEC: Miscelleaneous
+Bell|iec1(AN1B)|VAN1B
+Buzzer|iec1(AN1Z)|VAN1Z
+Horn|iec1(AN1H)|VAN1H
+Siren|iec1(AN1S)|VAN1S
+Whistle|iec1(AN1W)|VAN1W
+Electronics|iec1(s_tronic)|$S=M28
+Cable Markers|iec1(w01tick)|$S=M30
+Receptacles|iec1(s_cnrdup)|$S=M29
+Earth/Ground|iec1(gnd2)|HGND2
+Functional Earth|iec1(vgnd3)|HGND3
+Protective Earth|iec1(vgnd4)|HGND4
+Protective equipotential bond|iec1(vgnd5)|HGND5
+Functional Equipotential Bond|iec1(gnd1)|HGND1
+Shields (Non Intelligent)|iec1(s_shld1_tick)|$S=M41
+User Circuits|iec1(s_usr_ck)|$S=M19
+Generic Boxes|iec1(s_box)|$S=M20
+Stand-Alone Cross-Reference Symbols|iec1(sa_refs)|$S=M40
+Wire Arrows Reference only|iec1(s_a_ref)|$S=M26
+Battery|iec1(BA1)|VBA1
+Battery (Flipped)|iec1(BA1R)|VBA1R
+Power Source 1 Phase|iec1(PS1_1PH)|VPW1_1PH
+Power Source 3 Phase|iec1(PS1_3PH)|VPW1_3PH
+Splice symbols|iec1(splice_horizontal)|$S=M48
+Annunciations|iec1(annunc)|$S=M49
+**M19
+D6W
+IEC: Saved User Circuits
+User Circuit 1|%WD_USER%circ1|$C=wd_ins_circ_main %WD_USER%circ1
+User Circuit 2|%WD_USER%circ2|$C=wd_ins_circ_main %WD_USER%circ2
+User Circuit 3|%WD_USER%circ3|$C=wd_ins_circ_main %WD_USER%circ3
+User Circuit 4|%WD_USER%circ4|$C=wd_ins_circ_main %WD_USER%circ4
+User Circuit 5|%WD_USER%circ5|$C=wd_ins_circ_main %WD_USER%circ5
+User Circuit 6|%WD_USER%circ6|$C=wd_ins_circ_main %WD_USER%circ6
+User Circuit 7|%WD_USER%circ7|$C=wd_ins_circ_main %WD_USER%circ7
+User Circuit 8|%WD_USER%circ8|$C=wd_ins_circ_main %WD_USER%circ8
+User Circuit 9|%WD_USER%circ9|$C=wd_ins_circ_main %WD_USER%circ9
+User Circuit 10|%WD_USER%circ10|$C=wd_ins_circ_main %WD_USER%circ10
+User Circuit 11|%WD_USER%circ11|$C=wd_ins_circ_main %WD_USER%circ11
+User Circuit 12|%WD_USER%circ12|$C=wd_ins_circ_main %WD_USER%circ12
+User Circuit 13|%WD_USER%circ13|$C=wd_ins_circ_main %WD_USER%circ13
+User Circuit 14|%WD_USER%circ14|$C=wd_ins_circ_main %WD_USER%circ14
+User Circuit 15|%WD_USER%circ15|$C=wd_ins_circ_main %WD_USER%circ15
+User Circuit 16|%WD_USER%circ16|$C=wd_ins_circ_main %WD_USER%circ16
+User Circuit 17|%WD_USER%circ17|$C=wd_ins_circ_main %WD_USER%circ17
+User Circuit 18|%WD_USER%circ18|$C=wd_ins_circ_main %WD_USER%circ18
+User Circuit 19|%WD_USER%circ19|$C=wd_ins_circ_main %WD_USER%circ19
+User Circuit 20|%WD_USER%circ20|$C=wd_ins_circ_main %WD_USER%circ20
+User Circuit 21|%WD_USER%circ21|$C=wd_ins_circ_main %WD_USER%circ21
+User Circuit 22|%WD_USER%circ22|$C=wd_ins_circ_main %WD_USER%circ22
+User Circuit 23|%WD_USER%circ23|$C=wd_ins_circ_main %WD_USER%circ23
+User Circuit 24|%WD_USER%circ24|$C=wd_ins_circ_main %WD_USER%circ24
+||
+||
+**M20
+D3W
+IEC: Generic Device Boxes
+4 Terminals|iec1(dv1tfL)|VDV1TFL
+3 Terminals|iec1(dv1tc)|VDV1TC
+3 Terminals|iec1(dv1tb)|VDV1TB
+2 Terminals|iec1(dv1t6)|VDV1T6
+4 Terminals|iec1(dv1tf)|VDV1TF
+3 Terminals|iec1(dv1te)|VDV1TE
+3 Terminals|iec1(dv1t7)|VDV1T7
+Symbol Builder|iec1(shblkbox)|$C=_.AESYMBUILDER
+**M21
+D5W
+IEC: Connectors - Wirenumber Changes
+Plug/Jack|iec1(c01pj)|VCN1PJ
+;Plug/Jack (common pin number)|iec1(c01pj1)|VCN1PJ1
+Plug Up or Left|iec1(c01p_)|VC01P_
+Jack Down or Right|iec1(c01_j)|VC01_J
+2nd+ Plug/Jack|iec1(c02pj)|VCN2PJ
+;2nd+ Plug/Jack (common pin number)|iec1(c02pj1)|VCN2PJ1
+2nd+ Plug Up or Left|iec1(c02p_)|VC02P_
+2nd+ Jack Down or Right|iec1(c02_j)|VC02_J
+Jack/Plug|iec1(c01jp)|VCN1JP
+;Jack/Plug (common pin number)|iec1(c01jp1)|VCN1JP1
+Plug Down or Right|iec1(c01_p)|VC01_P
+Jack Up or Left|iec1(c01j_)|VC01J_
+2nd+ Jack/Plug|iec1(c02jp)|VCN2JP
+;2nd+ Jack/Plug (common pin number)|iec1(c02jp1)|VCN2JP1
+2nd+ Plug Down or Right|iec1(c02_p)|VC02_P
+2nd+ Jack Up or Left|iec1(c02j_)|VC02J_
+Parametric build|iec1(paraconn)|$C=wd_p2p_connector_dlg_wnum_chg
+||
+**M22
+D5W
+IEC: Connectors - No Wirenumber Changes
+Plug/Jack|iec1(c01pj)|VC01PJ
+Plug/Jack (common pin number)|iec1(c01pj1)|VC01PJ1
+Plug Up or Left|iec1(c01p_)|VC01P_
+Jack Down or Right|iec1(c01_j)|VC01_J
+2nd+ Plug/Jack|iec1(c02pj)|VC02PJ
+2nd+ Plug/Jack (common pin number)|iec1(c02pj1)|VC02PJ1
+2nd+ Plug Up or Left|iec1(c02p_)|VC02P_
+2nd+ Jack Down or Right|iec1(c02_j)|VC02_J
+Jack/Plug|iec1(c01jp)|VC01JP
+Jack/Plug (common pin number)|iec1(c01jp1)|VC01JP1
+Plug Down or Right|iec1(c01_p)|VC01_P
+Jack Up or Left|iec1(c01j_)|VC01J_
+2nd+ Jack/Plug|iec1(c02jp)|VC02JP
+2nd+ Jack/Plug (common pin number)|iec1(c02jp1)|VC02JP1
+2nd+ Plug Down or Right|iec1(c02_p)|VC02_P
+2nd+ Jack Up or Left|iec1(c02j_)|VC02J_
+Parametric build|iec1(paraconn)|$C=wd_p2p_connector_dlg_wnum_nochg
+||
+**M24
+D3W
+IEC: Solenoids
+Standard Solenoid Valve|iec1(SV1)|VSV1
+Standard Solenoid Valve with Connection|iec1(svc1)|vsvc1
+||
+||
+Open Solenoid Valve - Closing|iec1(VSV1Y1)|VSV1Y1
+Open Solenoid Valve - Closing According to Solenoid|iec1(VSV1Y1A)|VSV1Y1A
+Magnetic Brake|iec1(VSV1Y3)|VSV1Y3
+Electromagnetic Brake|iec1(VSV1Y4)|VSV1Y4
+Solenoid Valve Auxiliary NO Contact|iec1(2plusNO)|VSV21
+Solenoid Valve Auxiliary NC Contact|iec1(2plusNC)|VSV22
+**M25
+D6W
+IEC: Instrumentation and Sensors
+Voltage Meter|iec1(VM1)|VVM1
+Amperage Meter|iec1(AM1)|VAM1
+Power Factor Meter|iec1(IN1PFM)|VIN1PFM
+Phase Meter|iec1(IN1PHM)|VIN1PHM
+Frequency Meter|iec1(IN1FRM)|VIN1FRM
+Thermometer|iec1(IN1THM)|VIN1THM
+Tachometer|iec1(IN1TAC)|VIN1TAC
+Hour Meter|iec1(IN1HRM)|VIN1HRM
+Ampere-Hour meter|iec1(IN1AHM)|VIN1AHM
+Recording Wattmeter|iec1(VIN1P17)|VIN1P17
+Varmeter|iec1(VIN1P21)|VIN1P21
+Synchronoscope|iec1(VIN1P11)|VIN1P11
+Thermocouple|iec1(tc1l)|VTC1L
+Thermocouple|iec1(tc1r)|VTC1R
+Thermocouple with Terminal Board|iec1(tc1ltb)|VTC1LTB
+Thermocouple with Terminal Board|iec1(tc1rtb)|VTC1RTB
+Active Power Indicator|iec1(VIN1P19)|VIN1P19
+Thermometer/Pyrometer|iec1(VIN1P25)|VIN1P25
+Clock|iec1(VIN1P29)|VIN1P29
+NO Clock Closing Every Minute|iec1(VIN1P33)|VIN1P33
+Differential Voltmeter|iec1(VVM1P7)|VVM1P7
+Accumulator Battery|iec1(VPW1G4)|VPW1G4
+Pressure/Current Converter|iec1(VIN1B10)|VIN1B10
+AC-DC Current Converter Single Phase|iec1(VIN1G1)|VIN1G1
+Tachometric Dynamo|iec1(VIN1B11)|VIN1B11
+Tachometric Dynamo - Impulse|iec1(VIN1B12)|VIN1B12
+Tachometric Dynamo - Optical Type|iec1(VIN1B13)|VIN1B13
+**M26
+D3W
+IEC: Wire Arrows - Reference Only
+Generic Arrow - Left|iec1(sha1x1)|HA1X1
+Generic Arrow - Up|iec1(sha1x2)|HA1X2
+Generic Arrow - Right|iec1(sha1x3)|HA1X3
+Generic Arrow - Down|iec1(sha1x4)|HA1X4
+Arrow Tail - Left|iec1(sha1x1y)|HA1X1Y
+Arrow Tail - Up|iec1(sha1x2y)|HA1X2Y
+Arrow Tail - Right|iec1(sha1x3y)|HA1X3Y
+Arrow Tail - Down|iec1(sha1x4y)|HA1X4Y
+||
+**M27
+D4W
+IEC: PLC I/O
+PLC I/O Modules|iec1(s_io1)|$C=PLC
+PLC I/O Fixed Units|iec1(PLCIO_fix)|$S=M33
+||
+* *  SINGLE I/O  * *
+IN, 1st Point, 1 Wire|iec1(plcioi1tv)|PLCIOI1TV
+IN, 1st Point, 2 Wires|iec1(plcioi2tv)|PLCIOI2TV
+OUT, 1st Point, 1 Wire|iec1(plcioo1tv)|PLCIOO1TV
+OUT, 1st Point, 2 Wires|iec1(plcioo2tv)|PLCIOO2TV
+IN, 2nd+ Child, 1 Wire|iec1(plcioi1v)|PLCIOI1V
+IN, 2nd+ Child, 2 Wires|iec1(plcioi2v)|PLCIOI2V
+OUT, 2nd+ Child, 1 Wire|iec1(plcioo1v)|PLCIOO1V
+OUT, 2nd+ Child, 2 Wires|iec1(plcioo2v)|PLCIOO2V
+**M28
+D6W
+IEC: Electronics
+Fixed Resistor|iec1(re1b)|VRE1B
+Variable Resistor|iec1(vr1b)|VVR1b
+Variable Resistor|iec1(vr1br)|VVR1bR
+Variable Resistor 2|iec1(VVR1R2)|VVR1R2
+Light dependent|iec1(RE1LDR)|VRE1LDR
+Heater Element|iec1(re1ht)|VRE1HT
+2nd+ Element|iec1(re2ht)|VRE2HT
+RC Network|iec1(RE1RCN)|VRE1RCN
+Varistor|iec1(VVR1R3O)|VVR1R3
+Resistor with Mobile Contact|iec1(VVR1R4)|VVR1R4
+Resistor with Mobile Contact and Disconnecting Position|iec1(VVR1R5)|VVR1R5
+Shunt|iec1(VVR1R7)|VVR1R7
+Variable Resistor with Carbon Disks|iec1(VVR1R8)|VVR1R8
+||
+||
+||
+Diode|iec1(di1)|VDI1
+Diode 180|iec1(di1R)|VDI1R
+Diode Photosensitive|iec1(VDI1B4)|VDI1B4
+Diode Photosensitive 2|iec1(VDI1B5)|VDI1B5
+Zener Diode - One Way|iec1(VDI1V2)|VDI1V2
+Diac Diode Two Way|iec1(VDI1V3)|VDI1V3
+||
+Bridge rectifier|iec1(DI1BR)|VDI1BR
+3 Phase Bridge Rectifier|iec1(VDI1V5)|VDI1V5
+SCR|iec1(VDI1V4)|VDI1V4
+||
+Capacitor|iec1(CA1)|VCA1
+Electrolytic|iec1(CA1EL)|VCA1EL
+Electrolytic 180|iec1(CA1ELR)|VCA1ELR
+Feedthrough Capacitor|iec1(VCA1C2)|VCA1C2
+Photosensitive PNP Transistor|iec1(VDV1B6)|VDV1B6
+**M29
+D1W
+IEC: Power Receptacles
+Duplex Receptacle|iec1(s_cnrdup2)|VCN1RDUP
+Single Receptacle|iec1(s_cnrsgl)|VCN1RSGL
+||
+||
+**M30
+D3W
+IEC: Cable Markers
+Cable Marker|iec1(w01)|VW01
+2+ Child Marker|iec1(w02)|VW02
+Extra Marker|iec1(shw02dum)|HT0_CABLE
+||
+Cable Markers with Shields|iec1(shw01_1)|$S=M42
+Twisted Pair|iec1(tw_pair)|$C=wd_2unit VT0_TW
+Twisted Marker|iec1(tw_marker)|$C=ace_twist_marker
+||
+Multiple connected|iec1(mult_cbl_m)|$C=wd_cblshld_bld 5
+Multiple connected (All 2nd+)|iec1(mult_cbl_m2)|$C=wd_cblshld_bld_2 5
+**M31
+D4W
+IEC: Qualifying Symbols
+Operating Devices|iec1(qmenu1)|$S=M3101
+Linear Direction of Force or Motion|iec1(qmenu2)|$S=M3102
+Rotative Direction of Force or Motion|iec1(qmenu3)|$S=M3103
+Propagation Flow or Signal|iec1(qmenu4)|$S=M3104
+Energy Flow|iec1(qmenu5)|$S=M3105
+Effect|iec1(qmenu6)|$S=M3106
+Radiation|iec1(qmenu7)|$S=M3107
+Fault|iec1(qmenu8)|$S=M3108
+Winding|iec1(qmenu9)|$S=M3109
+Mechanical Controls|iec1(qmenu10)|$S=M3110
+Mechanical Controls, Latching Device|iec1(qmenu11)|$S=M3111
+Mechanical Controls, Coupling|iec1(qmenu12)|$S=M3112
+**M32
+D4W
+IEC: In-Line Wire Labels
+Red|iec1(WIRELABEL_red)|$C=wd_repeat VT0_LGENERIC COLOR=(c:wd_msg,"COLOR001",nil,"RED")
+Black|iec1(WIRELABEL_blk)|$C=wd_repeat VT0_LGENERIC COLOR=(c:wd_msg,"COLOR002",nil,"BLK")
+White|iec1(WIRELABEL_wht)|$C=wd_repeat VT0_LGENERIC COLOR=(c:wd_msg,"COLOR003",nil,"WHT")
+Green|iec1(WIRELABEL_green)|$C=wd_repeat VT0_LGENERIC COLOR=(c:wd_msg,"COLOR004",nil,"GRN")
+Blue|iec1(WIRELABEL_blue)|$C=wd_repeat VT0_LGENERIC COLOR=(c:wd_msg,"COLOR005",nil,"BLU")
+Yellow|iec1(WIRELABEL_yellow)|$C=wd_repeat VT0_LGENERIC COLOR=(c:wd_msg,"COLOR006",nil,"YEL")
+Orange|iec1(WIRELABEL_orange)|$C=wd_repeat VT0_LGENERIC COLOR=(c:wd_msg,"COLOR007",nil,"ORG")
+Gray|iec1(WIRELABEL_gray)|$C=wd_repeat VT0_LGENERIC COLOR=(c:wd_msg,"COLOR008",nil,"GRY")
+Light Blue|iec1(WIRELABEL_ltblue)|$C=wd_repeat VT0_LGENERIC COLOR=(c:wd_msg,"COLOR009",nil,"LT-BLU")
+Green/Yellow|iec1(WIRELABEL_gy)|$C=wd_repeat VT0_LGENERIC COLOR=(c:wd_msg,"COLOR010",nil,"GRN/YEL")
+You Type|iec1(WIRELABEL_type)|$C=wd_inlinlab_oem "VT0_LGENERIC"
+Wire Number Copy|iec1(WIRELABEL_num)|$C=wd_repeat HT0_WGENERIC
+**M33
+D3W
+IEC: PLC Fixed Units
+AB 1761 MicroLogix (8 Spacing)|iec1(ab1761-80m)|$S=M37
+AB 1761 MicroLogix (12 Spacing)|iec1(ab1761-120m)|$S=M38
+AB 1761 MicroLogix (16 Spacing)|iec1(ab1761-160m)|$S=M39
+||
+Automation Direct DL105 (8 Spacing)|iec1(dl105-80m)|$S=M34
+Automation Direct DL105 (12 Spacing)|iec1(dl105-120m)|$S=M35
+Automation Direct DL105 (16 Spacing)|iec1(dl105-160m)|$S=M36
+**M34
+D3W
+IEC: Automation Direct DL105 (Rung Spacing=8)
+F1-130AA 10in/8out 115AC-DC/115AC|iec1(F1-130AA-8)|PLCIO80MF1-130AA
+F1-130AD 10in/8out 115AC-DC/24DC|iec1(F1-130AD-8)|PLCIO80MF1-130AD
+F1-130AR 10in/8 relay out 115AC-DC|iec1(F1-130AR-8)|PLCIO80MF1-130AR
+F1-130DA 10in s-s/8 out 24DC/115AC|iec1(F1-130DA-8)|PLCIO80MF1-130DA
+F1-130DD 10in s-s/8 out 24DC/115AC|iec1(F1-130DD-8)|PLCIO80MF1-130DD
+F1-130DR 10in s-s/8 relay out 24DC|iec1(F1-130DR-8)|PLCIO80MF1-130DR
+F1-130DD-D 10in s-s/8 out 24DC/24DC|iec1(F1-130DD-D-8)|PLCIO80MF1-130DD-D
+F1-130DR-D 10in s-s/8 relay out 24DC|iec1(F1-130DR-D-8)|PLCIO80MF1-130DR-D
+**M35
+D3W
+IEC: Automation Direct DL105 (Rung Spacing=12)
+F1-130AA 10in/8out 115AC-DC/115AC|iec1(F1-130AA-12)|PLCIO120MF1-130AA
+F1-130AD 10in/8out 115AC-DC/24DC|iec1(F1-130AD-12)|PLCIO120MF1-130AD
+F1-130AR 10in/8 relay out 115AC-DC|iec1(F1-130AR-12)|PLCIO120MF1-130AR
+F1-130DA 10in s-s/8 out 24DC/115AC|iec1(F1-130DA-12)|PLCIO120MF1-130DA
+F1-130DD 10in s-s/8 out 24DC/115AC|iec1(F1-130DD-12)|PLCIO120MF1-130DD
+F1-130DR 10in s-s/8 relay out 24DC|iec1(F1-130DR-12)|PLCIO120MF1-130DR
+F1-130DD-D 10in s-s/8 out 24DC/24DC|iec1(F1-130DD-D-12)|PLCIO120MF1-130DD-D
+F1-130DR-D 10in s-s/8 relay out 24DC|iec1(F1-130DR-D-12)|PLCIO120MF1-130DR-D
+**M36
+D3W
+IEC: Automation Direct DL105 (Rung Spacing=16)
+F1-130AA 10in/8out 115AC-DC/115AC|iec1(F1-130AA-16)|PLCIO160MF1-130AA
+F1-130AD 10in/8out 115AC-DC/24DC|iec1(F1-130AD-16)|PLCIO160MF1-130AD
+F1-130AR 10in/8 relay out 115AC-DC|iec1(F1-130AR-16)|PLCIO160MF1-130AR
+F1-130DA 10in s-s/8 out 24DC/115AC|iec1(F1-130DA-16)|PLCIO160MF1-130DA
+F1-130DD 10in s-s/8 out 24DC/115AC|iec1(F1-130DD-16)|PLCIO160MF1-130DD
+F1-130DR 10in s-s/8 relay out 24DC|iec1(F1-130DR-16)|PLCIO160MF1-130DR
+F1-130DD-D 10in s-s/8 out 24DC/24DC|iec1(F1-130DD-D-16)|PLCIO160MF1-130DD-D
+F1-130DR-D 10in s-s/8 relay out 24DC|iec1(F1-130DR-D-16)|PLCIO160MF1-130DR-D
+**M37
+D3W
+IEC: AB 1761 MicroLogix (Rung Spacing=8)
+L16-AWA 10in/6out AC-DC/115AC-DC|iec1(L16-AWA-8)|PLCIO80M1761-L16AWA
+L16-BBB 10in/6out 24DC/115AC-DC|iec1(L16-BBB-8)|PLCIO80M1761-L16BBB
+L16-BWA 10in/6out 24DC/115AC-DC|iec1(L16-BWA-8)|PLCIO80M1761-L16BWA
+L16-BWB 10in/6out 24DC/115AC-DC|iec1(L16-BWB-8)|PLCIO80M1761-L16BWB
+L32-AAA 20in/12out 115AC/115-230AC|iec1(L32-AAA-8)|PLCIO80M1761-L32AAA
+L32-AWA 20in/12out AC-DC/115AC-DC|iec1(L32-AWA-8)|PLCIO80M1761-L32AWA
+L32-BWA 20in/12out 24DC/AC-DC|iec1(L32-BWA-8)|PLCIO80M1761-L32BWA
+L24-AWA 12in/12out AC-DC/115AC-DC|iec1(L24-AWA-8)|PLCIO80M1761-L24AWA
+L24-BWA 12in/12out 24DC/115AC-DC|iec1(L24-BWA-8)|PLCIO80M1761-L24BWA
+**M38
+D3W
+IEC: AB 1761 MicroLogix (Rung Spacing=12)
+L16-AWA 10in/6out AC-DC/115AC-DC|iec1(L16-AWA-12)|PLCIO120M1761-L16AWA
+L16-BBB 10in/6out 24DC/115AC-DC|iec1(L16-BBB-12)|PLCIO120M1761-L16BBB
+L16-BWA 10in/6out 24DC/115AC-DC|iec1(L16-BWA-12)|PLCIO120M1761-L16BWA
+L16-BWB 10in/6out 24DC/115AC-DC|iec1(L16-BWB-12)|PLCIO120M1761-L16BWB
+L32-AAA 20in/12out 115AC/115-230AC|iec1(L32-AAA-12)|PLCIO120M1761-L32AAA
+L32-AWA 20in/12out AC-DC/115AC-DC|iec1(L32-AWA-12)|PLCIO120M1761-L32AWA
+L32-BWA 20in/12out 24DC/AC-DC|iec1(L32-BWA-12)|PLCIO120M1761-L32BWA
+L24-AWA 12in/12out AC-DC/115AC-DC|iec1(L24-AWA-12)|PLCIO120M1761-L24AWA
+L24-BWA 12in/12out 24DC/115AC-DC|iec1(L24-BWA-12)|PLCIO120M1761-L24BWA
+**M39
+D3W
+IEC: AB 1761 MicroLogix (Rung Spacing=16)
+L16-AWA 10in/6out AC-DC/115AC-DC|iec1(L16-AWA-16)|PLCIO160M1761-L16AWA
+L16-BBB 10in/6out 24DC/115AC-DC|iec1(L16-BBB-16)|PLCIO160M1761-L16BBB
+L16-BWA 10in/6out 24DC/115AC-DC|iec1(L16-BWA-16)|PLCIO160M1761-L16BWA
+L16-BWB 10in/6out 24DC/115AC-DC|iec1(L16-BWB-16)|PLCIO160M1761-L16BWB
+L32-AAA 20in/12out 115AC/115-230AC|iec1(L32-AAA-16)|PLCIO160M1761-L32AAA
+L32-AWA 20in/12out AC-DC/115AC-DC|iec1(L32-AWA-16)|PLCIO160M1761-L32AWA
+L32-BWA 20in/12out 24DC/AC-DC|iec1(L32-BWA-16)|PLCIO160M1761-L32BWA
+L24-AWA 12in/12out AC-DC/115AC-DC|iec1(L24-AWA-16)|PLCIO160M1761-L24AWA
+L24-BWA 12in/12out 24DC/115AC-DC|iec1(L24-BWA-16)|PLCIO160M1761-L24BWA
+**M40
+D3W
+IEC: Stand-Alone Cross-Reference Symbols
+Source Rectangle|iec1(ha2s1_r)|HA2S1_REF
+Source Hexagon|iec1(ha3s1_r)|HA3S1_REF
+Source Ellipse|iec1(ha5s1_r)|HA5S1_REF
+Destination Rectangle|iec1(ha2d1_r)|HA2D1_REF
+Destination Hexagon|iec1(ha3d1_r)|HA3D1_REF
+Destination Ellipse|iec1(ha5d1_r)|HA5D1_REF
+**M41
+D3W
+IEC: Shield Symbols
+Cable with Shield|iec1(s_shld1)|$C=wd_shld_bld 1
+Twisted Pair with Shield|iec1(s_shld2)|$C=wd_shld_bld 2
+Shield|iec1(s_shld3)|$C=wd_shld_bld 3
+Shield Tied Back|iec1(s_shld4)|$C=wd_shld_bld 4
+Twisted Pair|iec1(tw_pair)|$C=wd_2unit VT0_TW
+Cable Markers with Shields|iec1(shw01_1)|$S=M42
+**M42
+D3W
+IEC: Cable Markers with Shields
+Cable with Shield|iec1(shw01_1_item)|$C=wd_cblshld_bld 1
+Twisted Pair with Shield|iec1(shw01_2)|$C=wd_cblshld_bld 2
+Shield|iec1(shw01_3)|$C=wd_cblshld_bld 3
+Shield Tied Back|iec1(shw01_4)|$C=wd_cblshld_bld 4
+Add 2nd Shield|iec1(shld_add_double)|$C=ace_shld_add_double
+Cable with Shield (All 2nd)|iec1(shw02_1)|$C=wd_cblshld_bld_2 1
+Twisted Pair with Shield (All 2nd)|iec1(shw02_2)|$C=wd_cblshld_bld_2 2
+Shield Tied Back (All 2nd+)|iec1(shw02_4)|$C=wd_cblshld_bld_2 4
+Shield (All 2nd+)|iec1(shw02_3)|$C=wd_cblshld_bld_2 3
+**M43
+D5W
+IEC: Connector Pins - Spare/Single Side
+Plug Right or Up|iec1(shc01p_)|HCN1P_
+Jack Left or Down|iec1(shc01_j)|HCN1_J
+Plug Right or Up (Combined tag/pin)|iec1(shc01p_1)|HCN1P_1
+Jack Left or Down (Combined)|iec1(shc01_j1)|HCN1_J1
+2nd+ Plug Right or Up|iec1(shc02p_)|HCN2P_
+2nd+ Jack Left or Down|iec1(shc02_j)|HCN2_J
+2nd+ Plug Right or Up (Combined)|iec1(shc02p_1)|HCN2P_1
+2nd+ Jack Left or Down (Combined)|iec1(shc02_j1)|HCN2_J1
+Jack Right or Up|iec1(shc01j_)|HCN1J_
+Plug Left or Down|iec1(shc01_p)|HCN1_P
+Jack Right or Up (Combined)|iec1(shc01j_1)|HCN1J_1
+Plug Left or Down (Combined)|iec1(shc01_p1)|HCN1_P1
+2nd+ Jack Right or Up|iec1(shc02j_)|HCN2J_
+2nd+ Plug Left or Down|iec1(shc02_p)|HCN2_P
+2nd+ Jack Right or Up (Combined)|iec1(shc02j_1)|HCN2J_1
+2nd+ Plug Left or Down (Combined)|iec1(shc02_p1)|HCN2_P1
+**M45
+D2W
+IEC: Power Distribution Blocks
+3 Terminal, 10 Unit Spacing|iec1(pdb-8)|VDB1308
+3 Terminal, 15 Unit Spacing|iec1(pdb-12)|VDB1312
+3 Terminal, 20 Unit Spacing|iec1(pdb-16)|VDB1316
+**M46
+D6W
+IEC: Fusible Disconnects
+Fused switch|iec1(DS11F)|VDS11F
+2nd+ Pole Fused Switch|iec1(DS21F)|VDS21F
+Fused Switch, 2 Pole|iec1(DS1Fp2)|$C=wd_2unit VDS11F
+Fused Switch, 3 Pole|iec1(DS1Fp3)|$C=wd_3unit VDS11F
+Auxiliary Contact, NO|iec1(FU21)|VDS21AUX
+Auxiliary Contact, NC|iec1(FU22)|VDS22AUX
+||
+1 Pole on load|iec1(DS11OL)|VDS1OL
+2 Pole on load|iec1(DS1OLP2)|$C=wd_2unit VDS1OL
+3 Pole on load|iec1(DS1OLP3)|$C=wd_3unit VDS1OL
+2nd+ Pole on load|iec1(DS21OL)|VDS2OL
+||
+1 Phase Disconnect with Fuse|iec1(VDS1Q81)|VDS11Q81
+2 Phase Disconnect with Fuse|iec1(VDS2Q81)|$C=wd_2unit VDS11Q81
+3 Phase Disconnect with Fuse|iec1(VDS3Q81)|$C=wd_3unit VDS11Q81
+||
+1 Phase maneuver Switch/Disconnect with Fuse|iec1(VDS1Q85)|VDS11Q85
+2 Phase maneuver Switch/Disconnect with Fuse|iec1(VDS2Q85)|$C=wd_2unit VDS11Q85
+3 Phase maneuver Switch/Disconnect with Fuse|iec1(VDS3Q85)|$C=wd_3unit VDS11Q85
+**M48
+D1W
+IEC: Splice Symbols
+Splice|iec1(splice_vertical)|VSP1001
+**M49
+D2W
+IEC: Annunciations
+Loudspeaker|iec1(VAN1B7)|VAN1B7
+Loudspeaker - Microphone|iec1(VAN1B8)|VAN1B8
+Microphone|iec1(VAN1B9)|VAN1B9
+**M62
+D6W
+IEC: 3 Position Selector Switches
+3 Position Maintain, NO|iec1(ss113)|VSS113
+3 Position Maintain, NC|iec1(ss123)|VSS123
+3 Position NO Return From Left|iec1(ss113L)|Vss113L
+3 Position NC Return From Left|iec1(ss123L)|Vss123L
+3 Position NO Return From Right|iec1(ss113R)|Vss113R
+3 Position NC Return From Right|iec1(ss123R)|Vss123R
+3 Position NO Return From Both|iec1(ss113B)|Vss113B
+3 Position NC Return From Both|iec1(ss123B)|Vss123B
+3 Position NO Neutral 0|iec1(VSS1S31)|VSS11S31
+3 Position NC Neutral 0|iec1(VSS1S31C)|VSS12S31
+3 Position NO Neutral 1|iec1(VSS1S32)|VSS11S32
+3 Position NC Neutral 1|iec1(VSS1S32C)|VSS12S32
+3 Position NO Neutral 2|iec1(VSS1S33)|VSS11S33
+3 Position NC Neutral 2|iec1(VSS1S33C)|VSS12S33
+3 Position NO Key Operated Neutral 0|iec1(VSS1S40)|VSS11S40
+3 Position NC Key Operated Neutral 0|iec1(VSS1S40C)|VSS12S40
+3 Position NO Key Operated Neutral 1|iec1(VSS1S41)|VSS11S41
+3 Position NC Key Operated Neutral 1|iec1(VSS1S41C)|VSS12S41
+3 Position NO Key Operated Neutral 2|iec1(VSS1S42)|VSS11S42
+3 Position NC Key Operated Neutral 2|iec1(VSS1S42C)|VSS12S42
+3 Stable Position NO Key Operated Neutral 0|iec1(VSS1S43)|VSS11S43
+3 Stable Position NC Key Operated Neutral 0|iec1(VSS1S43C)|VSS12S43
+3 Stable Position NO Key Operated Neutral 1|iec1(VSS1S44)|VSS11S44
+3 Stable Position NC Key Operated Neutral 1|iec1(VSS1S44C)|VSS12S44
+3 Stable Position NO Key Operated Neutral 2|iec1(VSS1S45)|VSS11S45
+3 Stable Position NC Key Operated Neutral 2|iec1(VSS1S45C)|VSS12S45
+Three Pole NO Contact|iec1(VSS2NA14F)|$C=wd_3unit VSS21
+**M63
+D4W
+IEC: 4 Position Selector Switches
+4 Position Maintain, NO|iec1(ss114)|VSS114
+4 Position Maintain, NC|iec1(ss124)|VSS124
+4 Position Key Selector NO|iec1(VSS1S46)|VSS11S46
+4 Position Key Selector NC|iec1(VSS1S46C)|VSS12S46
+4 Stable Positions Key Selector NO|iec1(VSS1S49)|VSS11S49
+4 Stable Positions Key Selector NC|iec1(VSS1S49C)|VSS12S49
+4 Stable Positions Key Selector NO-Rotating in 2 Ways|iec1(VSS1S50)|VSS11S50
+4 Stable Positions Key Selector NC-Rotating in 2 Ways|iec1(VSS1S50C)|VSS12S50
+4 Stable Positions Key Selector NO-Rotating CW|iec1(VSS1S51)|VSS11S51
+4 Stable Positions Key Selector NC-Rotating CW|iec1(VSS1S51C)|VSS12S51
+**M100
+IEC: One-Line Components
+Connector|iec1(s_conn)|$S=M101
+Motor Control|iec1(s_mot_con)|$S=M102
+Transformer|iec1(s_transf)|$S=M103
+Terminal|iec1(s_term)|$S=M104
+Cable Marker|iec1(s_cmark)|$S=M105
+Bus Tap|iec1(s_BusTap)|$S=M106
+Miscellaneous|iec1(s_misc)|$S=M107
+**M101
+IEC: Connector
+Jack/Plug|iec1(shc01pj)|Hc01pj_1-
+**M102
+IEC: Motor Control
+Circuit breaker|iec1(shcb1)|Hcb11_1-
+Motor circuit protector|iec1(shcb1m)|Hcb11m_1-
+Thermal circuit breaker|iec1(shcb1th)|Hcb11th_1-
+Disconnect|iec1(shds1)|Hds11_1-
+Fused disconnect|iec1(shds1f)|Hds11f_1-
+Fuse|iec1(shfu1)|Hfu1_1-
+Motor|iec1(SHMO1)|Hmo13_1-
+Motor starter|iec1(shmt21)|Hms11_1-
+Overload|iec1(shol1)|Hol1_1-
+Vertical capacitor|iec1(svca113)|Vca113_1-
+**M103
+IEC: Transformer
+Transformer 1|iec1(shxf1)|Hxf1T1_1-
+Transformer 2|iec1(shxf2_2)|HXF1T2_1-
+**M104
+IEC: Terminal
+Square terminal|iec1(sht0_01)|Ht0001_1-
+Round terminal|iec1(sht0_02)|Ht0002_1-
+**M105
+IEC: Cable Marker
+Cable Marker|iec1(shw01)|HW01_1-
+**M106
+IEC: Bus Tap
+Bus tap - main/dot|iec1(svdv1bt1)|VDV1_BT_1-
+Bus tap - dual/tee|iec1(svdv1btt1)|VDV1_BTT_1-
+Bus tap - dual/corner|iec1(svdv1btl1)|VDV1_BTL_1-
+**M107
+IEC: Miscellaneous
+Power receptacle|iec1(shc01wr)|Hc01wr_1-
+Generic load|iec1(shdv11)|Hdv1_1-
+**M111
+D4W
+IEC: Current Protection Relays
+Come Back Current Protection|iec1(VCR1F28)|VCR1F28
+Differential Current Protection|iec1(VCR1F29)|VCR1F29
+Differential Current Protection - Relative Value|iec1(VCR1F30)|VCR1F30
+Maximum Current Protection|iec1(VCR1F25)|VCR1F25
+Minimum Current Protection|iec1(VCR1F26)|VCR1F26
+Minimum and Maximum Current Protection|iec1(VCR1F27)|VCR1F27
+In Neutral|iec1(VCR1F32)|VCR1F32
+In Neutral between 2 Multi-Phase Systems|iec1(VCR1F33)|VCR1F33
+Ground Failure Current Protection|iec1(VCR1F37)|VCR1F37
+**M112
+D3W
+IEC: Voltage Protection Relays
+Minimum Voltage Protection|iec1(VCR1F35)|VCR1F35
+Maximum Voltage Protection|iec1(VCR1F36)|VCR1F36
+Residual Voltage Protection|iec1(VCR1F38)|VCR1F38
+Ground Failure Voltage Protection|iec1(VCR1F31)|VCR1F31
+Lack of Voltage Protection|iec1(VCR1F39)|VCR1F39
+**M113
+D2W
+IEC: Misc. Relays
+Frequency Relay|iec1(VCR1F40)|VCR1F40
+Minimum Impedance Relay|iec1(VCR1F41)|VCR1F41
+Relay Sensing Lack of Phase in Three Phase System|iec1(VCR1F42)|VCR1F42
+Minimum Active Power Relay|iec1(VCR1F43)|VCR1F43
+Insulating Relay|iec1(VCR1F44)|VCR1F44
+Quick Relay Coil|iec1(VCR1K1)|VCR1K1
+Mechanical Resonance Relay|iec1(VCR1K11)|VCR1K11
+**M116
+D2W
+IEC: Relays with Suppressors
+Relay with Integrated Block Diode|iec1(VCR1K33)|VCR1K33
+Relay with Integrated Block Diode and Integrated LED|iec1(VCR1K35)|VCR1K35
+Relay with Capacitor|iec1(VCR1K37)|VCR1K37
+Relay with RC Circuit|iec1(VCR1K39)|VCR1K39
+**M117
+D2W
+IEC: Counter Relays
+Counter No Reset|iec1(CR1CNN)|VCR1CNN
+Counter Manual Reset|iec1(CR1CNM)|VCR1CNM
+Counter Electronic Reset|iec1(CR1CNE)|VCR1CNE
+**M131
+D5W
+IEC: 1 Pole Circuit Breakers
+Circuit Breaker|iec1(CB1)|VCB1
+Thermal Circuit Breaker|iec1(CB11TH)|VCB11TH
+Current Limit/Thermal|iec1(CB11THi)|VCB11THi
+Magneto/Thermal|iec1(VCB1Q9)|VCB11Q9
+Magneto/Thermal with Differential|iec1(VCB1Q13)|VCB11Q13
+Differential|iec1(VCB1Q17)|VCB11Q17
+With Current Protection|iec1(VCB1Q29)|VCB11Q29
+With Current Protection and Lack of Voltage Protection|iec1(VCB1Q33)|VCB11Q33
+With Max. Current and Min. Voltage Protection|iec1(VCB1Q37)|VCB11Q37
+With Max. Thermal/Current and Min. Voltage Protection|iec1(VCB1Q41)|VCB11Q41
+With Max. Thermal and Min. Voltage Protection|iec1(VCB1Q45)|VCB11Q45
+With Max. Thermal and Current Protection|iec1(VCB1Q21)|VCB11Q21
+With Max. Thermal Protection and Differential|iec1(VCB1Q25)|VCB11Q25
+1 Pole Auto Switch with Magneto|iec1(VCB1Q146)|VCB11Q146
+1 Pole Auto Magneto-Thermal Switch/Disconnect|iec1(VCB1Q134)|VCB11Q134
+1 Pole Auto Disconnect Switch with Electronic Relay|iec1(VCB1Q138)|VCB11Q138
+**M132
+D5W
+IEC: 2 Pole Circuit Breakers
+Circuit Breaker|iec1(CB1p2)|$C=wd_2unit VCB1
+Thermal Circuit Breaker|iec1(CB1p2th)|$C=wd_2unit VCB11TH
+Current Limit/Thermal|iec1(CB1p2thi)|$C=wd_2unit VCB11THi
+Magneto/Thermal|iec1(VCB2Q9)|$C=wd_2unit VCB11Q9
+Magneto/Thermal with Differential|iec1(VCB2Q13)|$C=wd_2unit VCB11Q13
+Differential|iec1(VCB2Q17)|$C=wd_2unit VCB11Q17
+With Current Protection|iec1(VCB2Q29)|$C=wd_2unit VCB11Q29
+With Current Protection and Lack of Voltage Protection|iec1(VCB2Q33)|$C=wd_2unit VCB11Q33
+With Max. Current and Min. Voltage Protection|iec1(VCB2Q37)|$C=wd_2unit VCB11Q37
+With Max. Thermal/Current and Min. Voltage Protection|iec1(VCB2Q41)|$C=wd_2unit VCB11Q41
+With Max. Thermal and Min. Voltage Protection|iec1(VCB2Q45)|$C=wd_2unit VCB11Q45
+With Max. Thermal Protection and Differential|iec1(VCB2Q25)|$C=wd_2unit VCB11Q25
+2 Pole Auto Switch with Magneto|iec1(VCB2Q146_2)|$C=wd_2unit VCB11Q146
+2 Pole Auto Magneto-Thermal Switch/Disconnect|iec1(VCB2Q134_2)|$C=wd_2unit VCB11Q134
+2 Pole Auto Disconnect Switch with Electronic Relay|iec1(VCB2Q138_2)|$C=wd_2unit VCB11Q138
+**M133
+D5W
+IEC: 3 Pole Circuit Breakers
+Circuit Breaker|iec1(CB1p3)|$C=wd_3unit VCB1
+Thermal Circuit Breaker|iec1(CB1p3th)|$C=wd_3unit VCB11TH
+Current Limit/Thermal|iec1(CB1p3thi)|$C=wd_3unit VCB11THi
+Magneto/Thermal|iec1(VCB3Q9)|$C=wd_3unit VCB11Q9
+Magneto/Thermal with Differential|iec1(VCB3Q13)|$C=wd_3unit VCB11Q13
+Differential|iec1(VCB3Q17)|$C=wd_3unit VCB11Q17
+With Current Protection|iec1(VCB3Q29)|$C=wd_3unit VCB11Q29
+With Current and Lack of Voltage Protection|iec1(VCB3Q33)|$C=wd_3unit VCB11Q33
+With Max. Current and Min. Voltage Protection|iec1(VCB3Q37)|$C=wd_3unit VCB11Q37
+With Max. Thermal/Current and Min. Voltage Protection|iec1(VCB3Q41)|$C=wd_3unit VCB11Q41
+With Max. Thermal and Min. Voltage Protection|iec1(VCB3Q45)|$C=wd_3unit VCB11Q45
+3 Pole Auto Switch with Magneto|iec1(VCB2Q146_3)|$C=wd_3unit VCB11Q146
+3 Pole Auto Magneto-Thermal Switch/Disconnect|iec1(VCB2Q134_3)|$C=wd_3unit VCB11Q134
+3 Pole Auto Disconnect Switch with Electronic Relay|iec1(VCB2Q138_3)|$C=wd_3unit VCB11Q138
+**M134
+D6W
+IEC: 2nd+ Pole Circuit Breakers
+Circuit Breaker 2nd+ Pole|iec1(CB2)|VCB2
+Thermal 2nd+ Pole|iec1(CB21TH)|VCB21TH
+Current Limit/Thermal 2nd+ Pole|iec1(CB21THi)|VCB21THi
+Disconnect 2nd+ Pole|iec1(DS21)|VDS21
+Disconnect NO Auxiliary Contact|iec1(FU21)|VDS21AUX
+Disconnect NC Auxiliary Contact|iec1(FU22)|VDS22AUX
+Auto Return|iec1(VCB1NA20F)|VCB2120F
+With Mechanical Block and Manual Unlatching|iec1(VCB1NA21F)|VCB2121F
+With Maintained Position|iec1(VCB1NA22F)|VCB2122F
+Anticipated Contact|iec1(VCB1NA7F)|VCB217F
+Delayed Contact|iec1(VCB1NA8F)|VCB218F
+Circuit Breaker NO Auxiliary Contact|iec1(CB21)|VCB21
+Circuit Breaker NC Auxiliary Contact|iec1(CB22)|VCB22
+Auto Return|iec1(VCB1NC20F)|VCB2220F
+With Mechanical Block and Manual Unlatching|iec1(VCB1NC21F)|VCB2221F
+With Maintained Position|iec1(VCB1NC22F)|VCB2222F
+Anticipated Contact|iec1(VCB1NC8F)|VCB227F
+Delayed Contact|iec1(VCB1NC9F)|VCB228F
+2 P Magneto-Thermal SW, 1P Protected|iec1(VCB1Q142)|VCB1Q142
+4 P Magneto-Thermal SW, 3P Protected|iec1(VCB1Q143)|VCB1Q143
+2 P Magneto-Thermal SW with Differential, 1P Protected|iec1(VCB1Q144)|VCB1Q144
+4 P Magneto-Thermal SW with Differential, 3P Protected|iec1(VCB1Q145)|VCB1Q145
+3 P 2 Way Disconnect SW with Fuses|iec1(VDS1Q93)|VDS1Q93
+**M137
+D3W
+IEC: Power Switches
+1P with Semiconductors|iec1(VCB1Q53)|VCB11Q53
+2P with Semiconductors|iec1(VCB2Q53)|$C=wd_2unit VCB11Q53
+3P with Semiconductors|iec1(VCB3Q53)|$C=wd_3unit VCB11Q53
+1P with Semiconductors - unidirectional|iec1(VCB1Q57)|VCB11Q57
+2P with Semiconductors - unidirectional|iec1(VCB2Q57)|$C=wd_2unit VCB11Q57
+3P with Semiconductors - unidirectional|iec1(VCB3Q57)|$C=wd_3unit VCB11Q57
+2P Power Switch|iec1(VCB2Q50)|$C=wd_2unit VCB11Q50
+**M138
+D3W
+IEC: 1 Pole Disconnects
+Disconnect 1 Pole|iec1(VDS1Q65)|VDS11Q65
+Disconnect 1 Pole Non-Fused|iec1(DS11)|VDS11
+Maneuver Switch with Fuse|iec1(VDS1Q119)|VDS11Q119
+PE Earthing Switch|iec1(VDS1Q123)|VDS11Q123
+Power Auto Switch/Disconnect|iec1(VDS1Q5)|VDS11Q5
+Maneuver Switch/Disconnect|iec1(VDS1Q69)|VDS11Q69
+Disconnect with Lock Device|iec1(VDS1Q73)|VDS11Q73
+Switch/Disconnect with Lock Device|iec1(VDS1Q77)|VDS11Q77
+Two Way Disconnect with 3 Positions|iec1(VDS1Q89)|VDS11Q89
+**M139
+D3W
+IEC: 2 Pole Disconnects
+Disconnect 2 Pole|iec1(VDS2Q65)|$C=wd_2unit VDS11Q65
+Disconnect 2 Pole Non-Fused|iec1(DS1p2)|$C=wd_2unit VDS11
+Maneuver Switch with Fuse|iec1(VDS2Q119)|$C=wd_2unit VDS11Q119
+PE Earthing Switch|iec1(VDS2Q123)|$C=wd_2unit VDS11Q123
+Power Auto Switch/Disconnect|iec1(VDS2Q5)|$C=wd_2unit VDS11Q5
+Maneuver Switch/Disconnect|iec1(VDS2Q69)|$C=wd_2unit VDS11Q69
+Disconnect with Lock Device|iec1(VDS2Q73)|$C=wd_2unit VDS11Q73
+Switch/Disconnect with Lock Device|iec1(VDS2Q77)|$C=wd_2unit VDS11Q77
+Two Way Disconnect with 3 Positions|iec1(VDS2Q89)|$C=wd_2unit VDS11Q89
+**M140
+D3W
+IEC: 3 Pole Disconnects
+Disconnect 3 Pole|iec1(VDS3Q65)|$C=wd_3unit VDS11Q65
+Disconnect 3 Pole Non-Fused|iec1(DS1p3)|$C=wd_3unit VDS11
+Maneuver Switch with Fuse|iec1(VDS3Q119)|$C=wd_3unit VDS11Q119
+PE Earthing Switch|iec1(VDS3Q123)|$C=wd_3unit VDS11Q123
+Power Auto Switch/Disconnect|iec1(VDS3Q5)|$C=wd_3unit VDS11Q5
+Maneuver Switch/Disconnect|iec1(VDS3Q69)|$C=wd_3unit VDS11Q69
+Disconnect with Lock Device|iec1(VDS3Q73)|$C=wd_3unit VDS11Q73
+Switch/Disconnect with Lock Device|iec1(VDS3Q77)|$C=wd_3unit VDS11Q77
+Two Way Disconnect with 3 Positions|iec1(VDS3Q89)|$C=wd_3unit VDS11Q89
+**M161
+D5W
+IEC: Fuses
+Fuse|iec1(FU1)|VFU1
+Fuse, 2 Pole|iec1(FU1p2)|$C=wd_2unit VFU1
+Fuse, 3 Pole|iec1(FU1p3)|$C=wd_3unit VFU1
+Fuse Auxiliary Contact, NO|iec1(FU21)|VFU21
+Fuse Auxiliary Contact, NC|iec1(FU22)|VFU22
+Stiker|iec1(FU1ST)|VFU1ST
+With alarm contact|iec1(FU1AC)|VFU1AC
+With separate alarm contact|iec1(FU1SAC)|VFU1SAC
+1 Pole - Live Side|iec1(FU1LS)|VFU1LS
+2 Pole - Live Side|iec1(FU1LSp2)|$C=wd_2unit VFU1LS
+3 Pole - Live Side|iec1(FU1LSp3)|$C=wd_3unit VFU1LS
+;1 Pole - Live Side Child|iec1(FU1LS_Child)|VFU2LS
+||
+1 Phase Fuse|iec1(VFU1F11)|VFU1F11
+2 Phase Fuse|iec1(VFU2F11)|$C=wd_2unit VFU1F11
+3 Phase Fuse|iec1(VFU3F11)|$C=wd_3unit VFU1F11
+||
+Fuse with Incandescent Light Indication|iec1(VFU1F15)|VFU1F15
+Fuse with LED Indication|iec1(VFU1F16)|VFU1F16
+||
+||
+Neutral Link - Closed|iec1(FU1NLC)|VFU1NLC
+Neutral Link - Open|iec1(FU1NLO)|VFU1NLO
+**M162
+D2W
+IEC: Fuse Switches
+1 Pole|iec1(FU1FS)|VFU1FS
+1 Pole Child|iec1(FU21FS)|VFU2FS
+2 Pole|iec1(FU1FSp2)|$C=wd_2unit VFU1FS
+3 Pole|iec1(FU1FSp3)|$C=wd_3unit VFU1FS
+**M163
+D5W
+IEC: Transformers
+Transformer, Single|iec1(xf1)|VXF1
+Transformer, Dual|iec1(xf1d)|VXF1D
+Transformer, Dual (flipped)|iec1(xf1dr)|VXF1DR
+Current Transformer|iec1(current_T)|$S=M1631
+3 Phase Transformer|iec1(3phase_T)|$S=M1632
+PT Potential Transformer|iec1(xf1pt)|VXF1PT
+Single phase auto|iec1(xf1P1AUTO)|VXF1P1AUTO
+1 Phase Autotransformer|iec1(VXF1T18)|VXF1T18
+3 Phase Autotransformer Star Connected|iec1(VXF1T19)|VXF1T19
+Power Transformer 1 with 2 Windings|iec1(VXF1T2)|VXF1T2
+Power Transformer 2 with 2 Windings|iec1(VXF1T4)|VXF1T4
+Power Transformer with 2 Windings and Screen|iec1(VXF1T3)|VXF1T3
+Power Transformer with 3 Windings|iec1(VXF1T6)|VXF1T6
+Adjustable Power Transformer with 2 Windings|iec1(VXF1T5)|VXF1T5
+Voltage Transformer|iec1(VXF1T34)|VXF1T34
+**M212
+D3W
+IEC: Standard Lights
+Red Light|iec1(LT1R)|VLT1R
+Green Light|iec1(LT1G)|VLT1G
+Orange Light|iec1(LT1A)|VLT1A
+Yellow Light|iec1(lt1y)|VLT1Y
+Blue Light|iec1(LT1B)|VLT1B
+White Light|iec1(LT1W)|VLT1W
+Clear Light|iec1(LT1C)|VLT1C
+**M222
+D3W
+IEC: Transformer Lights
+Blinking Light - Bulb with Transformer|iec1(VLT1H10)|VLT1H10
+Indicator Lamp Energized by Built-in Transformer|iec1(VLT1H23A)|VLT1H23A
+Red|iec1(LT1TR)|VLT1RT
+Green|iec1(LT1TG)|VLT1GT
+Orange|iec1(LT1TA)|VLT1AT
+Yellow|iec1(LT1TY)|VLT1YT
+Blue|iec1(LT1TB)|VLT1BT
+White|iec1(LT1TW)|VLT1WT
+Clear|iec1(LT1TC)|VLT1CT
+**M232
+D3W
+IEC: Push to Test Lights
+Red Press To Test|iec1(lt1rp)|VLT1RP
+Green Press To Test|iec1(lt1gp)|VLT1GP
+Orange Press To Test|iec1(lt1ap)|VLT1AP
+Yellow Press To Test|iec1(lt1yp)|VLT1YP
+Blue Press To Test|iec1(lt1bp)|VLT1BP
+White Press To Test|iec1(lt1wp)|VLT1WP
+Clear Press To Test|iec1(lt1cp)|VLT1CP
+;Master Test|s2(s_lt_m)|$S=M5
+;Neon|s2(s_lt_n)|$S=M23
+**M242
+D5W
+IEC: LEDs
+Blinking LED|iec1(VLT1H13)|VLT1H13
+LED Indicator Lamp|iec1(VLT1H25)|VLT1H25
+Red|iec1(LT1LR)|VLT1RL
+Red 180|iec1(LT1LRR)|VLT1RLR
+Green|iec1(LT1LG)|VLT1GL
+Green 180|iec1(LT1LGR)|VLT1GLR
+Orange|iec1(LT1LA)|VLT1AL
+Orange 180|iec1(LT1LAR)|VLT1ALR
+Yellow|iec1(LT1LY)|VLT1YL
+Yellow 180|iec1(LT1LYR)|VLT1YLR
+Blue|iec1(LT1LB)|VLT1BL
+Blue 180|iec1(LT1LBR)|VLT1BLR
+White|iec1(LT1LW)|VLT1WL
+White 180|iec1(LT1LWR)|VLT1WLR
+Clear|iec1(LT1LC)|VLT1CL
+Clear 180|iec1(LT1LCR)|VLT1CLR
+**M252
+D3W
+IEC: Beacons - Flashing
+Red|iec1(LT1BFR)|VBE1RFL
+Green|iec1(LT1BFG)|VBE1GFL
+Orange|iec1(LT1BFA)|VBE1AFL
+Yellow|iec1(LT1BFY)|VBE1YFL
+Blue|iec1(LT1BFB)|VBE1BFL
+White|iec1(LT1BFW)|VBE1WFL
+Clear|iec1(LT1BFC)|VBE1CFL
+**M262
+D3W
+IEC: Beacons - Rotating
+Red|iec1(LT1BRR)|VBE1RRT
+Green|iec1(LT1BRG)|VBE1GRT
+Orange|iec1(LT1BRA)|VBE1ART
+Yellow|iec1(LT1BRY)|VBE1YRT
+Blue|iec1(LT1BRB)|VBE1BRT
+White|iec1(LT1BRW)|VBE1WRT
+Clear|iec1(LT1BRC)|VBE1CRT
+**M391
+D4W
+IEC: Illuminated Push Buttons
+Push Button NO|iec1(VPB11S75)|VPB11S75
+Push Button NC|iec1(VPB1S75C)|VPB12S75
+Non-Auto Return Push Button NO|iec1(VPB1S76)|VPB11S76
+Non-Auto Return Push Button NC|iec1(VPB1S76C)|VPB12S76
+||
+2nd+ Red Light|iec1(PBL2R)|VPB2R
+2nd+ Green Light|iec1(PBL2G)|VPB2G
+2nd+ Amber Light|iec1(PBL2A)|VPB2A
+2nd+ Yellow Light|iec1(PBL2Y)|VPB2Y
+2nd+ Blue Light|iec1(PBL2B)|VPB2B
+2nd+ White Light|iec1(PBL2W)|VPB2W
+2nd+ Clear Light|iec1(PBL2C)|VPB2C
+**M711
+D4W
+IEC: Inductive Switches
+Ferrous|iec1(PX1i)|VPX1i
+Ferrous Proximity Switch, NO|iec1(PX11I)|VPX11I
+Ferrous Proximity Switch, NC|iec1(PX12I)|VPX12I
+||
+NO 3 Wire|iec1(PX11IN3)|VPX11IN3
+NO 3 Wire 180|iec1(PX11IN3R)|VPX11IN3R
+NC 3 Wire|iec1(PX12IN3)|VPX12IN3
+NC 3 Wire 180|iec1(PX12IN3R)|VPX12IN3R
+NO 3 Wire with connector|iec1(PX11IN3C)|VPX11IN3C
+NO 3 Wire 180 with connector|iec1(PX11IN3RC)|VPX11IN3RC
+NC 3 Wire with connector|iec1(PX12IN3C)|VPX12IN3C
+NC 3 Wire 180 with connector|iec1(PX12IN3RC)|VPX12IN3RC
+||
+||
+2nd+ NO Contact|iec1(2plusNO)|VSW21
+2nd+ NC Contact|iec1(2plusNC)|VSW22
+**M712
+D4W
+IEC: Capacitive Switches
+Capacitive|iec1(PX1C)|VPX1C
+Capacitive Switch, NO|iec1(PX11C)|VPX11C
+Capacitive Switch, NC|iec1(PX12C)|VPX12C
+||
+NO 3 Wire|iec1(PX11IC3)|VPX11C3
+NO 3 Wire 180|iec1(PX11C3R)|VPX11C3R
+NC 3 Wire|iec1(PX12C3)|VPX12C3
+NC 3 Wire 180|iec1(PX12C3R)|VPX12C3R
+NO 3 Wire with connector|iec1(PX11C3C)|VPX11C3C
+NO 3 Wire 180 with connector|iec1(PX11C3RC)|VPX11C3RC
+NC 3 Wire with connector|iec1(PX12C3C)|VPX12C3C
+NC 3 Wire 180 with connector|iec1(PX12C3RC)|VPX12C3RC
+||
+||
+2nd+ NO Contact|iec1(2plusNO)|VSW21
+2nd+ NC Contact|iec1(2plusNC)|VSW22
+**M713
+D4W
+IEC: Magnetic Switches
+Magnetic|iec1(PX1M)|VPX1M
+Magnetic Proximity Switch, NO|iec1(PX11M)|VPX11M
+Magnetic Proximity Switch, NC|iec1(PX12M)|VPX12M
+||
+NO 3 Wire|iec1(PX11M3)|VPX11M3
+NO 3 Wire 180|iec1(PX11M3R)|VPX11M3R
+NC 3 Wire|iec1(PX12M3)|VPX12M3
+NC 3 Wire 180|iec1(PX12M3R)|VPX12M3R
+NO 3 Wire with connector|iec1(PX11M3C)|VPX11M3C
+NO 3 Wire 180 with connector|iec1(PX11M3RC)|VPX11M3RC
+NC 3 Wire with connector|iec1(PX12M3C)|VPX12M3C
+NC 3 Wire 180 with connector|iec1(PX12M3RC)|VPX12M3RC
+||
+||
+2nd+ NO Contact|iec1(2plusNO)|VSW21
+2nd+ NC Contact|iec1(2plusNC)|VSW22
+**M714
+D1W
+IEC: Photoelectric Switches
+Emitter|iec1(PX11PE3_menu)|$S=M7141
+Receiver|iec1(PX11PE3_menu)|$S=M7142
+Emitter/Receiver|iec1(PX11PE3_menu)|$S=M7143
+**M715
+D4W
+IEC: Ultrasonic Switches
+Ultrasonic|iec1(PX1U)|VPX1U
+Ultrasonic Switch, NO|iec1(PX11U)|VPX11U
+Ultrasonic Switch, NC|iec1(PX12U)|VPX12U
+||
+NO 3 Wire|iec1(PX11U3)|VPX11U3
+NO 3 Wire 180|iec1(PX11U3R)|VPX11U3R
+NC 3 Wire|iec1(PX12U3)|VPX12U3
+NC 3 Wire 180|iec1(PX12U3R)|VPX12U3R
+NO 3 Wire with connector|iec1(PX11U3C)|VPX11U3C
+NO 3 Wire 180 with connector|iec1(PX11U3RC)|VPX11U3RC
+NC 3 Wire with connector|iec1(PX12U3C)|VPX12U3C
+NC 3 Wire 180 with connector|iec1(PX12U3RC)|VPX12U3RC
+||
+||
+2nd+ NO Contact|iec1(2plusNO)|VSW21
+2nd+ NC Contact|iec1(2plusNC)|VSW22
+**M716
+D4W
+IEC: Touch Switches
+Touch|iec1(PX1TS)|VPX1TS
+Touch Sense Proximity Switch, NO|iec1(PX11TS)|VPX11TS
+Touch Sense Proximity Switch, NC|iec1(PX12TS)|VPX12TS
+||
+NO 3 Wire|iec1(PX11TS3)|VPX11TS3
+NO 3 Wire 180|iec1(PX11TS3R)|VPX11TS3R
+NC 3 Wire|iec1(PX12TS3)|VPX12TS3
+NC 3 Wire 180|iec1(PX12TS3R)|VPX12TS3R
+NO 3 Wire with Connector|iec1(PX11TS3C)|VPX11TS3C
+NO 3 Wire 180 with Connector|iec1(PX11TS3RC)|VPX11TS3RC
+NC 3 Wire with Connector|iec1(PX12TS3C)|VPX12TS3C
+NC 3 Wire 180 with connector|iec1(PX12TS3RC)|VPX12TS3RC
+||
+||
+2nd+ NO Contact|iec1(2plusNO)|VSW21
+2nd+ NC Contact|iec1(2plusNC)|VSW22
+;Proximity|iec1(PX1)|VPX1
+;Proximity Switch, NO|iec1(PX11)|VPX11
+;Proximity Switch, NC|iec1(PX12)|VPX12
+;**M800
+;IEC: Latch Relays
+;Latch NO Contact|iec1(LR21)|VLR21
+;Latch NC Contact|iec1(LR22)|VLR22
+;||
+;Latch Relay Coil|iec1(LR1L)|VLR1
+;Latch Form C|iec1(LR23R)|VLR23R
+;Latch Form C Flipped|iec1(LR23)|VLR23
+**M1500
+D3W
+IEC: 1 Phase Motors
+1 Phase Motor|iec1(MO12)|VMO12
+1 Phase Motor with Fan|iec1(VMO1M3M)|VMO1M3M
+1 Phase AC Motor|iec1(VMO1M9)|VMO1M9
+1 Phase AC Motor in Series Connection|iec1(VMO1M10)|VMO1M10
+1 Phase Synchronous AC Motor|iec1(VMO1M16)|VMO1M16
+**M1501
+D3W
+IEC: 3 Phase Motors
+3 Phase Motor|iec1(mo13)|VMO13
+3 Phase Motor (4 Connections)|iec1(mo14)|VMO14
+3 Phase Motor with Fan|iec1(VMO1M2)|VMO1M2
+3 Phase Asynchro Motor with Series Excitation|iec1(VMO1M3)|VMO1M3
+3 Phase Asynchro Wound-Rotor Motor|iec1(VMO1M4)|VMO1M4
+3 Phase Asynchro Star Connected Stator Auto Starter on Rotor|iec1(VMO1M5)|VMO1M5
+3 Phase Asynchro Motor - 6 Pole|iec1(VMO1M11)|VMO1M11
+3 Phase Synchronous AC Motor|iec1(VMO1M17)|VMO1M17
+**M1502
+D3W
+IEC: DC Motors
+DC Motor|iec1(VMO1M6)|VMO1M6
+DC Motor with Permanent Magnets|iec1(VMO1M13)|VMO1M13
+DC Motor - Linear with Permanent Magnets|iec1(VMO1M14)|VMO1M14
+DC Motor - Stepping with Permanent Magnets|iec1(VMO1M15)|VMO1M15
+DC Motor - Series Excitation|iec1(VMO1M7)|VMO1M7
+DC Motor - Derived Excitation|iec1(VMO1M8)|VMO1M8
+DC Motor - Independent Excitation|iec1(VMO1M12)|VMO1M12
+**M1503
+D3W
+IEC: Generators
+DC Generator|iec1(VPW1G9)|VPW1G9
+DC Generator with Compound Excitation|iec1(VPW1G10)|VPW1G10
+3 Phase Synchro Generator with Permanent Magnets|iec1(VPW1G6)|VPW1G6
+3 Phase Synchro Generator 1|iec1(VPW1G7)|VPW1G7
+3 Phase Synchro Generator 2|iec1(VPW1G8)|VPW1G8
+**M1504
+D3W
+IEC: Motor Starters
+Motor Starter - Coil|iec1(MS1)|VMS1
+Motor Starter 1 Pole NO (Power)|iec1(MS21p)|VMS21P
+Motor Starter 2 Pole NO (Power)|iec1(VMS2NA10F)|$C=wd_2unit VMS21P
+Motor Starter 3 Pole NO (Power)|iec1(ms213)|$C=wd_3unit VMS21P
+Motor Starter 1 Pole NC (Power)|iec1(MS22p)|VMS22P
+Motor Starter 2 Pole NC (Power)|iec1(VMS2NC12F)|$C=wd_2unit VMS22P
+Motor Starter 3 Pole NC (Power)|iec1(ms223)|$C=wd_3unit VMS22P
+2nd+ Motor Starter NO|iec1(MS21)|VMS21
+2nd+ Motor Starter NC|iec1(MS22)|VMS22
+**M1631
+D3W
+IEC: Current Transformers
+CT Current Transformer|iec1(xf1ct)|VXF1CT
+CT (Flipped)|iec1(xf1ctr)|VXF1CTR
+Current Transformer 2|iec1(VXF1T1)|VXF1T1
+With 2 Secondaries - Common Magnetic Circuit|iec1(VXF1T31)|VXF1T31
+With Tapped Secondary Winding|iec1(VXF1T32)|VXF1T32
+With Conductor Indication|iec1(VXF1T33)|VXF1T33
+**M1632
+D6W
+IEC: 3 Phase Transformers
+3 Phase|iec1(xf1P3)|VXF1P3
+3 Phase Star/Delta|iec1(xf1P3SD)|VXF1P3SD
+3 Phase Star/Delta Primary with Sockets|iec1(VXF1T11)|VXF1T11
+3 Phase Star/Zigzag|iec1(VXF1T12)|VXF1T12
+3 Phase Delta/Delta|iec1(VXF1T13)|VXF1T13
+3 Phase Delta/Star|iec1(VXF1T14)|VXF1T14
+3 Phase Star/Star/Delta with 3 Windings|iec1(VXF1T15)|VXF1T15
+3 Phase Delta/Delta|iec1(VXF1T20)|VXF1T20
+3 Phase Star/Star|iec1(VXF1T7)|VXF1T7
+3 Phase Star/Star Secondary with Neutral|iec1(VXF1T8)|VXF1T8
+3 Phase Star/Star Primary with Plugs|iec1(VXF1T9)|VXF1T9
+3 Phase Dy5|iec1(VXF1T21)|VXF1T21
+3 Phase Dd6|iec1(VXF1T22)|VXF1T22
+3 Phase Yd5|iec1(VXF1T23)|VXF1T23
+3 Phase Yy6|iec1(VXF1T24)|VXF1T24
+3 Phase Yd11|iec1(VXF1T25)|VXF1T25
+3 Phase Dy11|iec1(VXF1T26)|VXF1T26
+3 Phase Dz0|iec1(VXF1T27)|VXF1T27
+3 Phase Yz5|iec1(VXF1T28)|VXF1T28
+3 Phase Dz6|iec1(VXF1T29)|VXF1T29
+3 Phase Yz11|iec1(VXF1T30)|VXF1T30
+**M3101
+D6W
+IEC: Operating Devices
+Positive Operation Direction|iec1(q070109)|$C=(c:wd_inu_iecqs "Q070109")
+Manual Command General Sign|iec1(Q021301)|$C=(c:wd_inu_iecqs "Q021301")
+Manual Command with Protected Access|iec1(Q021302)|$C=(c:wd_inu_iecqs "Q021302")
+Push Button Command|iec1(Q021305)|$C=(c:wd_inu_iecqs "Q021305")
+Emergency Command|iec1(Q021308)|$C=(c:wd_inu_iecqs "Q021308")
+Rotary Command|iec1(Q021304)|$C=(c:wd_inu_iecqs "Q021304")
+Command with Key|iec1(Q021313)|$C=(c:wd_inu_iecqs "Q021313")
+Foot Actuated Command|iec1(Q021310)|$C=(c:wd_inu_iecqs "Q021310")
+Lever Command|iec1(Q021311)|$C=(c:wd_inu_iecqs "Q021311")
+Crank Command|iec1(Q021214)|$C=(c:wd_inu_iecqs "Q021214")
+Fixed Manual Command|iec1(Q021312)|$C=(c:wd_inu_iecqs "Q021312")
+Manual Command with Wheel|iec1(Q021309)|$C=(c:wd_inu_iecqs "Q021309")
+Actuated by the Level of a Fluid|iec1(Q021401)|$C=(c:wd_inu_iecqs "Q021401")
+Actuated by the Number of Events|iec1(Q021402)|$C=(c:wd_inu_iecqs "Q021402")
+Actuated by a Flow of Fluid|iec1(Q021403)|$C=(c:wd_inu_iecqs "Q021403")
+Actuated by a Gas Flow|iec1(Q021404)|$C=(c:wd_inu_iecqs "Q021404")
+Motorized Command|iec1(Q021326)|$C=(c:wd_inu_iecqs "Q021326")
+Timing Command|iec1(Q021327)|$C=(c:wd_inu_iecqs "Q021327")
+Command with Roll|iec1(Q021315)|$C=(c:wd_inu_iecqs "Q021315")
+Command with Cam|iec1(Q021316)|$C=(c:wd_inu_iecqs "Q021316")
+Cam Profile|iec1(Q021317)|$C=(c:wd_inu_iecqs "Q021317")
+Switch Position Function|iec1(q070106)|$C=(c:wd_inu_iecqs "Q070106")
+Switch Position (Flipped)|iec1(q070106r)|$C=(c:wd_inu_iecqs "Q070106r")
+Disconnector Isolator|iec1(q070103)|$C=(c:wd_inu_iecqs "Q070103")
+Switch Disconnector Isolator|iec1(q070104)|$C=(c:wd_inu_iecqs "Q070104")
+Circuit Breaker Function|iec1(q070102)|$C=(c:wd_inu_iecqs "Q070102")
+Power Contactor Function|iec1(q070101)|$C=(c:wd_inu_iecqs "Q070101")
+Auto Trip Function|iec1(q070105)|$C=(c:wd_inu_iecqs "Q070105")
+Auto Return (Spring Return)|iec1(q070107)|$C=(c:wd_inu_iecqs "Q070107")
+Non Auto Return (Stay)|iec1(q070108)|$C=(c:wd_inu_iecqs "Q070108")
+||
+||
+**M3102
+D2W
+IEC: Linear Direction of Force or Motion
+One Way Force Or Movement|iec1(Q020401)|$C=(c:wd_inu_iecqs "Q020401")
+Two Way Force Or Movement|iec1(Q020402)|$C=(c:wd_inu_iecqs "Q020402")
+Transition|iec1(Q101101)|$C=(c:wd_inu_iecqs "Q101101")
+**M3103
+D2W
+IEC: Rotative Direction of Force or Motion
+One Way Force Or Movement|iec1(Q020403)|$C=(c:wd_inu_iecqs "Q020403")
+Two Way Force Or Movement|iec1(Q020404)|$C=(c:wd_inu_iecqs "Q020404")
+Limited Two Way Force Or Movement|iec1(Q020405)|$C=(c:wd_inu_iecqs "Q020405")
+**M3104
+D2W
+IEC: Propagation Flow or Signal
+One Way Propagation|iec1(Q020501)|$C=(c:wd_inu_iecqs "Q020501")
+Two Way Simultaneous Transmission Propagation|iec1(Q020502)|$C=(c:wd_inu_iecqs "Q020502")
+Two Way Alternate Transmission Propagation|iec1(Q020503)|$C=(c:wd_inu_iecqs "Q020503")
+Signal Transmission|iec1(Q020504)|$C=(c:wd_inu_iecqs "Q020504")
+Signal Reception|iec1(Q020505)|$C=(c:wd_inu_iecqs "Q020505")
+**M3105
+D2W
+IEC: Energy Flow
+Outbound Energy Flux|iec1(Q020506)|$C=(c:wd_inu_iecqs "Q020506")
+Inbound Energy Flux|iec1(Q020507)|$C=(c:wd_inu_iecqs "Q020507")
+Inbound and Outbound Energy Flux|iec1(Q020508)|$C=(c:wd_inu_iecqs "Q020508")
+**M3106
+D2W
+IEC: Effect
+Thermal Effect|iec1(Q020801)|$C=(c:wd_inu_iecqs "Q020801")
+Magnetic Effect|iec1(Q020802)|$C=(c:wd_inu_iecqs "Q020802")
+Magnetostriction Effect|iec1(Q020803)|$C=(c:wd_inu_iecqs "Q020803")
+Magnetic Field Effect|iec1(Q020804)|$C=(c:wd_inu_iecqs "Q020804")
+**M3107
+D2W
+IEC: Radiation
+Non Ionizing Coherent Electromagnetic Radiation|iec1(Q020901)|$C=(c:wd_inu_iecqs "Q020901")
+Non Ionizing Coherent Radiation|iec1(Q020902)|$C=(c:wd_inu_iecqs "Q020902")
+Ionizing Radiation|iec1(Q020903)|$C=(c:wd_inu_iecqs "Q020903")
+**M3108
+D1W
+IEC: Fault
+Indication Of Presumed Location Of Failure|iec1(Q021701)|$C=(c:wd_inu_iecqs "Q021701")
+Failure For Lack Of Insulation|iec1(Q021702)|$C=(c:wd_inu_iecqs "Q021702")
+**M3109
+D5W
+IEC: Winding
+2 Phase Winding|iec1(Q060201)|$C=(c:wd_inu_iecqs "Q060201")
+3 Phase Partial V Winding|iec1(Q060202)|$C=(c:wd_inu_iecqs "Q060202")
+4 Phase Winding with Accessible Ground|iec1(Q060203)|$C=(c:wd_inu_iecqs "Q060203")
+3 Phase T Winding|iec1(Q060204)|$C=(c:wd_inu_iecqs "Q060204")
+3 Phase Delta Winding|iec1(Q060205)|$C=(c:wd_inu_iecqs "Q060205")
+3 Phase Open Delta Winding|iec1(Q060206)|$C=(c:wd_inu_iecqs "Q060206")
+3 Phase Star Winding|iec1(Q060207)|$C=(c:wd_inu_iecqs "Q060207")
+3 Phase Star Winding with Accessible Ground|iec1(Q060208)|$C=(c:wd_inu_iecqs "Q060208")
+3 Phase Zigzag Winding|iec1(Q060209)|$C=(c:wd_inu_iecqs "Q060209")
+Esaphase Winding with Double Delta|iec1(Q060210)|$C=(c:wd_inu_iecqs "Q060210")
+Esaphase Polygonal Winding|iec1(Q060211)|$C=(c:wd_inu_iecqs "Q060211")
+Esaphase Star Winding|iec1(Q060212)|$C=(c:wd_inu_iecqs "Q060212")
+Esaphase Double Zigzag Winding with Accessible Ground|iec1(Q060213)|$C=(c:wd_inu_iecqs "Q060213")
+DC Direct Current Indication|iec1(Q020201)|$C=(c:wd_inu_iecqs "Q020201")
+DC Direct Current Indication|iec1(Q020203)|$C=(c:wd_inu_iecqs "Q020203")
+Indication of Rectified Current with an Alternate Component|iec1(Q020212)|$C=(c:wd_inu_iecqs "Q020212")
+AC Alternate Current Indication|iec1(Q020204)|$C=(c:wd_inu_iecqs "Q020204")
+**M3110
+D2W
+IEC: Mechanical Controls
+Auto Return|iec1(Q021207)|$C=(c:wd_inu_iecqs "Q021207")
+Auto Non Return Stop Latch|iec1(Q021208)|$C=(c:wd_inu_iecqs "Q021208")
+Stop Latch in Neutral Position|iec1(Q021209)|$C=(c:wd_inu_iecqs "Q021209")
+Stop Latch Engaged|iec1(Q021210)|$C=(c:wd_inu_iecqs "Q021210")
+Interlock Between Two Devices|iec1(Q021211)|$C=(c:wd_inu_iecqs "Q021211")
+**M3111
+D2W
+IEC: Mechanical Controls, Latching Device
+Latch Device Engaged|iec1(Q021212)|$C=(c:wd_inu_iecqs "Q021212")
+Latch Device in Neutral Position|iec1(Q021213)|$C=(c:wd_inu_iecqs "Q021213")
+Two Ways Latch Device|iec1(Q1020603)|$C=(c:wd_inu_iecqs "Q1020603")
+Latch Device with Manual Unlatching|iec1(Q1020604)|$C=(c:wd_inu_iecqs "Q1020604")
+Two Ways Latch Device with Key|iec1(Q1029603)|$C=(c:wd_inu_iecqs "Q1029603")
+**M3112
+D2W
+IEC: Mechanical Controls, Coupling
+Clutch Joint|iec1(Q021216)|$C=(c:wd_inu_iecqs "Q021216")
+Disconnected Joint|iec1(Q021217)|$C=(c:wd_inu_iecqs "Q021217")
+Engaged Joint|iec1(Q021218)|$C=(c:wd_inu_iecqs "Q021218")
+Engaged Joint|iec1(Q021219)|$C=(c:wd_inu_iecqs "Q021219")
+Gear Joint|iec1(Q021223)|$C=(c:wd_inu_iecqs "Q021223")
+**M7141
+D4W
+IEC: Photoelectric Emitter Switches
+Emitter - AC Driven|iec1(VPE1B14)|VPE1B14
+Emitter - DC Driven|iec1(VPE1B15)|VPE1B15
+Emitter - Receiver with Form C|iec1(VPE1B16SC)|VPE13B16SC
+Emitter - DC Driven|iec1(VPE1B20)|VPE1B20
+Emitter - AC Driven|iec1(VPE1B21)
+NO 4 wire|iec1(PX11PE4)|VPE11PE4
+NO 4 wire 180|iec1(PX11PE4R)|VPE11PE4R
+NC 4 wire|iec1(PX12PE4)|VPE12PE4
+NC 4 wire 180|iec1(PX12PE4R)|VPE12PE4R
+NO 4 wire with connector|iec1(PX11PE4C)|VPE11PE4C
+NO 4 wire 180 with connector|iec1(PX11PE4RC)|VPE11PE4RC
+NC 4 wire with connector|iec1(PX12PE4C)|VPE12PE4C
+NC 4 wire 180 with connector|iec1(PX12PE4RC)|VPE12PE4RC
+2nd+ NO Contact|iec1(2plusNO)|VSW21
+2nd+ NC Contact|iec1(2plusNC)|VSW22
+**M7142
+D6W
+IEC: Photoelectric Receiver Switches
+NO Receiver 2 wire|iec1(PX11PE2)|VPE11PE2
+NC Receiver 2 wire|iec1(PX12PE2)|VPE12PE2
+NO Receiver 2 wire with connector|iec1(PX11PE2C)|VPE11PE2C
+NC Receiver 2 wire with connector|iec1(PX12PE2C)|VPE12PE2C
+NO Receiver 3 wire|iec1(PX11PE3)|VPE11PE3
+NO Receiver 3 wire 180|iec1(PX11PE3R)|VPE11PE3R
+NC Receiver 3 wire|iec1(PX12PE3)|VPE12PE3
+NC Receiver 3 wire 180|iec1(PX12PE3R)|VPE12PE3R
+NO Receiver 3 wire with connector|iec1(PX11PE3C)|VPE11PE3C
+NO Receiver 3 wire 180 with connector|iec1(PX11PE3RC)|VPE11PE3RC
+NC Receiver 3 wire with connector|iec1(PX12PE3C)|VPE12PE3C
+NC Receiver 3 wire 180 with connector|iec1(PX12PE3RC)|VPE12PE3RC
+NO Receiver - AC Driven|iec1(VPE1B14A)|VPE11B14
+NC Receiver - AC Driven|iec1(VPE1B14C)|VPE12B14
+NO Receiver - DC Driven|iec1(VPE1B15A)|VPE11B15
+NC Receiver - DC Driven|iec1(VPE1B15C)|VPE12B15
+2nd+ NO Contact|iec1(2plusNO)|VSW21
+2nd+ NC Contact|iec1(2plusNC)|VSW22
+**M7143
+D5W
+IEC: Photoelectric Emitter/Receiver Switches
+NO Emitter-Receiver - DC Driven|iec1(VPE1B16A)|VPE11B16
+NC Emitter-Receiver - DC Driven|iec1(VPE1B16C)|VPE12B16
+NO Emitter-Receiver AC/DC Driven 2 PIN|iec1(VPE1B22A)|VPE11B22
+NC Emitter-Receiver AC/DC Driven 2 PIN|iec1(VPE1B22C)|VPE12B22
+NO Emitter-Receiver AC Driven 3 PIN|iec1(VPE1B23A)|VPE11B23
+NC Emitter-Receiver AC Driven 3 PIN|iec1(VPE1B23C)|VPE12B23
+NO Emitter-Receiver DC Driven 3 PIN|iec1(VPE1B24A)|VPE11B24
+NC Emitter-Receiver DC Driven 3 PIN|iec1(VPE1B24C)|VPE12B24
+NO Emitter-Receiver AC Driven 4 PIN|iec1(VPE1B25A)|VPE11B25
+NC Emitter-Receiver AC Driven 4 PIN|iec1(VPE1B25C)|VPE12B25
+NO Emitter-Receiver DC Driven 4 PIN|iec1(VPE1B26A)|VPE11B26
+NC Emitter-Receiver DC Driven 4 PIN|iec1(VPE1B26C)|VPE12B26
+FORM C Emitter-Receiver AC Driven 5 PIN|iec1(VPE1B25SC)|VPE13B25SC
+FORM C Emitter-Receiver DC Driven 5 PIN|iec1(VPE1B26SC)|VPE13B26SC
+2nd+ NO Contact|iec1(2plusNO)|VSW21
+2nd+ NC Contact|iec1(2plusNC)|VSW22

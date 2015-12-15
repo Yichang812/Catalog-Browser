@@ -1,0 +1,106 @@
+<div>
+	<tabset justified="true">
+    <tab ng-init="init()" ng-controller="manageCatalogCtrl" active="tab1">
+    	<tab-heading>
+        	<i class="fa fa-pencil"></i> Edit Existing Items
+      	</tab-heading>
+		<div class="well" style="margin-top:15px">
+			<div class="row">
+				<form class="form-horizontal col-md-8 col-md-offset-2">
+					<div class="form-group">
+		    			<label class="col-sm-2 control-label">Search
+			            </label>
+		    			<div class="col-sm-8">
+			      			<input type="text" name = "searchHelpPopover"
+			      			 	popover = '"Exact Phrases" and OR expressions are supported: "RED LED", 30.5MM OR 20.5MM'
+			             		popover-title = "Search Help"
+			             		popover-placement = "bottom"
+			             		popover-trigger="mouseenter"class="form-control" ng-model="searchText.value" placeholder="Search Text Here">
+		   				</div>
+		   			</div>
+		   			<div class="form-group">
+		    			<label class="control-label col-sm-2">Type</label>
+		    			<div class="col-sm-4">
+			      			<select class="form-control" ng-model="target" ng-options="type.name for type in types | orderBy:'name'">
+			      			</select>	      			
+		   				</div>
+		   			</div>
+		   			<div class="form-group">
+		    			<label class="col-sm-2 control-label">Filters</label>
+		    			<div class="col-sm-8">
+		    				<div class="form-group" ng-repeat = 'filter in filters'>
+				      			<div class="col-sm-12">
+				      			<div class="input-group showBtnOnHover">
+				      				<span class="input-group-addon">{{filter.field}}</span>
+				      				<input type="text" ng-model="filter.value" class="form-control" ng-keydown="noSubmit($event)">
+				      				<span class="input-group-btn onHover" ng-click="removeFilter(filter)">
+				      					<button class="btn btn-default" ><i class="fa fa-times"></i></button>
+				      				</span>
+				      			</inpujt>
+				      			</div>
+				      			</div>
+		   					</div>
+
+							<div class="row">
+								<div class="dropdown col-sm-2">
+									<button class="btn dropdown-toggle btn-default" type="button" data-toggle="dropdown"  ng-show="filters.length !== 4">
+									<i class="fa fa-filter"></i> Add Filter  
+									<span class="caret"></span>
+									</button>
+									<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+										<li role="presentation" ng-repeat="f in defaultFilters" ng-click="addFilter(f)"><a role="menuitem">{{f}}</a></li>
+									</ul>
+								</div>
+			      			</div>
+		   				</div>
+			   		</div>
+		   			<div class="form-group">
+		   				<div class="col-sm-offset-2">
+		   					<div class="col-sm-8">
+		    					<a ng-disabled="!target" class="btn btn-primary" ng-click="showTypeList()"><i class="fa fa-search"></i> Search</a>
+								<a ng-show="items && items.length !== 0" ng-click="showConfigureModal()" class="btn btn-default btn-separate"><i class="fa fa-gear"> Configure Table</i></a>
+		    				</div>
+		    			</div>
+		   			</div>					
+				</form>
+			</div>
+		</div>
+		<div ng-show="showList">
+			<div class="col-md-12" style="overflow: auto; margin-top:20px">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th ng-click="sortTable(col)" ng-repeat="col in cols" class="showIconOnHover">{{col.title}}
+								<a><i style="margin-left: 5px" class="fa fa-sort-alpha-asc" ng-show="col.sort !== null && col.sort === 1" ></i></a>
+								<a><i style="margin-left: 5px" class="fa fa-sort-alpha-desc" ng-show="col.sort !== null && col.sort === -1"></i></a>
+								<a><i class="fa fa-sort onHover" ng-show="col.sort == null"}></i></a>
+							</th>
+							<th ng-show="showList">Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						<td colspan="{{cols.length+1}}" style="text-align: center" ng-show="items.length === 0">No Entries available.</td>
+						<tr ng-repeat="item in items">
+							<td ng-repeat="data in sortedValues(item) track by $index" transform-link="{{data}}" fix-width="{{sortedValues(item).length}}">{{data}}</td>
+							<td>
+								<a><i class="fa fa-pencil" ng-click="showEditItemModal(item)" style="margin-right:20px"></i></a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div style="text-align: center; margin-top: 10px; background-color: #f6f6f6; border-radius: 10px; border: 1px solid #eeeeee" class="col-md-offset-2 col-md-8">
+				<pagination ng-show="showList && items.length !== 0" total-items="total" page="currentPage" max-size="7" items-per-page="pageItemLimit" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages" ng-click="getPage(currentPage)"></pagination>
+			</div>
+		</div>
+    </tab>
+    <tab active="tab2">
+    	<tab-heading>
+        	<i class="fa fa-plus"></i> Upload New Items
+      	</tab-heading>
+      	<div data-ng-include src="'views/Catalog/view.html'" style="margin-top:15px">
+      	</div>
+    </tab>
+    </tabset>
+		
+</div>

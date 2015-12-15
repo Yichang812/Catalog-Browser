@@ -1,0 +1,136 @@
+<div class="container" ng-controller="catalogListCtrl" ng-init="init()" style="padding-top:30px; max-height:100%-30px; overflow-y:hidden" has-cuz-menu>
+	<nav class="col-md-4 navmenu navmenu-default animate-show" ng-show="showTypes" style="height: 85%; position: fixed; left: 0; z-index: 9999; overflow-y: auto;">
+		<ul class="nav navmenu-nav" ng-init="getTypes()" style="overflow-y: auto;">
+            <div class="navmenu-brand">Catalog Types</i></div> 
+            <form class="navbar-form" role="search">
+				<input type="text" class="form-control" placeholder="Search Type..." ng-model="searchType">
+			</form>
+
+            <li style="margin-top: 20px; margin-left: 15px;" ng-show="types.length == 0">No catalog available</li>          
+            <li style="margin-left: 10px;" class="ng-class:{active: (!!selected? type.code===selected.code: false)}" ng-repeat="type in types | orderBy: 'name' |filter: searchType" ng-mouseenter = "toggleOption(type, true)" ng-mouseleave = "toggleOption(type, false)" href="#!/catalog/{{type.name}}" ng-click="showTypeList(type)">
+                <a>{{type.name + '  ('+ type.code + ')'}}</a>
+            </li>
+        </ul>
+	</nav>
+	<span>
+		<a ng-click="showType()"><i class="fa fa-ellipsis-vertical fa-4x" style="position:fixed; left:1%; top:50%;"></i></a>
+	</span>
+	<accordion ng-show="selected" cuz-menu>
+	<accordion-group is-open="searchBox.show" style="overflow:visible;">
+	<accordion-heading>
+		<div class="placeholder">
+			{{selected.name}}
+			<a style="position:absolute; left:50%;"><i class="fa fa-caret-down fa-lg" ng-show="!searchBox.show"></i></a>
+			<a style="position:absolute; left:50%;"><i class="fa fa-caret-up fa-lg" ng-hide="!searchBox.show"></i></a>
+			<a style="margin-top: -6px; margin-right: -10px" ng-click="$event.stopPropagation(); showConfigureModal()" class=" pull-right btn btn-default btn-sm"><i class="fa fa-gear"  style="margin-right: 10px;"> </i>Configure Table</a>
+			<a style="margin-top: -6px;" ng-show="checkFilters() && global.authenticated" ng-click="$event.stopPropagation(); showFilterModal()" class=" pull-right btn btn-primary btn-sm separate-right"><i class="fa fa-save" style="margin-right: 10px;"></i>Save current search</a>
+		</div>
+	</accordion-heading>
+	<div ng-show="searchBox && selected">
+		<div class="row">
+			<form class="form-horizontal col-md-8 col-md-offset-2">
+				<div class="form-group">
+	    			<label class="col-sm-2 control-label">Search
+		            </label>
+	    			<div class="col-sm-8">
+		      			<input type="text" name = "searchHelpPopover"
+		      			 	popover = '"Exact Phrases" and OR expressions are supported: "RED LED", 30.5MM OR 20.5MM'
+		             		popover-title = "Search Help"
+		             		popover-placement = "bottom"
+		             		popover-trigger="mouseenter"class="form-control" ng-model="searchText.value" placeholder="Search Text Here">
+	   				</div>
+	   			</div>
+	   			<div class="form-group">
+	    			<label class="col-sm-2 control-label">Filters</label>
+	    			<div class="col-sm-8">
+	    				<div class="form-group" ng-repeat = 'filter in filters'>
+			      			<div class="col-sm-12">
+			      			<div class="input-group showBtnOnHover">
+			      				<span class="input-group-addon">{{filter.field}}</span>
+			      				<input type="text" ng-model="filter.value" ng-if="filter.field !== 'Manufacturer'" class="form-control" ng-keydown="noSubmit($event)">
+			      				<input type="text" ng-model="filter.value" class="form-control" ng-if="filter.field === 'Manufacturer'" typeahead="value for value in typeAheadValues[filter.field]| filter:$viewValue | limitTo:8" ng-keydown="noSubmit($event)">
+			      				<span class="input-group-btn onHover" ng-click="removeFilter(filter)">
+			      					<button class="btn btn-default" ><i class="fa fa-times"></i></button>
+			      				</span>
+			      			</inpujt>
+			      			</div>
+			      			</div>
+	   					</div>
+
+						<div class="row">
+							<div class="dropdown col-sm-2">
+								<button class="btn dropdown-toggle btn-default" type="button" data-toggle="dropdown"  ng-show="filters.length !== 4">
+								<i class="fa fa-filter"></i> Add Filter  
+								<span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+									<li role="presentation" ng-repeat="f in defaultFilters" ng-click="addFilter(f)"><a role="menuitem">{{f}}</a></li>
+								</ul>
+							</div>
+		      			</div>
+	   				</div>
+		   		</div>
+	   			<div class="form-group">
+	   				<div class="col-sm-offset-2">
+	   					<div class="col-sm-8">
+	    					<a class="btn btn-primary" ng-click="search();hideSearchBox();" analytics-on="click" analytics-category="Catalog Browser" analytics-event="Search"><i class="fa fa-search"></i> Search</a>
+                            <button class="btn btn-primary" style="margin-left:10px;" ng-show="false" ng-click="search();hideSearchBox();">Hidden Search Btn</button>
+	    				</div>
+	    			</div>
+	   			</div>
+			</form>
+		</div>
+	</div>
+	</accordion-group>
+	</accordion>
+	<div class="row" ng-show="showList && !searchBox.show && items.length > 0">
+		<div class="col-md-8">
+			<a class="btn btn-default btn-sm" style="margin-top: 6px;" ng-show="global.authenticated" ng-click="showLinkModal()" ng-disabled="selectedItems.length===0" tooltip-placement="right" style="display:inline-block;z-index:9999" shortTooltip="Link to Icons" longTooltip="Select one or multiple rows to link them with schematic icons. Once links are made, you can directly insert symbols from the catalog browser into the canvas in AutoCAD Electrical desktop application." tooltipTime="1500" tooltip-timer tooltip-html-unsafe="{{tooltip}}"><i class="fa fa-link"></i></a>
+	    	<a class="btn btn-default btn-sm" style="margin-top: 6px;" tooltip="Mark as Favourite" tooltip-placement="bottom" tooltip-popup-delay="100" tooltip-animation="false" ng-click="markCatFavourite()" ng-show="global.authenticated" ng-disabled="selectedItems.length===0" analytics-on="click" analytics-category="Catalog Browser" analytics-event="Favorite" analytics-label="Mark favorite"><i class="fa fa-star-o"></i></a>
+   	 	</div>
+   	 	<div class="col-md-4 pull-right">
+   	 		<p class="pull-right" style="margin-top:6px;">Showing <b>{{currentPage ? (currentPage-1)*pageItemLimit + 1: 1}} - {{currentPage ? (currentPage-1)*pageItemLimit + items.length : items.length}}</b> of <b>{{total}}</b> results.</p>
+   	 	</div>
+	</div>
+	<div ng-show="showList" ng-click="closeType()">
+		<div class="col-md-12" style="overflow: auto; margin-top:20px">
+			<table class="table table-striped">
+				<thead>
+					<tr cuz-menu>
+						<th ng-click="sortTable(col)" ng-repeat="col in cols" class="showIconOnHover">{{col.title}}
+							<a><i style="margin-left: 5px" class="fa fa-sort-alpha-asc" ng-show="col.sort !== null && col.sort === 1" ></i></a>
+							<a><i style="margin-left: 5px" class="fa fa-sort-alpha-desc" ng-show="col.sort !== null && col.sort === -1"></i></a>
+							<a><i class="fa fa-sort onHover" ng-show="col.sort == null"}></i></a>
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<td colspan="{{cols.length}}" style="text-align: center" ng-show="items.length === 0">No Entries available.</td>
+					<tr ng-repeat="item in items" ng-click="toggleSelectRow($index);$event.preventDefault();" ng-class="{highlighted:isHighlighted($index)}" cuz-menu>
+						<td ng-repeat="data in sortedValues(item) track by $index" fix-width="{{sortedValues(item).length}}">
+						<span transform-link="{{data}}"></span>
+						<i style="margin-left: 15px" ng-show="!$index && checkLink(item)" class="fa fa-unlink btn-link" ng-click="$event.stopPropagation(); showAssociationModal(item)"></i>
+						<i style="margin-left: 15px" ng-show="!$index && checkIfCatFav(item)" class="fa fa-star star" ng-click="$event.stopPropagation(); delCatFav(item);" analytics-on="click" analytics-category="Catalog Browser" analytics-event="Favorite" analytics-label="Unmark favorite"></i>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div style="text-align: center; margin-top: 10px; background-color: #f6f6f6; border-radius: 10px; border: 1px solid #eeeeee" class="col-md-offset-3 col-md-6">
+			<pagination ng-show="showList && items.length !== 0" total-items="total" page="currentPage" max-size="7" items-per-page="pageItemLimit" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages" ng-click="getPage(currentPage)"></pagination>
+		</div>
+	</div>
+
+<div ng-if="global.authenticated" id="contextMenu" class="dropdown clearfix" tabindex="-1" context-menu>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenu" style="display:block;position:static;margin-bottom:5px;" cuz-menu-item>
+        <li>
+        	<a ng-click="showLinkModal()"><i class="fa fa-link"></i> Link <b>{{selectedItems.length > 1 ? selectedItems.length+' items' : selectedItems[0].catalog}}</b> to icons</a>
+        </li>
+        <li>
+        	<a analytics-on="click" analytics-category="Catalog Browser" analytics-event="Favorite" analytics-label="Mark favorite"><i class="fa fa-star-o"></i> Mark <b>{{selectedItems.length > 1 ? selectedItems.length+' items' : selectedItems[0].catalog}}</b> as favorite</a>
+        </li>
+    </ul>
+</div>
+</div>
+
+

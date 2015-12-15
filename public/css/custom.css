@@ -1,0 +1,335 @@
+/* FOR STEPS PROGRESS INDICATOR*/
+.wizard a {padding: 11px 12px 9px 12px; margin-right:5px; background:#efefef; position:relative; display:inline-block;}
+.wizard a:not(:first-child) {padding-left:30px}
+.wizard a:before {width:0px; height:0px; border-top: 20px inset transparent; border-bottom: 20px inset transparent; border-left: 20px solid #fff; position: absolute; content: ""; top: 0; left: 0;}
+.wizard a:after {width:0px; height:0px; border-top: 20px inset transparent; border-bottom: 20px inset transparent; border-left: 20px solid #efefef; position: absolute; content: ""; top: 0; right: -20px; z-index:2;}
+.wizard a:first-child:before {border:none;}
+.wizard a:last-child:after {border:none;}
+
+.wizard a:first-child {-moz-border-radius: 4px 0 0 4px; -webkit-border-radius: 4px 0 0 4px; border-radius: 4px 0 0 4px;}
+.wizard a:last-child {-moz-border-radius: 0 4px 4px 0; -webkit-border-radius: 0 4px 4px 0; border-radius: 0 4px 4px 0;}
+
+.wizard .current {background:#007ACC; color:#fff;}
+.wizard .current:after {border-left-color:#007ACC;}
+
+.wizard .blocked {pointer-events: none; color:#909090;}
+
+/* FOR STEP 4 TABLE LAYOUT */
+.no-gutter-sides {padding-right: 0px; padding-left: 3px;}
+.no-gutter-right {padding-right: 0px;}
+.col-wrap {word-wrap: break-word;}
+.check-link-table:not(:first-child) {padding-top:20px;}
+.icon-align {padding-top: 10px; padding-left: 8px;}
+
+/* FOR STEP 4 HIGHLIGHT TO USERS IF FIELD IS EMPTY/ERROR */
+.css-form .check-link-table input.ng-invalid {background-color: #FCF8E3;}
+
+
+/* STYLES FOR DESKTOP PLUGIN VIEWS */
+
+.desktop-col {
+    padding-left: 10px; 
+    padding-right: 10px;
+}
+.desktop-content-style {
+    padding: 4px 6px; 
+    font-size: 13px;
+}
+.icon-btn {
+    cursor: pointer;
+}
+.icon-btn:hover,
+.icon-btn:focus {
+    color: white;
+    -webkit-text-stroke-width: 0.5px;
+    -webkit-text-stroke-color: black;
+}
+.desktop-container {
+    padding-left: 0px; 
+    padding-right: 0px; 
+    margin: 0px;
+}
+.desktop-header-style {
+    padding: 5px 8px; 
+    font-size: 13px; 
+    font-weight: bold;
+}
+
+
+/* FOR LIBRARY [FAVOURITES] VIEW (DESKTOP) */
+
+/* Custom dropdown box adapted from http://red-team-design.com/making-html-dropdowns-not-suck/ */
+.custom-dropdown {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    width: 100%;
+}
+.custom-dropdown__select {
+    font-size: 13px;
+    font-weight: bold;
+    padding: .5em;
+    margin: 0;
+    background-color: #428bca;
+    color: white;
+    width: 100%;  
+    padding-right: 2.5em; /* accommodate with the pseudo elements for the dropdown arrow */
+    border: 0;
+    border-radius: 4px 4px 0px 0px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;    
+}
+.custom-dropdown::before,
+.custom-dropdown::after {
+    content: "";
+    position: absolute;
+    pointer-events: none;
+}
+.custom-dropdown::after { /*  Custom dropdown arrow */
+    content: "\25BC";
+    color:white;
+    height: 1em;
+    font-size: .625em;
+    line-height: 1;
+    right: 1.2em;
+    top: 50%; margin-top: -.5em;
+}
+.custom-dropdown::before { /*  Custom dropdown arrow cover */
+    width: 2em;
+    right: 0; top: 0; bottom: 0;
+    border-radius: 0 3px 3px 0;
+}
+
+
+/* FOR SCHEMATIC VIEW (DESKTOP) */
+
+.desktop-dropdown {
+    position: fixed;
+    left: 15px;
+    margin: -700px 0 0 0;
+    font-size: 13px;
+}
+.desktop-dropdown >li>a {
+    padding: 3px 10px;
+}
+.desktop-breadcrumb {
+    margin-bottom: 10px; 
+    padding: 8px 8px; 
+    font-size: 13px;
+}
+
+
+/* FOR CATALOG LIST VIEW (DESKTOP) */
+
+.desktop-font {
+    font-size:13px;
+}
+.desktop-catalog-label {
+    padding: 0px 10px; 
+    font-size: 13px; 
+    font-weight: bold; 
+    margin-bottom: 0px;
+}
+.desktop-catalog-content {
+    padding-right: 10px; 
+    padding-left: 10px; 
+    font-size: 13px;
+}
+.desktop-catalog-input {
+    padding: 5px; 
+    font-size: 13px; 
+    height: auto;
+}
+.desktop-catalog-btn {
+    padding: 5px 9px; 
+    font-size: 13px; 
+    height: auto;
+}
+.desktop-catalog-content .popover, 
+.desktop-catalog-content .popover-title {
+    font-size: 12px;
+}
+.desktop-catalog-content 
+.panel-heading {
+    padding: 3px 15px 3px 3px; 
+    height: 30px;
+}
+.desktop-catalog-content accordion .btn-sm {
+    padding:3px 7px; 
+    margin-top: -1px; 
+    margin-right: 4px;
+}
+.desktop-catalog-content .panel-body {
+    padding-bottom: 0px;
+}
+.pagination-well {
+    text-align: center; 
+    margin: 10px 0px 0px 0px; 
+    background-color: #f6f6f6; 
+    border-radius: 10px; 
+    border: 1px solid #eeeeee;
+    padding:10px 10px 5px 10px;
+}
+.pagination-well .pagination {
+    padding: 0px;
+    margin: 0px;
+}
+.desktop-catalog-content > .table>tbody>tr>td {
+    padding: 4px 6px;
+}
+
+/* override */
+.selectize-control > .selectize-dropdown {
+    top: 30px;
+}
+.selectize-input {
+    padding:5px; 
+    padding-right:40px; 
+    white-space: nowrap; 
+    width: 100%; 
+    overflow: hidden; 
+    text-overflow: ellipsis;
+}
+.selectize-dropdown [data-selectable] {
+    padding: 3px 6px;
+}
+
+.fileinput-filename {
+    display: inline;
+}
+
+.fileinput .form-control {
+    overflow: auto;
+}
+
+/* add search icon in input field */
+::-webkit-input-placeholder::before {
+    font-family: fontAwesome; 
+    content:'\f002  '; 
+    color: #B6B6B4
+}
+
+/* style buttons for resize when width decrease */
+.btn-resize {padding-left: 6px;  
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+}
+@media (max-width: 280px) {
+    .btn-resize {
+        font-size: 0px;
+        padding-left: 0px;
+    }
+}
+
+
+/* FOR PROFILE VIEW (DESKTOP) */
+.desktop-profile > .table>tbody>tr>td {
+    border-top: 0px;
+}
+
+.desktop-profile > .table>tbody>tr>td:first-child {
+    text-align: right; 
+    width:35%;
+}
+
+
+/* FOR INDEX VIEW (DESKTOP) */
+.btn-default-custom {
+  color: #428bca;
+}
+
+.btn-default-custom:hover {
+  color: #428bca;
+}
+
+/* FOR MEP CATALOG VIEW */
+.mep-ui-select > .selectize-control > .selectize-dropdown {
+    top: 36px;
+}
+
+.mep-ui-select > div .selectize-dropdown-content {
+  max-height: 250px;
+}
+
+.mep-ui-select > .selectize-control, .selectize-dropdown, .selectize-input, .selectize-input input{
+    font-size: 16px;
+}
+
+.mep-ui-select > div .selectize-input {
+    padding-left: 16px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.mep-ui-select > div .selectize-dropdown [data-selectable] {
+    padding: 6px 15px;
+}
+
+.mepCatalog > .col-md-4 {
+    width: 32.3%;
+    margin: 5px;
+    padding: 3px;
+    border: 1px solid #ddd;
+    background-color: #fbfbfb;
+    display: table;
+    position: relative;
+}
+
+.mepCatalog > .col-md-4:hover
+{
+    background-color: aliceblue;
+}
+
+.mepCatalog > .col-md-4 > .icon{
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.mepCatalog > .col-md-4 > p {
+   padding-left: 17px;
+   display: table-cell;
+   text-align: left;
+   vertical-align: middle;
+   width: 100%;
+   font-size: 13px;
+}
+
+.mepCatalog > .col-md-4 > img {
+    float: left; 
+    width: 120px;
+    height: 120px;
+}
+
+#overlay {
+    position: absolute;
+    min-height: 120px;
+    width: relative;
+    margin-right: 3px;
+    background-color: rgba(0,0,0,0.8);
+    color: #ffffff;
+    z-index: 999;
+}
+
+#overlay .itemDetails {
+    padding: 5px 25px 5px 8px;
+    font-size: 13px;
+}
+
+/*  FOR MEP ADD CATALOG */
+.input-dropdown > .form-control{
+    top: 0px; 
+    left: 0px; 
+    z-index: 10;
+    position: absolute; 
+    width: 350px;
+    border-radius: 4px 0px 0px 4px;
+}
+
+#inputBox::-webkit-input-placeholder::before {
+    content:'';
+}

@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--(C) Copyright Autodesk, Inc. 1998-2012. All rights reserved.-->
+<pXMLTable desc="Part Table" version="1.0" xmlns:xlink="http://www.w3.org/1999/xlink" fixColumn="C1">
+  <ColumnConstView desc="Parameter-driven Display" id="CCV1" viewKey="3d" viewName="AecbPartRecipe">
+    <Images>
+      <Image>
+        <URL xlink:title="Part Reference Image" xlink:href="BMP\Aecb_Elbows_SmoothRadius12_Rectangular.bmp" />
+      </Image>
+    </Images>
+    <Recipe>DWG\Aecb_Elbows_SmoothRadius_Rectangular_gbm.dwg</Recipe>
+  </ColumnConstView>
+  <ColumnConstList desc="Width RW1" dataType="float" unit="mm" name="RW1" id="CCL1" visible="1" context="ConnectionPort_RectangularWidth" index="1">
+    <Item id="i0">150.0000</Item>
+    <Item id="i1">300.0000</Item>
+    <Item id="i2">450.0000</Item>
+    <Item id="i3">600.0000</Item>
+    <Item id="i4">750.0000</Item>
+    <Item id="i5">900.0000</Item>
+  </ColumnConstList>
+  <ColumnConstList desc="Height RH1" dataType="float" unit="mm" name="RH1" id="CCL2" visible="1" context="ConnectionPort_RectangularHeight" index="1">
+    <Item id="i0">75.0000</Item>
+    <Item id="i1">100.0000</Item>
+    <Item id="i2">125.0000</Item>
+  </ColumnConstList>
+  <ColumnConstList desc="Angle A1" dataType="float" unit="deg" name="A1" id="CCL3" visible="1" context="PathAngle" index="1">
+    <Item id="i0">30.0000</Item>
+    <Item id="i1">45.0000</Item>
+    <Item id="i2">60.0000</Item>
+    <Item id="i3">90.0000</Item>
+  </ColumnConstList>
+  <ColumnConstList desc="Cable Tray Connection 1 Connection Type" dataType="string" unit="" name="DCT1" id="CCL4" visible="0" context="ConnectionPort_PhysicalType" index="1">
+    <Item id="i0">Undefined_Connection_Type</Item>
+  </ColumnConstList>
+  <ColumnConst desc="Cable Tray Connection 1" dataType="string" unit="" name="DCD1" id="CC0" visible="0" context="ConnectionPort_Domain" index="1">CableTray_Component</ColumnConst>
+  <ColumnConst desc="Cable Tray Connection 2" dataType="string" unit="" name="DCD2" id="CC1" visible="0" context="ConnectionPort_Domain" index="2">CableTray_Component</ColumnConst>
+  <ColumnConst desc="Cable Tray Connection 1 Shape" dataType="string" unit="" name="DCS1" id="CC2" visible="0" context="ConnectionPort_Shape" index="1">Rectangular</ColumnConst>
+  <ColumnConst desc="Cable Tray Connection 2 Shape" dataType="string" unit="" name="DCS2" id="CC3" visible="0" context="ConnectionPort_Shape" index="2">Rectangular</ColumnConst>
+  <ColumnConst desc="Part Domain" dataType="string" unit="" name="Domain" id="CC4" visible="0" context="Catalog_Domain" index="0">CableTray_Component</ColumnConst>
+  <ColumnConst desc="Part Type" dataType="string" unit="" name="Type" id="CC5" visible="1" context="Catalog_Type" index="0">Elbow</ColumnConst>
+  <ColumnConst desc="Part SubType" dataType="string" unit="" name="SubType" id="CC6" visible="1" context="Catalog_SubType" index="0">Ladder Flange Out</ColumnConst>
+  <ColumnConst desc="Part Name" dataType="string" unit="" name="PartName" id="CC7" visible="0" context="Catalog_PartName" index="0">Cable Tray 300 mm Radius Elbow Ladder Flange Out GBM</ColumnConst>
+  <ColumnConst desc="Part Description" dataType="string" unit="" name="PartDesc" id="CC8" visible="0" context="Catalog_PartDesc" index="0">Cable Tray 300 mm Radius Elbow Ladder Flange Out GBM</ColumnConst>
+  <ColumnConst desc="Part ID" dataType="string" unit="" name="Part_Unique_ID" id="CC9" visible="0" context="Catalog_PartID" index="0">364C2A31-EF4B-48E6-BFB4-4C0A8918C663</ColumnConst>
+  <ColumnConst desc="Layout Flag" dataType="bool" unit="mm" name="LF" id="CC10" visible="0" context="AutoLayout_Flag" index="0">1</ColumnConst>
+  <ColumnConst desc="Data Version" dataType="string" unit="" name="DV" id="CC11" visible="0" context="DataVersion" index="0">7.0</ColumnConst>
+  <ColumnConst desc="Custom Sizing Flag" dataType="bool" unit="" name="CusSF" id="CC12" visible="0" context="CustomPartSizing_Flag" index="0">1</ColumnConst>
+  <ColumnConst desc="Elbow Radius of Curvature R2" dataType="float" unit="mm" name="R2" id="CC13" visible="1" context="PartDimension" index="1">300.0000</ColumnConst>
+  <ColumnCalc desc="Elbow Radius of Curvature R1" dataType="float" unit="mm" name="R1" id="CCA0" visible="1" context="BodyGeometry" index="1">(($RW1)*0.5)+300</ColumnCalc>
+  <ColumnCalc desc="Cable Tray Width: Connection 2" dataType="float" unit="mm" name="RW2" id="CCA1" visible="0" context="ConnectionPort_RectangularWidth" index="2">($RW1)</ColumnCalc>
+  <ColumnCalc desc="Cable Tray Height: Connection 2" dataType="float" unit="mm" name="RH2" id="CCA2" visible="0" context="ConnectionPort_RectangularHeight" index="2">($RH1)</ColumnCalc>
+  <ColumnCalc desc="Name of Specific Elbow Size" dataType="string" unit="" name="Name" id="CCA3" visible="1" context="Catalog_PartSizeName" index="0">FormatNumber($RW1,0) + "x" + FormatNumber($RH1,0) + " mm " + FormatNumber($A1,0) + " degree $PartDesc"</ColumnCalc>
+  <ColumnCalc desc="Cable Tray Connection 2 Connection Type" dataType="string" unit="" name="DCT2" id="CCA4" visible="0" context="ConnectionPort_PhysicalType" index="2">$DCT1</ColumnCalc>
+</pXMLTable>

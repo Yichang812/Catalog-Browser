@@ -1,0 +1,87 @@
+<section data-ng-controller="ProfileController" class="dropshadow" >
+<div class="page-header"><h1>My Profile</h1></div>
+  <div>
+    <link rel="stylesheet" type="text/css" href="/css/profile.css">
+    <div class="sheet">
+      <div class="row">
+        <div class="col-sm-3 pull-right">
+          <a ng-click="toggleEdit()" ng-show="!editable"><p>Edit Profile</p></a>
+          <a ng-click="updateUserPrdt(); updateUserDefPrdt(); toggleEdit();" ng-show="editable">Save Changes</a>
+        </div>
+      </div>
+
+      <form class="form-horizontal" name="profileForm" role="form">
+        <div class="col-sm-offset-1 col-sm-10  desktop-profile">
+          <table class="table" style="border-top:0px">
+            <tbody>
+              <tr>
+                <td>Autodesk Account Name:</td>
+                <td>{{username}}</td>
+              </tr>
+              <tr>
+                <td>Email:</td>
+                <td>{{email}}</td>
+              </tr>
+              <tr>
+                <td><span style="color:red">*</span> My Product List:
+                  <a class = "glyphicon glyphicon-question-sign"
+                   name = "prdtListPopover"
+                   popover = "My product list shows the products you use. Select one or more products to have their catalog information shown in the catalog browser."
+                   popover-title = "My Product List"
+                   popover-trigger="mouseenter"  ></a>
+                </td>
+                <td>
+                  <div ng-repeat="item in prdtList">
+                    <input type="checkbox" ng-click="validateDefPrdtField()" ng-disabled="!editable" checkbox-list> {{item}}</input>
+                  </div>
+                </td>
+              </tr>
+              <tr ng-show="userPrdtList.length > 1">
+                <td><span style="color:red">*</span> Default Product:
+                  <a class = "glyphicon glyphicon-question-sign"
+                   name = "defProductPopover"
+                   popover = "Default product sets the default catalog information to show in catalog broswer."
+                   popover-title = "What is Default Product?"
+                   popover-trigger="mouseenter"  ></a>
+                </td>
+                <td>
+                  <div class="btn-group">
+                    <div id="defProductField" class="btn dropdown-toggle btn-default" data-toggle="dropdown" ng-disabled="!editable"></div>
+                    <ul class="dropdown-menu">
+                      <li ng-repeat="product in userPrdtList" ng-click="updateDefPrdtField(product)"><a>{{product}}</a></li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>CODE Name (Optional):           
+                  <a class = "glyphicon glyphicon-question-sign"
+                   name = "codeNamePopover"
+                   popover = "CODE name is the CODE for manufacturers, shown in the catalog list. By changing the CODE name you automatically apply to be a manufacturer."
+                   popover-title = "What is CODE Name?"
+                   popover-trigger="mouseenter"  ></a>
+                </td>
+                <td>
+                  <div ng-switch="editable">
+                    <div ng-switch-when=false ng-class="{'grey italic': {{codename === 'Not Assigned'}}}">{{codename}}</div>
+                    <div ng-switch-when=true>
+                      <table><tbody>
+                      <tr>
+                        <td style="width:80%;"><input type="text" class="form-control" placeholder={{(codename==='N.A.')?'':codeName}} ng-model="codeNameInput.value" ng-blur="checkValid()" name="codeNameInput"></td>
+                        <td style="width:20%; padding-left:10px;"><button class="btn btn-default" ng-disabled="profileForm.codeNameInput.$pristine || !codeNameInput.valid.valid" ng-click="updateCodeName()">Submit Change</button></td>
+                      </tr>
+                      <tr>
+                        <td><span class="help-block" ng-show="!codeNameInput.valid.lengthCheck && profileForm.codeNameInput.$dirty">CODE name must be between 1 and 30 characters</span><span class="help-block" ng-show="!codeNameInput.valid.patternCheck && profileForm.codeNameInput.$dirty">CODE name must only be alphabetical characters</span></td>
+                      </tr>
+                      </tbody></table>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
